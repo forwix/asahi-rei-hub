@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>朝陽 黎 — 朝を整える。習慣を整える。</title>
+<meta name="description" content="朝の習慣・自己管理・資産形成を、ゆるく整える場所">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  :root {
+    --cream: #faf8f5;
+    --cream-deep: #f7f3ed;
+    --white: #ffffff;
+    --orange: #c87941;
+    --orange-light: #e8c9a8;
+    --orange-soft: #fdf0e3;
+    --brown: #2c2825;
+    --text: #3a3530;
+    --text-muted: #6e6660;
+    --border: #ede5d8;
+    --shadow: 0 2px 12px rgba(44, 40, 37, 0.04);
+    --shadow-hover: 0 4px 20px rgba(44, 40, 37, 0.08);
+  }
+  
+  html { scroll-behavior: smooth; }
+  
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+    font-weight: 400;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  
+  /* Header */
+  .header {
+    position: relative;
+    padding: 80px 0 60px;
+    text-align: center;
+    overflow: hidden;
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  .sun-decoration {
+    position: absolute;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, var(--orange-soft) 0%, rgba(253, 240, 227, 0.4) 40%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.85;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .header-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .brand-mark {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--orange);
+    font-weight: 500;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  
+  .brand-name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 42px;
+    font-weight: 500;
+    color: var(--brown);
+    letter-spacing: 8px;
+    margin-bottom: 28px;
+    line-height: 1.2;
+  }
+  
+  .tagline {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 18px;
+    line-height: 2;
+    color: var(--text);
+    font-weight: 400;
+  }
+  
+  /* Soft message callout */
+  .soft-message {
+    text-align: center;
+    padding: 12px 24px 40px;
+    animation: fadeIn 1.2s ease-out 0.3s backwards;
+  }
+  
+  .soft-message-inner {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 24px 24px;
+    background: var(--white);
+    border-radius: 12px;
+    border-left: 3px solid var(--orange);
+    box-shadow: var(--shadow);
+  }
+  
+  .soft-message p {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 15px;
+    line-height: 2;
+    color: var(--brown);
+    letter-spacing: 0.5px;
+  }
+  
+  /* Sections */
+  .section {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 32px 28px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    animation: fadeInUp 0.8s ease-out backwards;
+  }
+  
+  main .section:nth-child(1) { animation-delay: 0.1s; }
+  main .section:nth-child(2) { animation-delay: 0.2s; }
+  main .section:nth-child(3) { animation-delay: 0.3s; }
+  main .section:nth-child(4) { animation-delay: 0.4s; }
+  main .section:nth-child(5) { animation-delay: 0.5s; }
+  main .section:nth-child(6) { animation-delay: 0.6s; }
+  
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .section-emoji {
+    font-size: 20px;
+    margin-right: 12px;
+  }
+  
+  .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--brown);
+    letter-spacing: 2px;
+  }
+  
+  .section-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    line-height: 1.8;
+  }
+  
+  /* Link items */
+  .link-list { list-style: none; }
+  
+  .link-item {
+    display: block;
+    padding: 16px 18px;
+    margin-bottom: 10px;
+    background: var(--cream-deep);
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.25s ease;
+    border-left: 3px solid transparent;
+  }
+  
+  .link-item:hover {
+    background: var(--orange-soft);
+    border-left-color: var(--orange);
+    transform: translateX(2px);
+    box-shadow: var(--shadow-hover);
+  }
+  
+  .link-item:last-child { margin-bottom: 0; }
+  
+  .link-title {
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--brown);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  
+  .link-arrow {
+    color: var(--orange);
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  
+  .link-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  
+  .link-placeholder {
+    opacity: 0.55;
+    cursor: default;
+    pointer-events: none;
+  }
+  
+  /* Intro section */
+  .intro {
+    background: linear-gradient(135deg, var(--cream-deep) 0%, var(--orange-soft) 100%);
+  }
+  
+  .intro p {
+    font-size: 14px;
+    line-height: 1.95;
+    color: var(--text);
+  }
+  
+  /* Divider */
+  .divider {
+    text-align: center;
+    margin: 40px 0;
+    color: var(--orange-light);
+    letter-spacing: 8px;
+    font-size: 14px;
+  }
+  
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 60px 0 40px;
+    color: var(--text-muted);
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+  
+  .footer-mark {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 16px;
+    color: var(--orange);
+    margin-bottom: 8px;
+    letter-spacing: 6px;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fadeInUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px);
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0);
+    }
+  }
+  
+  /* Mobile optimization */
+  @media (max-width: 480px) {
+    .container { padding: 0 16px; }
+    .header { padding: 60px 0 40px; }
+    .brand-name { font-size: 34px; letter-spacing: 6px; }
+    .tagline { font-size: 16px; }
+    .section { padding: 24px 20px; margin-bottom: 16px; }
+    .section-title { font-size: 16px; }
+    .sun-decoration { width: 240px; height: 240px; top: -90px; }
+    .soft-message { padding: 8px 16px 32px; }
+    .soft-message-inner { padding: 20px 18px; }
+    .soft-message p { font-size: 14px; line-height: 1.9; }
+  }
+</style>
+</head>
+<body>
+  <header class="header">
+    <div class="sun-decoration"></div>
+    <div class="container header-content">
+      <div class="brand-mark">ASAHI REI</div>
+      <h1 class="brand-name">朝陽 黎</h1>
+      <p class="tagline">
+        朝を整える。<br>
+        習慣を整える。<br>
+        少しずつ、暮らしとお金を整える。
+      </p>
+    </div>
+  </header>
+
+  <!-- Soft message callout -->
+  <div class="soft-message">
+    <div class="soft-message-inner">
+      <p>
+        早起きは、根性よりも環境づくり。<br>
+        気合いで変えるのではなく、続けやすい形に整えていきます。
+      </p>
+    </div>
+  </div>
+
+  <main class="container">
+    
+    <!-- Intro -->
+    <div class="section intro">
+      <div class="section-header">
+        <span class="section-emoji">📖</span>
+        <h2 class="section-title">はじめての方へ</h2>
+      </div>
+      <p>早起き、自己管理、資産形成。どれも一気に変える必要はありません。<br><br>まずは朝の「おはよう」から、小さく整えるための場所です。</p>
+    </div>
+    
+    <!-- 朝の早起きサポート -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-emoji">🌅</span>
+        <h2 class="section-title">朝の早起きサポート</h2>
+      </div>
+      <p class="section-desc">ゆるく続ける朝の習慣。完璧じゃなくていい仕組み。</p>
+      <div class="link-list">
+        <a href="https://line.me/R/ti/p/@179pyfte" class="link-item">
+          <div class="link-title"><span>LINE公式アカウント「早起きサポート」</span><span class="link-arrow">→</span></div>
+          <div class="link-desc">毎朝6時に届く、朝のコツ・21日間のステップ配信</div>
+        </a>
+        <a href="https://line.me/ti/g2/cFezziUwcw-bG7y5q8FaXQLaKcdfWQsqGIoEbA" class="link-item">
+          <div class="link-title"><span>オープンチャット「ゆるく続ける朝活部屋」</span><span class="link-arrow">→</span></div>
+          <div class="link-desc">朝が苦手でも大丈夫。まずは「おはよう」の一言だけ。ノルマなし・自己紹介不要。</div>
+        </a>
+        <a href="#" class="link-item link-placeholder">
+          <div class="link-title"><span>Ameblo(週次メモ + 朝の習慣コーナー)</span><span class="link-arrow">→</span></div>
+          <div class="link-desc">[URL差し込み待ち]</div>
+        </a>
+      </div>
+    </div>
+    
+    <!-- 習慣形成・自己管理 -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-emoji">📝</span>
+        <h2 class="section-title">習慣形成・自己管理</h2>
+      </div>
+      <p class="section-desc">身につくのではなく、戻りやすくなる仕組み。</p>
+      <div class="link-list">
+        <a href="#" class="link-item link-placeholder">
+          <div class="link-title"><span>21日プログラム(Coconala)</span><span class="link-arrow">→</span></div>
+          <div class="link-desc">一人では続きにくい人向けに、21日間だけ伴走します。自分に合いそうだと思った方だけご覧ください。</div>
+        </a>
+      </div>
+    </div>
+    
+    <!-- 資産形成につながる習慣 -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-emoji">💹</span>
+        <h2 class="section-title">資産形成につながる習慣</h2>
+      </div>
+      <p class="section-desc">朝の時間、判断力、感情コントロール。それらが整うことが、長期的な資産形成の基盤になる、という仮説で発信しています。</p>
+      <div class="link-list">
+        <div class="link-item link-placeholder">
+          <div class="link-title"><span>考え方・仮説・発信予定</span></div>
+          <div class="link-desc">(今後のコンテンツとして展開)</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Antigravity -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-emoji">🔻</span>
+        <h2 class="section-title">Antigravity</h2>
+      </div>
+      <p class="section-desc">自己判断トレーダーのためのP&Fチャート分析ツール。資産形成における「判断材料」を提供します。</p>
+      <div class="link-list">
+        <a href="#" class="link-item link-placeholder">
+          <div class="link-title"><span>Antigravityを使う</span><span class="link-arrow">→</span></div>
+          <div class="link-desc">開発中・[URL差し込み待ち]</div>
+        </a>
+        <a href="#" class="link-item link-placeholder">
+          <div class="link-title"><span>週次マーケットメモ(Ameblo)</span><span class="link-arrow">→</span></div>
+          <div class="link-desc">[URL差し込み待ち]</div>
+        </a>
+      </div>
+    </div>
+    
+    <!-- SNS -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-emoji">🐦</span>
+        <h2 class="section-title">SNS / 連絡先</h2>
+      </div>
+      <div class="link-list">
+        <a href="#" class="link-item link-placeholder">
+          <div class="link-title"><span>X(@2mwIXZKsmV13970)</span><span class="link-arrow">→</span></div>
+          <div class="link-desc">[URL差し込み待ち]</div>
+        </a>
+        <a href="#" class="link-item link-placeholder">
+          <div class="link-title"><span>YouTube</span><span class="link-arrow">→</span></div>
+          <div class="link-desc">[URL差し込み待ち]</div>
+        </a>
+      </div>
+    </div>
+    
+    <div class="divider">— ◇ —</div>
+    
+  </main>
+  
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-mark">朝陽 黎</div>
+      <div>© 2026 ASAHI REI</div>
+    </div>
+  </footer>
+</body>
+</html>
