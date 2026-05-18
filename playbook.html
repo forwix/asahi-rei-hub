@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>朝陽 黎 — 戦略プレイブック</title>
+<meta name="description" content="朝陽 黎ブランドの実行計画 / Internal Playbook">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #faf8f5;
+    --cream-deep: #f7f3ed;
+    --white: #ffffff;
+    --orange: #c87941;
+    --orange-light: #e8c9a8;
+    --orange-soft: #fdf0e3;
+    --brown: #2c2825;
+    --text: #3a3530;
+    --text-muted: #6e6660;
+    --border: #ede5d8;
+    --strike: #b8a99a;
+    --shadow: 0 2px 12px rgba(44, 40, 37, 0.04);
+    --shadow-hover: 0 4px 20px rgba(44, 40, 37, 0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+    font-weight: 400;
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Top nav */
+  .topnav {
+    padding: 20px 0 0;
+    animation: fadeIn 0.6s ease-out;
+  }
+  .topnav a {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.2s ease;
+  }
+  .topnav a:hover { color: var(--orange); }
+
+  /* Header */
+  .header {
+    position: relative;
+    padding: 40px 0 50px;
+    text-align: center;
+    overflow: hidden;
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .sun-decoration {
+    position: absolute;
+    top: -160px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, var(--orange-soft) 0%, rgba(253, 240, 227, 0.4) 40%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.85;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .header-content { position: relative; z-index: 1; }
+
+  .brand-mark {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--orange);
+    font-weight: 500;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .page-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--brown);
+    letter-spacing: 6px;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .meta {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+  }
+
+  /* Lead callout */
+  .lead {
+    margin: 0 0 32px;
+    padding: 28px 28px;
+    background: var(--white);
+    border-radius: 14px;
+    border-left: 3px solid var(--orange);
+    box-shadow: var(--shadow);
+    animation: fadeInUp 0.8s ease-out 0.2s backwards;
+  }
+  .lead p {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 15px;
+    line-height: 2;
+    color: var(--brown);
+  }
+  .lead strong {
+    color: var(--orange);
+    font-weight: 500;
+  }
+
+  /* Section */
+  .section {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 32px 28px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    animation: fadeInUp 0.8s ease-out backwards;
+  }
+  main > .section:nth-child(1) { animation-delay: 0.25s; }
+  main > .section:nth-child(2) { animation-delay: 0.35s; }
+  main > .section:nth-child(3) { animation-delay: 0.45s; }
+  main > .section:nth-child(4) { animation-delay: 0.55s; }
+  main > .section:nth-child(5) { animation-delay: 0.65s; }
+  main > .section:nth-child(6) { animation-delay: 0.75s; }
+
+  /* Step header */
+  .step-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .step-num {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 38px;
+    font-weight: 500;
+    color: var(--orange);
+    line-height: 1;
+    letter-spacing: 1px;
+  }
+  .step-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--brown);
+    letter-spacing: 2px;
+    line-height: 1.4;
+  }
+  .step-when {
+    font-size: 11px;
+    color: var(--orange);
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Simple section header (for non-Step sections) */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    gap: 10px;
+  }
+  .section-icon {
+    font-size: 18px;
+  }
+  .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--brown);
+    letter-spacing: 2px;
+  }
+
+  /* Body text */
+  .section p {
+    font-size: 14.5px;
+    line-height: 1.95;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+  .section p:last-child { margin-bottom: 0; }
+  .section p strong {
+    color: var(--brown);
+    font-weight: 500;
+    background: var(--orange-soft);
+    padding: 1px 4px;
+    border-radius: 3px;
+  }
+
+  /* Action list */
+  .actions {
+    list-style: none;
+    margin: 14px 0 18px;
+  }
+  .actions li {
+    position: relative;
+    padding: 10px 0 10px 30px;
+    font-size: 14px;
+    line-height: 1.8;
+    border-bottom: 1px dashed var(--border);
+  }
+  .actions li:last-child { border-bottom: none; }
+  .actions li::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 18px;
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid var(--orange);
+    border-radius: 3px;
+    background: var(--white);
+  }
+  .actions li.done::before {
+    background: var(--orange);
+    content: '✓';
+    color: var(--white);
+    font-size: 11px;
+    line-height: 14px;
+    text-align: center;
+    border-color: var(--orange);
+  }
+  .actions li ul {
+    list-style: none;
+    margin: 6px 0 2px;
+    padding-left: 0;
+  }
+  .actions li ul li {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 4px 0 4px 14px;
+    border: none;
+    line-height: 1.7;
+  }
+  .actions li ul li::before {
+    content: '—';
+    position: static;
+    width: auto;
+    height: auto;
+    border: none;
+    color: var(--orange-light);
+    margin-right: 6px;
+    background: none;
+    font-size: 13px;
+    line-height: inherit;
+  }
+
+  /* Goal callout */
+  .goal {
+    margin-top: 16px;
+    padding: 14px 18px;
+    background: var(--cream-deep);
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--brown);
+  }
+  .goal::before {
+    content: '完了基準';
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--orange);
+    font-weight: 500;
+    margin-right: 10px;
+    padding: 2px 8px;
+    background: var(--white);
+    border-radius: 3px;
+    vertical-align: middle;
+  }
+
+  /* Exception note */
+  .exception {
+    margin-top: 14px;
+    padding: 14px 18px;
+    background: var(--orange-soft);
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--brown);
+    line-height: 1.8;
+  }
+  .exception::before {
+    content: '例外';
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--orange);
+    font-weight: 500;
+    margin-right: 10px;
+    padding: 2px 8px;
+    background: var(--white);
+    border-radius: 3px;
+    vertical-align: middle;
+  }
+
+  /* Subhead */
+  .subhead {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 15px;
+    color: var(--brown);
+    font-weight: 500;
+    margin: 22px 0 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px dotted var(--border);
+  }
+  .subhead:first-of-type { margin-top: 0; }
+
+  /* Roadmap */
+  .roadmap-period {
+    margin-bottom: 28px;
+  }
+  .roadmap-period:last-child { margin-bottom: 0; }
+  .period-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--orange-soft);
+    flex-wrap: wrap;
+  }
+  .period-tag {
+    display: inline-block;
+    padding: 3px 11px;
+    background: var(--orange);
+    color: var(--white);
+    border-radius: 999px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+  }
+  .period-label {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--brown);
+    letter-spacing: 1px;
+  }
+  .period-date {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    margin-left: auto;
+  }
+  .roadmap-list {
+    list-style: none;
+  }
+  .roadmap-list li {
+    position: relative;
+    padding: 10px 0 10px 28px;
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--text);
+    border-bottom: 1px dashed var(--border);
+  }
+  .roadmap-list li:last-child { border-bottom: none; }
+  .roadmap-list li::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 15px;
+    width: 12px;
+    height: 12px;
+    border: 1.5px solid var(--orange-light);
+    border-radius: 2px;
+    background: var(--white);
+  }
+  .roadmap-list li .tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--orange);
+    background: var(--orange-soft);
+    padding: 1px 7px;
+    border-radius: 3px;
+    margin-right: 8px;
+    vertical-align: middle;
+    font-weight: 500;
+  }
+  .roadmap-list li.decision::before {
+    border-color: var(--orange);
+    background: var(--orange-soft);
+  }
+
+  /* Priority table */
+  .priority-list {
+    list-style: none;
+    margin-top: 8px;
+  }
+  .priority-list li {
+    display: flex;
+    gap: 16px;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  .priority-list li:last-child { border-bottom: none; }
+  .priority-num {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px;
+    color: var(--orange);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 36px;
+  }
+  .priority-body {
+    flex: 1;
+  }
+  .priority-what {
+    font-size: 14.5px;
+    color: var(--brown);
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .priority-why {
+    font-size: 12.5px;
+    color: var(--text-muted);
+  }
+
+  /* Don't list */
+  .dont-list {
+    list-style: none;
+    margin-top: 8px;
+  }
+  .dont-list li {
+    position: relative;
+    padding: 8px 0 8px 28px;
+    font-size: 13.5px;
+    color: var(--strike);
+    border-bottom: 1px dashed var(--border);
+  }
+  .dont-list li:last-child { border-bottom: none; }
+  .dont-list li::before {
+    content: '✕';
+    position: absolute;
+    left: 6px;
+    top: 8px;
+    color: var(--strike);
+    font-size: 12px;
+  }
+  .dont-list li span {
+    text-decoration: line-through;
+    text-decoration-color: var(--strike);
+    text-decoration-thickness: 1px;
+  }
+
+  /* Most important callout */
+  .keystone {
+    background: linear-gradient(135deg, var(--cream-deep) 0%, var(--orange-soft) 100%);
+    border-radius: 16px;
+    padding: 32px 28px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    animation: fadeInUp 0.8s ease-out 0.85s backwards;
+  }
+  .keystone-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--orange);
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+  .keystone-text {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 17px;
+    line-height: 2;
+    color: var(--brown);
+  }
+  .keystone-text strong {
+    color: var(--orange);
+    font-weight: 500;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 60px 0 40px;
+    color: var(--text-muted);
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+  .footer-mark {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 16px;
+    color: var(--orange);
+    margin-bottom: 8px;
+    letter-spacing: 6px;
+  }
+  .back-link {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 10px 22px;
+    background: var(--white);
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 999px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    box-shadow: var(--shadow);
+    transition: all 0.25s ease;
+  }
+  .back-link:hover {
+    background: var(--orange-soft);
+    color: var(--brown);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  /* Divider */
+  .divider {
+    text-align: center;
+    margin: 32px 0;
+    color: var(--orange-light);
+    letter-spacing: 8px;
+    font-size: 14px;
+  }
+
+  /* Animations */
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+    .container { padding: 0 16px; }
+    .header { padding: 30px 0 36px; }
+    .page-title { font-size: 26px; letter-spacing: 4px; }
+    .section, .keystone { padding: 24px 20px; }
+    .lead { padding: 22px 20px; }
+    .lead p { font-size: 14px; }
+    .step-num { font-size: 32px; }
+    .step-title { font-size: 17px; }
+    .section-title { font-size: 16px; }
+    .keystone-text { font-size: 15px; }
+    .sun-decoration { width: 240px; height: 240px; top: -120px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container topnav">
+  <a href="./index.html">← ハブに戻る</a>
+</div>
+
+<header class="header">
+  <div class="sun-decoration"></div>
+  <div class="container header-content">
+    <div class="brand-mark">PLAYBOOK</div>
+    <h1 class="page-title">戦略プレイブック</h1>
+    <div class="meta">最終更新 2026.05.18</div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="lead">
+    <p>
+      1年やって売上0、Xフォロワー0、固定ツイート月20表示。<br>
+      これが示しているのは「コンテンツの質」じゃなく、<strong>届ける仕組みが機能していない</strong>ということ。
+    </p>
+    <p style="margin-top:12px;">
+      だから「もっと書く」「もっと投稿する」では変わらない。優先順位は3つだけに絞る。
+    </p>
+  </div>
+</div>
+
+<main class="container">
+
+  <!-- 優先順位 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">◇</span>
+      <h2 class="section-title">優先順位</h2>
+    </div>
+    <ul class="priority-list">
+      <li>
+        <div class="priority-num">01</div>
+        <div class="priority-body">
+          <div class="priority-what">計測の自動化</div>
+          <div class="priority-why">闇雲じゃなく、数字で動く</div>
+        </div>
+      </li>
+      <li>
+        <div class="priority-num">02</div>
+        <div class="priority-body">
+          <div class="priority-what">最初の1人に届ける</div>
+          <div class="priority-why">0→1 が一番難しい</div>
+        </div>
+      </li>
+      <li>
+        <div class="priority-num">03</div>
+        <div class="priority-body">
+          <div class="priority-what">届く仕組みを作る</div>
+          <div class="priority-why">1→10 を支える基盤</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 実行ロードマップ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">◎</span>
+      <h2 class="section-title">実行ロードマップ</h2>
+    </div>
+    <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:20px;">
+      時系列で「何を、いつ、どの順でやるか」。判断が必要な項目は枠が塗りつぶされてます。
+    </p>
+
+    <div class="roadmap-period">
+      <div class="period-header">
+        <span class="period-tag">WEEK 1</span>
+        <span class="period-label">基礎工事</span>
+        <span class="period-date">5/18 〜 5/24</span>
+      </div>
+      <ul class="roadmap-list">
+        <li><span class="tag">Step 1</span>GA4プロパティ作成 → 測定IDを index.html に追加</li>
+        <li><span class="tag">Step 1</span>X固定ツイートをハブURL(UTM付)に変更</li>
+        <li><span class="tag">Step 1</span>Ameblo / Coconala / YouTube 概要欄にハブURL追加</li>
+        <li><span class="tag">Step 3</span>X版テキスト7本書き起こし(5/17-23配信分)</li>
+        <li><span class="tag">Step 3</span>Xアプリで7本予約投稿(LINE配信時刻 +1〜2時間後)</li>
+        <li class="decision"><span class="tag">判断</span>LINE 21日daily切り替えの可否(A:GO / B:調整 / C:保留)</li>
+      </ul>
+    </div>
+
+    <div class="roadmap-period">
+      <div class="period-header">
+        <span class="period-tag">WEEK 2-4</span>
+        <span class="period-label">最初の1人</span>
+        <span class="period-date">5/25 〜 6/14</span>
+      </div>
+      <ul class="roadmap-list">
+        <li><span class="tag">Step 1</span>GA4で流入元の上位2チャネルを特定</li>
+        <li><span class="tag">Step 2</span>接点ある10人を特定(OC・Ameblo・X反応者)</li>
+        <li><span class="tag">Step 2</span>個別メッセージで関係構築(売り込まない)</li>
+        <li><span class="tag">Step 2</span>モニター3人募集 → 1人に体験提供</li>
+        <li><span class="tag">Step 3</span>X予約投稿の反応を観察(数値ベース)</li>
+        <li><span class="tag">Step 3</span>LINE 21日daily配信を実装(GOの場合)</li>
+      </ul>
+    </div>
+
+    <div class="roadmap-period">
+      <div class="period-header">
+        <span class="period-tag">MONTH 2-3</span>
+        <span class="period-label">届く仕組み</span>
+        <span class="period-date">6/15 〜 8/17</span>
+      </div>
+      <ul class="roadmap-list">
+        <li><span class="tag">Step 2</span>お客様の声 2本取得</li>
+        <li><span class="tag">Step 2</span>Coconala説明欄を声を反映して改善</li>
+        <li><span class="tag">Step 3</span>X 毎日1投稿+5リプ → 100フォロワー目標</li>
+        <li><span class="tag">Step 3</span>Antigravity ベータユーザー 5〜10人募集</li>
+        <li class="decision"><span class="tag">判断</span>X API完全自動化(C案)に移行するか</li>
+      </ul>
+    </div>
+
+    <div class="roadmap-period">
+      <div class="period-header">
+        <span class="period-tag">MONTH 4+</span>
+        <span class="period-label">換金フェーズ</span>
+        <span class="period-date">8/18 〜</span>
+      </div>
+      <ul class="roadmap-list">
+        <li>Antigravity 月額サブスク移行 2〜3人</li>
+        <li>Coconala 月1〜2人継続</li>
+        <li>月売上 ¥15,000〜25,000(損益分岐 6人)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Step 1 -->
+  <div class="section">
+    <div class="step-header">
+      <span class="step-num">01</span>
+      <span class="step-title">計測の自動化</span>
+    </div>
+    <div class="step-when">今 週 中</div>
+
+    <p>
+      ハブを作った目的は <strong>「聞きに行かなくても分かる」</strong> 状態を作ること。既存メンバーへのDMヒアリングは不要。仕組みで取る。
+    </p>
+
+    <ul class="actions">
+      <li>
+        GA4 を <code style="font-family:monospace;font-size:12.5px;background:var(--cream-deep);padding:1px 5px;border-radius:3px;">index.html</code> に追加
+        <ul>
+          <li>訪問者・流入元・直帰率を自動取得</li>
+        </ul>
+      </li>
+      <li>
+        全チャネルのリンクを UTM付き ハブURL に統一
+        <ul>
+          <li>X固定ツイート、Ameblo フッター、Coconala 説明欄、YouTube 概要欄</li>
+        </ul>
+      </li>
+      <li>
+        1ヶ月放置 → データが溜まる
+      </li>
+    </ul>
+
+    <div class="exception">
+      新規メンバーが OC に入った瞬間 だけは別。3回ほど「おはよう」を共有してくれた後に DM で1回だけ聞く:「どこで知って参加されました?」 — 記憶が新しいうちが最大ROI。
+    </div>
+
+    <div class="goal">
+      1ヶ月後、GA4 で流入元の上位2チャネルが特定できる
+    </div>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="section">
+    <div class="step-header">
+      <span class="step-num">02</span>
+      <span class="step-title">最初の1人に届ける</span>
+    </div>
+    <div class="step-when">今 月 中</div>
+
+    <p>
+      Coconala 1年売上0 を抜ける唯一の方法は、不特定多数に発信を増やすことじゃなく、<strong>特定の1人に深く向き合う</strong>こと。広く待つんじゃなく、絞って取りに行く。
+    </p>
+
+    <ul class="actions">
+      <li>
+        接点のある人を10人特定
+        <ul>
+          <li>OC で2回以上「おはよう」を共有した人</li>
+          <li>Ameblo に反応してくれた人</li>
+          <li>X で言及してくれた人</li>
+        </ul>
+      </li>
+      <li>
+        個別メッセージで関係構築(まず売り込まない)
+        <ul>
+          <li>「LINE公式の配信、参考になってますか?」</li>
+        </ul>
+      </li>
+      <li>
+        反応が良い人にだけモニター提案
+        <ul>
+          <li>「21日プログラムのモニターを3人だけ募集してます。フィードバックいただける方は ¥1,000 で」</li>
+        </ul>
+      </li>
+      <li>
+        最初の1人 に体験してもらう(無料でもいい)
+      </li>
+      <li>
+        完了後「お客様の声」を許可付きで取得
+      </li>
+    </ul>
+
+    <div class="goal">
+      体験者 1〜2人 + 声 2本 → Coconala 説明欄に反映
+    </div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="section">
+    <div class="step-header">
+      <span class="step-num">03</span>
+      <span class="step-title">届く仕組みを作る</span>
+    </div>
+    <div class="step-when">今 後 3 ヶ 月</div>
+
+    <h3 class="subhead">X 再構築(最大の課題)</h3>
+    <p>86投稿 / 0フォロワーは「やってる方向が間違ってる」サイン。</p>
+    <ul class="actions">
+      <li>毎日 1投稿 + 5リプライ(早起き/朝活/自己管理 界隈)</li>
+      <li>リプライは「営業」じゃなく <strong>会話</strong> 。短く、共感、自分の経験を添える</li>
+      <li>フォロー返し狙わず、価値あるリプを蓄積</li>
+      <li>関連アカウント30人をリスト化、毎日見る</li>
+    </ul>
+    <div class="goal">3ヶ月後 100フォロワー</div>
+
+    <h3 class="subhead">LINE → X 連動運用</h3>
+    <p>LINE配信のコンテンツを X にも展開し、毎日投稿の労力をゼロにする。</p>
+    <ul class="actions">
+      <li>LINE配信 → 同内容を 140-200字に圧縮 → ハッシュタグ <code style="font-family:monospace;font-size:12px;background:var(--cream-deep);padding:1px 5px;border-radius:3px;">#早起き #朝活</code> を追加</li>
+      <li>Xアプリの予約投稿機能で仕込む(無料・¥0)</li>
+      <li>21日分のスレッド連載化 → ハブへの導線にする</li>
+      <li>1〜2週間運用後、続ける価値があれば X API完全自動化(C案)へ移行</li>
+    </ul>
+    <div class="exception">
+      LINE 21日daily配信に切り替える場合は、LINE 21本 → X 21本 がそのまま使える(コンテンツ作成1回で2チャネル分)。
+    </div>
+
+    <h3 class="subhead">Antigravity launch readiness</h3>
+    <p>本命の収益源。</p>
+    <ul class="actions">
+      <li>無料お試し → 月額サブスク(損益分岐 6人)</li>
+      <li>ベータユーザー 5〜10人を OC・X から募集</li>
+      <li>体験 → フィードバック → 改善 のサイクル</li>
+    </ul>
+    <div class="goal">3ヶ月後 ベータ 5人 / サブスク移行 2〜3人</div>
+
+    <h3 class="subhead">コンテンツ継続(無理しない)</h3>
+    <ul class="actions">
+      <li>Ameblo: 週2記事(SEOキーワード意識)</li>
+      <li>LINE公式: <strong>21日daily切り替え判断後に確定</strong>(現状 step 5本 + broadcast 週7)</li>
+      <li>OC: 現状の関わり方で十分</li>
+    </ul>
+  </div>
+
+  <!-- やらないこと -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">⊘</span>
+      <h2 class="section-title">やらないこと</h2>
+    </div>
+    <p style="font-size:13.5px;color:var(--text-muted);">時間は有限。これは捨てる。</p>
+    <ul class="dont-list">
+      <li><span>Instagram / TikTok 新規開設</span></li>
+      <li><span>投稿数を増やすことを目的化</span></li>
+      <li><span>有料広告(段階が早い)</span></li>
+      <li><span>値下げで集客(¥3,000は妥当)</span></li>
+      <li><span>完璧主義(70%で出して反応を見る)</span></li>
+    </ul>
+  </div>
+
+  <!-- 一番大事なこと -->
+  <div class="keystone">
+    <div class="keystone-label">KEYSTONE</div>
+    <p class="keystone-text">
+      「実現するためには」 — 一番効くのは<br>
+      <strong>「最初の1人」に届けること</strong>。<br><br>
+      その1人が満足してくれれば、<br>
+      その声が次の3人を呼ぶ。<br>
+      3人が10人を呼ぶ。
+    </p>
+  </div>
+
+  <div class="divider">— ◇ —</div>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-mark">朝陽 黎</div>
+    <div>STRATEGIC PLAYBOOK</div>
+    <a href="./index.html" class="back-link">← ハブに戻る</a>
+  </div>
+</footer>
+
+</body>
+</html>
