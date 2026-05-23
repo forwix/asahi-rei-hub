@@ -11,580 +11,137 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --cream: #faf8f5;
-    --cream-deep: #f7f3ed;
-    --white: #ffffff;
-    --orange: #c87941;
-    --orange-light: #e8c9a8;
-    --orange-soft: #fdf0e3;
-    --brown: #2c2825;
-    --text: #3a3530;
-    --text-muted: #6e6660;
-    --border: #ede5d8;
-    --strike: #b8a99a;
+    --cream: #faf8f5; --cream-deep: #f7f3ed; --white: #ffffff;
+    --orange: #c87941; --orange-light: #e8c9a8; --orange-soft: #fdf0e3;
+    --brown: #2c2825; --text: #3a3530; --text-muted: #6e6660;
+    --border: #ede5d8; --strike: #b8a99a;
+    --green: #6b8e5c; --green-soft: #ecf2e6;
+    --gray-skip: #999999; --gray-skip-soft: #f0f0f0;
     --shadow: 0 2px 12px rgba(44, 40, 37, 0.04);
     --shadow-hover: 0 4px 20px rgba(44, 40, 37, 0.08);
   }
-
   html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--cream);
-    color: var(--text);
-    font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
-    font-weight: 400;
-    line-height: 1.85;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-
-  .container {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  /* Top nav */
-  .topnav {
-    padding: 20px 0 0;
-    animation: fadeIn 0.6s ease-out;
-  }
-  .topnav a {
-    font-size: 12px;
-    color: var(--text-muted);
-    text-decoration: none;
-    letter-spacing: 1px;
-    transition: color 0.2s ease;
-  }
+  body { background: var(--cream); color: var(--text); font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif; font-weight: 400; line-height: 1.85; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  .container { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+  .topnav { padding: 20px 0 0; animation: fadeIn 0.6s ease-out; }
+  .topnav a { font-size: 12px; color: var(--text-muted); text-decoration: none; letter-spacing: 1px; transition: color 0.2s ease; }
   .topnav a:hover { color: var(--orange); }
-
-  /* Header */
-  .header {
-    position: relative;
-    padding: 40px 0 50px;
-    text-align: center;
-    overflow: hidden;
-    animation: fadeIn 0.8s ease-out;
-  }
-
-  .sun-decoration {
-    position: absolute;
-    top: -160px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 320px;
-    height: 320px;
-    background: radial-gradient(circle, var(--orange-soft) 0%, rgba(253, 240, 227, 0.4) 40%, transparent 70%);
-    border-radius: 50%;
-    opacity: 0.85;
-    pointer-events: none;
-    z-index: 0;
-  }
-
+  .header { position: relative; padding: 40px 0 50px; text-align: center; overflow: hidden; animation: fadeIn 0.8s ease-out; }
+  .sun-decoration { position: absolute; top: -160px; left: 50%; transform: translateX(-50%); width: 320px; height: 320px; background: radial-gradient(circle, var(--orange-soft) 0%, rgba(253, 240, 227, 0.4) 40%, transparent 70%); border-radius: 50%; opacity: 0.85; pointer-events: none; z-index: 0; }
   .header-content { position: relative; z-index: 1; }
-
-  .brand-mark {
-    font-size: 11px;
-    letter-spacing: 4px;
-    color: var(--orange);
-    font-weight: 500;
-    margin-bottom: 12px;
-    text-transform: uppercase;
-  }
-
-  .page-title {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 32px;
-    font-weight: 500;
-    color: var(--brown);
-    letter-spacing: 6px;
-    margin-bottom: 16px;
-    line-height: 1.3;
-  }
-
-  .meta {
-    font-size: 11px;
-    color: var(--text-muted);
-    letter-spacing: 2px;
-  }
-
-  /* Lead callout */
-  .lead {
-    margin: 0 0 32px;
-    padding: 28px 28px;
-    background: var(--white);
-    border-radius: 14px;
-    border-left: 3px solid var(--orange);
-    box-shadow: var(--shadow);
-    animation: fadeInUp 0.8s ease-out 0.2s backwards;
-  }
-  .lead p {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 15px;
-    line-height: 2;
-    color: var(--brown);
-  }
-  .lead strong {
-    color: var(--orange);
-    font-weight: 500;
-  }
-
-  /* Section */
-  .section {
-    background: var(--white);
-    border-radius: 16px;
-    padding: 32px 28px;
-    margin-bottom: 20px;
-    box-shadow: var(--shadow);
-    animation: fadeInUp 0.8s ease-out backwards;
-  }
+  .brand-mark { font-size: 11px; letter-spacing: 4px; color: var(--orange); font-weight: 500; margin-bottom: 12px; text-transform: uppercase; }
+  .page-title { font-family: 'Noto Serif JP', serif; font-size: 32px; font-weight: 500; color: var(--brown); letter-spacing: 6px; margin-bottom: 16px; line-height: 1.3; }
+  .meta { font-size: 11px; color: var(--text-muted); letter-spacing: 2px; }
+  .lead { margin: 0 0 24px; padding: 28px 28px; background: var(--white); border-radius: 14px; border-left: 3px solid var(--orange); box-shadow: var(--shadow); animation: fadeInUp 0.8s ease-out 0.2s backwards; }
+  .lead p { font-family: 'Noto Serif JP', serif; font-size: 15px; line-height: 2; color: var(--brown); }
+  .lead strong { color: var(--orange); font-weight: 500; }
+  .progress-summary { background: linear-gradient(135deg, var(--green-soft) 0%, var(--cream-deep) 100%); border-radius: 14px; padding: 24px 24px; margin-bottom: 32px; animation: fadeInUp 0.8s ease-out 0.3s backwards; }
+  .progress-summary-label { font-size: 10px; letter-spacing: 3px; color: var(--green); font-weight: 500; margin-bottom: 10px; }
+  .progress-summary-title { font-family: 'Noto Serif JP', serif; font-size: 16px; color: var(--brown); font-weight: 500; margin-bottom: 12px; }
+  .progress-summary p { font-size: 13px; color: var(--text); line-height: 1.85; }
+  .section { background: var(--white); border-radius: 16px; padding: 32px 28px; margin-bottom: 20px; box-shadow: var(--shadow); animation: fadeInUp 0.8s ease-out backwards; }
   main > .section:nth-child(1) { animation-delay: 0.25s; }
   main > .section:nth-child(2) { animation-delay: 0.35s; }
   main > .section:nth-child(3) { animation-delay: 0.45s; }
   main > .section:nth-child(4) { animation-delay: 0.55s; }
   main > .section:nth-child(5) { animation-delay: 0.65s; }
   main > .section:nth-child(6) { animation-delay: 0.75s; }
-
-  /* Step header */
-  .step-header {
-    display: flex;
-    align-items: baseline;
-    gap: 16px;
-    margin-bottom: 8px;
-  }
-  .step-num {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 38px;
-    font-weight: 500;
-    color: var(--orange);
-    line-height: 1;
-    letter-spacing: 1px;
-  }
-  .step-title {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 19px;
-    font-weight: 500;
-    color: var(--brown);
-    letter-spacing: 2px;
-    line-height: 1.4;
-  }
-  .step-when {
-    font-size: 11px;
-    color: var(--orange);
-    letter-spacing: 3px;
-    margin-bottom: 16px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  /* Simple section header (for non-Step sections) */
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
-    gap: 10px;
-  }
-  .section-icon {
-    font-size: 18px;
-  }
-  .section-title {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--brown);
-    letter-spacing: 2px;
-  }
-
-  /* Body text */
-  .section p {
-    font-size: 14.5px;
-    line-height: 1.95;
-    color: var(--text);
-    margin-bottom: 14px;
-  }
+  .step-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 8px; }
+  .step-num { font-family: 'Noto Serif JP', serif; font-size: 38px; font-weight: 500; color: var(--orange); line-height: 1; letter-spacing: 1px; }
+  .step-title { font-family: 'Noto Serif JP', serif; font-size: 19px; font-weight: 500; color: var(--brown); letter-spacing: 2px; line-height: 1.4; }
+  .step-when { font-size: 11px; color: var(--orange); letter-spacing: 3px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  .section-header { display: flex; align-items: baseline; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); gap: 10px; }
+  .section-icon { font-size: 18px; }
+  .section-title { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 500; color: var(--brown); letter-spacing: 2px; }
+  .section p { font-size: 14.5px; line-height: 1.95; color: var(--text); margin-bottom: 14px; }
   .section p:last-child { margin-bottom: 0; }
-  .section p strong {
-    color: var(--brown);
-    font-weight: 500;
-    background: var(--orange-soft);
-    padding: 1px 4px;
-    border-radius: 3px;
-  }
-
-  /* Action list */
-  .actions {
-    list-style: none;
-    margin: 14px 0 18px;
-  }
-  .actions li {
-    position: relative;
-    padding: 10px 0 10px 30px;
-    font-size: 14px;
-    line-height: 1.8;
-    border-bottom: 1px dashed var(--border);
-  }
+  .section p strong { color: var(--brown); font-weight: 500; background: var(--orange-soft); padding: 1px 4px; border-radius: 3px; }
+  .actions { list-style: none; margin: 14px 0 18px; }
+  .actions li { position: relative; padding: 10px 0 10px 30px; font-size: 14px; line-height: 1.8; border-bottom: 1px dashed var(--border); }
   .actions li:last-child { border-bottom: none; }
-  .actions li::before {
-    content: '';
-    position: absolute;
-    left: 4px;
-    top: 18px;
-    width: 14px;
-    height: 14px;
-    border: 1.5px solid var(--orange);
-    border-radius: 3px;
-    background: var(--white);
-  }
-  .actions li.done::before {
-    background: var(--orange);
-    content: '✓';
-    color: var(--white);
-    font-size: 11px;
-    line-height: 14px;
-    text-align: center;
-    border-color: var(--orange);
-  }
-  .actions li ul {
-    list-style: none;
-    margin: 6px 0 2px;
-    padding-left: 0;
-  }
-  .actions li ul li {
-    font-size: 13px;
-    color: var(--text-muted);
-    padding: 4px 0 4px 14px;
-    border: none;
-    line-height: 1.7;
-  }
-  .actions li ul li::before {
-    content: '—';
-    position: static;
-    width: auto;
-    height: auto;
-    border: none;
-    color: var(--orange-light);
-    margin-right: 6px;
-    background: none;
-    font-size: 13px;
-    line-height: inherit;
-  }
-
-  /* Goal callout */
-  .goal {
-    margin-top: 16px;
-    padding: 14px 18px;
-    background: var(--cream-deep);
-    border-radius: 8px;
-    font-size: 13px;
-    color: var(--brown);
-  }
-  .goal::before {
-    content: '完了基準';
-    display: inline-block;
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: var(--orange);
-    font-weight: 500;
-    margin-right: 10px;
-    padding: 2px 8px;
-    background: var(--white);
-    border-radius: 3px;
-    vertical-align: middle;
-  }
-
-  /* Exception note */
-  .exception {
-    margin-top: 14px;
-    padding: 14px 18px;
-    background: var(--orange-soft);
-    border-radius: 8px;
-    font-size: 13px;
-    color: var(--brown);
-    line-height: 1.8;
-  }
-  .exception::before {
-    content: '例外';
-    display: inline-block;
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: var(--orange);
-    font-weight: 500;
-    margin-right: 10px;
-    padding: 2px 8px;
-    background: var(--white);
-    border-radius: 3px;
-    vertical-align: middle;
-  }
-
-  /* Subhead */
-  .subhead {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 15px;
-    color: var(--brown);
-    font-weight: 500;
-    margin: 22px 0 8px;
-    padding-bottom: 6px;
-    border-bottom: 1px dotted var(--border);
-  }
+  .actions li::before { content: ''; position: absolute; left: 4px; top: 18px; width: 14px; height: 14px; border: 1.5px solid var(--orange); border-radius: 3px; background: var(--white); }
+  .actions li.done::before { background: var(--green); content: '✓'; color: var(--white); font-size: 11px; line-height: 14px; text-align: center; border-color: var(--green); }
+  .actions li.skip::before { background: var(--gray-skip-soft); content: '—'; color: var(--gray-skip); font-size: 11px; line-height: 14px; text-align: center; border-color: var(--gray-skip); }
+  .actions li.skip { color: var(--gray-skip); text-decoration: line-through; text-decoration-color: var(--gray-skip); text-decoration-thickness: 1px; }
+  .actions li ul { list-style: none; margin: 6px 0 2px; padding-left: 0; }
+  .actions li ul li { font-size: 13px; color: var(--text-muted); padding: 4px 0 4px 14px; border: none; line-height: 1.7; }
+  .actions li.skip ul li { text-decoration: none; }
+  .actions li ul li::before { content: '—'; position: static; width: auto; height: auto; border: none; color: var(--orange-light); margin-right: 6px; background: none; font-size: 13px; line-height: inherit; }
+  .goal { margin-top: 16px; padding: 14px 18px; background: var(--cream-deep); border-radius: 8px; font-size: 13px; color: var(--brown); }
+  .goal::before { content: '完了基準'; display: inline-block; font-size: 10px; letter-spacing: 2px; color: var(--orange); font-weight: 500; margin-right: 10px; padding: 2px 8px; background: var(--white); border-radius: 3px; vertical-align: middle; }
+  .done-callout { margin-top: 16px; padding: 14px 18px; background: var(--green-soft); border-radius: 8px; font-size: 13px; color: var(--brown); }
+  .done-callout::before { content: '実装済'; display: inline-block; font-size: 10px; letter-spacing: 2px; color: var(--green); font-weight: 500; margin-right: 10px; padding: 2px 8px; background: var(--white); border-radius: 3px; vertical-align: middle; }
+  .exception { margin-top: 14px; padding: 14px 18px; background: var(--orange-soft); border-radius: 8px; font-size: 13px; color: var(--brown); line-height: 1.8; }
+  .exception::before { content: '例外'; display: inline-block; font-size: 10px; letter-spacing: 2px; color: var(--orange); font-weight: 500; margin-right: 10px; padding: 2px 8px; background: var(--white); border-radius: 3px; vertical-align: middle; }
+  .subhead { font-family: 'Noto Serif JP', serif; font-size: 15px; color: var(--brown); font-weight: 500; margin: 22px 0 8px; padding-bottom: 6px; border-bottom: 1px dotted var(--border); }
   .subhead:first-of-type { margin-top: 0; }
-
-  /* Roadmap */
-  .roadmap-period {
-    margin-bottom: 28px;
-  }
+  .roadmap-period { margin-bottom: 28px; }
   .roadmap-period:last-child { margin-bottom: 0; }
-  .period-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--orange-soft);
-    flex-wrap: wrap;
-  }
-  .period-tag {
-    display: inline-block;
-    padding: 3px 11px;
-    background: var(--orange);
-    color: var(--white);
-    border-radius: 999px;
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    font-weight: 500;
-  }
-  .period-label {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--brown);
-    letter-spacing: 1px;
-  }
-  .period-date {
-    font-size: 11px;
-    color: var(--text-muted);
-    letter-spacing: 1px;
-    margin-left: auto;
-  }
-  .roadmap-list {
-    list-style: none;
-  }
-  .roadmap-list li {
-    position: relative;
-    padding: 10px 0 10px 28px;
-    font-size: 13.5px;
-    line-height: 1.7;
-    color: var(--text);
-    border-bottom: 1px dashed var(--border);
-  }
+  .period-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--orange-soft); flex-wrap: wrap; }
+  .period-tag { display: inline-block; padding: 3px 11px; background: var(--orange); color: var(--white); border-radius: 999px; font-size: 10px; letter-spacing: 1.5px; font-weight: 500; }
+  .period-tag.done-tag { background: var(--green); }
+  .period-label { font-family: 'Noto Serif JP', serif; font-size: 15px; font-weight: 500; color: var(--brown); letter-spacing: 1px; }
+  .period-date { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; margin-left: auto; }
+  .roadmap-list { list-style: none; }
+  .roadmap-list li { position: relative; padding: 10px 0 10px 28px; font-size: 13.5px; line-height: 1.7; color: var(--text); border-bottom: 1px dashed var(--border); }
   .roadmap-list li:last-child { border-bottom: none; }
-  .roadmap-list li::before {
-    content: '';
-    position: absolute;
-    left: 4px;
-    top: 15px;
-    width: 12px;
-    height: 12px;
-    border: 1.5px solid var(--orange-light);
-    border-radius: 2px;
-    background: var(--white);
-  }
-  .roadmap-list li .tag {
-    display: inline-block;
-    font-size: 10px;
-    letter-spacing: 1px;
-    color: var(--orange);
-    background: var(--orange-soft);
-    padding: 1px 7px;
-    border-radius: 3px;
-    margin-right: 8px;
-    vertical-align: middle;
-    font-weight: 500;
-  }
-  .roadmap-list li.decision::before {
-    border-color: var(--orange);
-    background: var(--orange-soft);
-  }
-
-  /* UTM reference table */
-  .utm-row {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: 12px 0;
-    border-bottom: 1px dashed var(--border);
-  }
+  .roadmap-list li::before { content: ''; position: absolute; left: 4px; top: 15px; width: 12px; height: 12px; border: 1.5px solid var(--orange-light); border-radius: 2px; background: var(--white); }
+  .roadmap-list li.done::before { content: '✓'; background: var(--green); border-color: var(--green); color: var(--white); font-size: 9px; line-height: 12px; text-align: center; }
+  .roadmap-list li.skip::before { content: '—'; background: var(--gray-skip-soft); border-color: var(--gray-skip); color: var(--gray-skip); font-size: 9px; line-height: 12px; text-align: center; }
+  .roadmap-list li.skip { color: var(--gray-skip); }
+  .roadmap-list li.skip .tag { background: var(--gray-skip-soft); color: var(--gray-skip); }
+  .roadmap-list li.done .tag { background: var(--green-soft); color: var(--green); }
+  .roadmap-list li .tag { display: inline-block; font-size: 10px; letter-spacing: 1px; color: var(--orange); background: var(--orange-soft); padding: 1px 7px; border-radius: 3px; margin-right: 8px; vertical-align: middle; font-weight: 500; }
+  .roadmap-list li.decision::before { border-color: var(--orange); background: var(--orange-soft); }
+  .utm-row { display: flex; flex-direction: column; gap: 4px; padding: 12px 0; border-bottom: 1px dashed var(--border); }
   .utm-row:last-child { border-bottom: none; }
-  .utm-channel {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--brown);
-    letter-spacing: 1px;
-  }
-  .utm-url {
-    display: block;
-    font-family: 'SF Mono', Monaco, monospace;
-    font-size: 11px;
-    color: var(--text-muted);
-    background: var(--cream-deep);
-    padding: 8px 10px;
-    border-radius: 4px;
-    word-break: break-all;
-    line-height: 1.5;
-    user-select: all;
-  }
-
-  /* Priority table */
-  .priority-list {
-    list-style: none;
-    margin-top: 8px;
-  }
-  .priority-list li {
-    display: flex;
-    gap: 16px;
-    padding: 14px 4px;
-    border-bottom: 1px solid var(--border);
-  }
+  .utm-channel { font-family: 'Noto Serif JP', serif; font-size: 13px; font-weight: 500; color: var(--brown); letter-spacing: 1px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .utm-channel .status { display: inline-block; font-size: 10px; letter-spacing: 1px; padding: 2px 8px; border-radius: 3px; font-weight: 500; font-family: 'Noto Sans JP', sans-serif; }
+  .utm-channel .status.done { background: var(--green-soft); color: var(--green); }
+  .utm-channel .status.skip { background: var(--gray-skip-soft); color: var(--gray-skip); }
+  .utm-url { display: block; font-family: 'SF Mono', Monaco, monospace; font-size: 11px; color: var(--text-muted); background: var(--cream-deep); padding: 8px 10px; border-radius: 4px; word-break: break-all; line-height: 1.5; user-select: all; }
+  .utm-row.skip .utm-url { text-decoration: line-through; text-decoration-color: var(--gray-skip); color: var(--gray-skip); }
+  .utm-note { font-size: 11.5px; color: var(--text-muted); margin-top: 4px; line-height: 1.6; font-style: italic; }
+  .priority-list { list-style: none; margin-top: 8px; }
+  .priority-list li { display: flex; gap: 16px; padding: 14px 4px; border-bottom: 1px solid var(--border); }
   .priority-list li:last-child { border-bottom: none; }
-  .priority-num {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 22px;
-    color: var(--orange);
-    line-height: 1;
-    flex-shrink: 0;
-    width: 36px;
-  }
-  .priority-body {
-    flex: 1;
-  }
-  .priority-what {
-    font-size: 14.5px;
-    color: var(--brown);
-    font-weight: 500;
-    margin-bottom: 2px;
-  }
-  .priority-why {
-    font-size: 12.5px;
-    color: var(--text-muted);
-  }
-
-  /* Don't list */
-  .dont-list {
-    list-style: none;
-    margin-top: 8px;
-  }
-  .dont-list li {
-    position: relative;
-    padding: 8px 0 8px 28px;
-    font-size: 13.5px;
-    color: var(--strike);
-    border-bottom: 1px dashed var(--border);
-  }
+  .priority-num { font-family: 'Noto Serif JP', serif; font-size: 22px; color: var(--orange); line-height: 1; flex-shrink: 0; width: 36px; }
+  .priority-body { flex: 1; }
+  .priority-what { font-size: 14.5px; color: var(--brown); font-weight: 500; margin-bottom: 2px; }
+  .priority-why { font-size: 12.5px; color: var(--text-muted); }
+  .dont-list { list-style: none; margin-top: 8px; }
+  .dont-list li { position: relative; padding: 8px 0 8px 28px; font-size: 13.5px; color: var(--strike); border-bottom: 1px dashed var(--border); }
   .dont-list li:last-child { border-bottom: none; }
-  .dont-list li::before {
-    content: '✕';
-    position: absolute;
-    left: 6px;
-    top: 8px;
-    color: var(--strike);
-    font-size: 12px;
-  }
-  .dont-list li span {
-    text-decoration: line-through;
-    text-decoration-color: var(--strike);
-    text-decoration-thickness: 1px;
-  }
-
-  /* Most important callout */
-  .keystone {
-    background: linear-gradient(135deg, var(--cream-deep) 0%, var(--orange-soft) 100%);
-    border-radius: 16px;
-    padding: 32px 28px;
-    margin-bottom: 20px;
-    box-shadow: var(--shadow);
-    text-align: center;
-    animation: fadeInUp 0.8s ease-out 0.85s backwards;
-  }
-  .keystone-label {
-    font-size: 11px;
-    letter-spacing: 4px;
-    color: var(--orange);
-    font-weight: 500;
-    margin-bottom: 14px;
-  }
-  .keystone-text {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 17px;
-    line-height: 2;
-    color: var(--brown);
-  }
-  .keystone-text strong {
-    color: var(--orange);
-    font-weight: 500;
-  }
-
-  /* Footer */
-  .footer {
-    text-align: center;
-    padding: 60px 0 40px;
-    color: var(--text-muted);
-    font-size: 12px;
-    letter-spacing: 2px;
-  }
-  .footer-mark {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 16px;
-    color: var(--orange);
-    margin-bottom: 8px;
-    letter-spacing: 6px;
-  }
-  .back-link {
-    display: inline-block;
-    margin-top: 16px;
-    padding: 10px 22px;
-    background: var(--white);
-    color: var(--text);
-    text-decoration: none;
-    border-radius: 999px;
-    font-size: 12px;
-    letter-spacing: 2px;
-    box-shadow: var(--shadow);
-    transition: all 0.25s ease;
-  }
-  .back-link:hover {
-    background: var(--orange-soft);
-    color: var(--brown);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-hover);
-  }
-
-  /* Divider */
-  .divider {
-    text-align: center;
-    margin: 32px 0;
-    color: var(--orange-light);
-    letter-spacing: 8px;
-    font-size: 14px;
-  }
-
-  /* Animations */
+  .dont-list li::before { content: '✕'; position: absolute; left: 6px; top: 8px; color: var(--strike); font-size: 12px; }
+  .dont-list li span { text-decoration: line-through; text-decoration-color: var(--strike); text-decoration-thickness: 1px; }
+  .log-entry { margin-bottom: 18px; padding: 14px 16px; background: var(--cream-deep); border-radius: 8px; border-left: 3px solid var(--orange-light); }
+  .log-entry:last-child { margin-bottom: 0; }
+  .log-entry.green-border { border-left-color: var(--green); }
+  .log-entry.gray-border { border-left-color: var(--gray-skip); }
+  .log-date { font-size: 11px; color: var(--orange); letter-spacing: 2px; margin-bottom: 6px; font-weight: 500; }
+  .log-title { font-family: 'Noto Serif JP', serif; font-size: 14.5px; color: var(--brown); font-weight: 500; margin-bottom: 6px; }
+  .log-body { font-size: 13px; color: var(--text); line-height: 1.8; }
+  .log-body ul { list-style: none; margin-top: 4px; }
+  .log-body ul li { padding: 2px 0 2px 14px; position: relative; }
+  .log-body ul li::before { content: '・'; position: absolute; left: 0; color: var(--orange); }
+  .keystone { background: linear-gradient(135deg, var(--cream-deep) 0%, var(--orange-soft) 100%); border-radius: 16px; padding: 32px 28px; margin-bottom: 20px; box-shadow: var(--shadow); text-align: center; animation: fadeInUp 0.8s ease-out 0.85s backwards; }
+  .keystone-label { font-size: 11px; letter-spacing: 4px; color: var(--orange); font-weight: 500; margin-bottom: 14px; }
+  .keystone-text { font-family: 'Noto Serif JP', serif; font-size: 17px; line-height: 2; color: var(--brown); }
+  .keystone-text strong { color: var(--orange); font-weight: 500; }
+  .footer { text-align: center; padding: 60px 0 40px; color: var(--text-muted); font-size: 12px; letter-spacing: 2px; }
+  .footer-mark { font-family: 'Noto Serif JP', serif; font-size: 16px; color: var(--orange); margin-bottom: 8px; letter-spacing: 6px; }
+  .back-link { display: inline-block; margin-top: 16px; padding: 10px 22px; background: var(--white); color: var(--text); text-decoration: none; border-radius: 999px; font-size: 12px; letter-spacing: 2px; box-shadow: var(--shadow); transition: all 0.25s ease; }
+  .back-link:hover { background: var(--orange-soft); color: var(--brown); transform: translateY(-1px); box-shadow: var(--shadow-hover); }
+  .divider { text-align: center; margin: 32px 0; color: var(--orange-light); letter-spacing: 8px; font-size: 14px; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* Mobile */
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   @media (max-width: 480px) {
     .container { padding: 0 16px; }
     .header { padding: 30px 0 36px; }
     .page-title { font-size: 26px; letter-spacing: 4px; }
     .section, .keystone { padding: 24px 20px; }
-    .lead { padding: 22px 20px; }
+    .lead, .progress-summary { padding: 22px 20px; }
     .lead p { font-size: 14px; }
     .step-num { font-size: 32px; }
     .step-title { font-size: 17px; }
@@ -606,7 +163,7 @@
   <div class="container header-content">
     <div class="brand-mark">PLAYBOOK</div>
     <h1 class="page-title">戦略プレイブック</h1>
-    <div class="meta">最終更新 2026.05.18</div>
+    <div class="meta">開始 2026.05.18 / 最終更新 2026.05.23</div>
   </div>
 </header>
 
@@ -620,65 +177,53 @@
       だから「もっと書く」「もっと投稿する」では変わらない。優先順位は3つだけに絞る。
     </p>
   </div>
+
+  <div class="progress-summary">
+    <div class="progress-summary-label">WEEK 1 進捗 / 2026.05.23時点</div>
+    <div class="progress-summary-title">基礎工事はほぼ完了 — 自動化された配信ファネル稼働中</div>
+    <p>
+      GA4 + UTM 4チャネル + LINE 21日 ステップ配信(10本)が動き出しました。新規LINE友だちは全員、3週間の自動配信を受ける状態。残るのは X 7本の予約投稿のみ。
+    </p>
+  </div>
 </div>
 
 <main class="container">
 
-  <!-- 優先順位 -->
   <div class="section">
     <div class="section-header">
       <span class="section-icon">◇</span>
       <h2 class="section-title">優先順位</h2>
     </div>
     <ul class="priority-list">
-      <li>
-        <div class="priority-num">01</div>
-        <div class="priority-body">
-          <div class="priority-what">計測の自動化</div>
-          <div class="priority-why">闇雲じゃなく、数字で動く</div>
-        </div>
-      </li>
-      <li>
-        <div class="priority-num">02</div>
-        <div class="priority-body">
-          <div class="priority-what">最初の1人に届ける</div>
-          <div class="priority-why">0→1 が一番難しい</div>
-        </div>
-      </li>
-      <li>
-        <div class="priority-num">03</div>
-        <div class="priority-body">
-          <div class="priority-what">届く仕組みを作る</div>
-          <div class="priority-why">1→10 を支える基盤</div>
-        </div>
-      </li>
+      <li><div class="priority-num">01</div><div class="priority-body"><div class="priority-what">計測の自動化</div><div class="priority-why">闇雲じゃなく、数字で動く</div></div></li>
+      <li><div class="priority-num">02</div><div class="priority-body"><div class="priority-what">最初の1人に届ける</div><div class="priority-why">0→1 が一番難しい</div></div></li>
+      <li><div class="priority-num">03</div><div class="priority-body"><div class="priority-what">届く仕組みを作る</div><div class="priority-why">1→10 を支える基盤</div></div></li>
     </ul>
   </div>
 
-  <!-- 実行ロードマップ -->
   <div class="section">
     <div class="section-header">
       <span class="section-icon">◎</span>
       <h2 class="section-title">実行ロードマップ</h2>
     </div>
     <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:20px;">
-      時系列で「何を、いつ、どの順でやるか」。判断が必要な項目は枠が塗りつぶされてます。
+      時系列で「何を、いつ、どの順でやるか」。✓は完了、—はスキップ判断。
     </p>
 
     <div class="roadmap-period">
       <div class="period-header">
-        <span class="period-tag">WEEK 1</span>
-        <span class="period-label">基礎工事</span>
+        <span class="period-tag done-tag">WEEK 1</span>
+        <span class="period-label">基礎工事 ほぼ完了</span>
         <span class="period-date">5/18 〜 5/24</span>
       </div>
       <ul class="roadmap-list">
-        <li><span class="tag">Step 1</span>GA4プロパティ作成 → 測定IDを index.html に追加</li>
-        <li><span class="tag">Step 1</span>全チャネルのリンクを UTM付きハブURL に統一</li>
-        <li><span class="tag">Step 1</span>Google Form(1問アンケート)を OC・LINE公式・ハブに設置</li>
+        <li class="done"><span class="tag">Step 1</span>GA4プロパティ作成 → 測定IDを index.html に追加</li>
+        <li class="done"><span class="tag">Step 1</span>全チャネルのリンクを UTM付きハブURL に統一(4チャネル配置・2箇所判断スキップ)</li>
+        <li class="skip"><span class="tag">Step 1</span>Google Form(1問アンケート)の3箇所設置 → 別用途で再設計</li>
         <li><span class="tag">Step 3</span>ハブに7日コラム追加(リンク集から読み物へ)</li>
         <li><span class="tag">Step 3</span>X版テキスト7本書き起こし(LINE 5/17-23配信分から変換)</li>
         <li><span class="tag">Step 3</span>Xアプリで7本予約投稿</li>
-        <li class="decision"><span class="tag">判断</span>LINE 21日daily切り替えの可否(A:GO / B:調整 / C:保留)</li>
+        <li class="done decision"><span class="tag">判断</span>LINE 21日daily切り替え → A:GO(10本不均等配置で実装済)</li>
       </ul>
     </div>
 
@@ -694,7 +239,7 @@
         <li><span class="tag">Step 2</span>個別メッセージで関係構築(売り込まない)</li>
         <li><span class="tag">Step 2</span>モニター3人募集 → 1人に体験提供</li>
         <li><span class="tag">Step 3</span>X予約投稿の反応を観察(数値ベース)</li>
-        <li><span class="tag">Step 3</span>LINE 21日daily配信を実装(GOの場合)</li>
+        <li><span class="tag">Step 3</span>余剰draft 11本の転用先決定(broadcast/Ameblo/OCノート)</li>
       </ul>
     </div>
 
@@ -727,138 +272,202 @@
     </div>
   </div>
 
-  <!-- Step 1 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">📒</span>
+      <h2 class="section-title">実行ログ・戦略的判断</h2>
+    </div>
+    <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:20px;">
+      実装過程で確定した方針・スキップ判断・学び。次の判断時の参照材料。
+    </p>
+
+    <div class="log-entry green-border">
+      <div class="log-date">2026.05.22-23</div>
+      <div class="log-title">「裏切り要素」削除原則</div>
+      <div class="log-body">
+        ハブから placeholder(<code>[URL差し込み待ち]</code>、Antigravity 開発中、資産形成 仮説段階)をすべて削除。訪問者が「クリックして何もない」状態に出会うことを避ける。未完成サービスは、完成後に公開する。
+      </div>
+    </div>
+
+    <div class="log-entry green-border">
+      <div class="log-date">2026.05.22-23</div>
+      <div class="log-title">アンケートと自動計測の役割分担</div>
+      <div class="log-body">
+        当初 Google Form を3箇所(LINE公式・OCノート・ハブフッター)に設置する計画だったが、GA4 + UTM で流入元の80%は取得可能なため、Form の「どこで知ったか」設置は冗長と判断。Form の用途を再定義:
+        <ul>
+          <li>計測 → GA4 + UTM(自動・全員)</li>
+          <li>満足度 → Form(任意・経験者対象・DMで個別配信)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="log-entry green-border">
+      <div class="log-date">2026.05.22-23</div>
+      <div class="log-title">LINE OC は既接続のため再誘導不要</div>
+      <div class="log-body">
+        UTM配置の対象から LINE OC ノートを除外。OC メンバーは既に直接つながっており、ハブへの再誘導は冗長。ブランドの「ゆるく」哲学にも反するため、UTM および Form ともに OC への設置は行わない。
+      </div>
+    </div>
+
+    <div class="log-entry green-border">
+      <div class="log-date">2026.05.22-23</div>
+      <div class="log-title">Coconala は外部誘導不可</div>
+      <div class="log-body">
+        Coconala のプラットフォーム規約は「プラットフォーム内完結」を原則とするため、サービス説明欄に外部ハブURLを置くのは禁止。UTM配置からスキップ。逆方向(YouTube→Coconala)は問題なし。
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-date">2026.05.22-23</div>
+      <div class="log-title">LINE ステップ配信は10本上限 → 不均等配置で21日カバー</div>
+      <div class="log-body">
+        LINE公式アカウント仕様:1ルートにつき最大10本のステップ配信(2026年現在)。21日daily(毎日配信)は物理的に不可能なため、不均等な日数配置で21日アークをカバーする方式に変更。
+        <ul>
+          <li>Day 1, 3, 5, 7, 10, 13, 14, 17, 19, 21 の10ポイント</li>
+          <li>余剰draft 11本は broadcast / Ameblo / OCノート に転用</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-date">2026.05.22-23</div>
+      <div class="log-title">LINE メッセージ設計原則</div>
+      <div class="log-body">
+        プライバシー配慮(肩越し閲覧)から、配信メッセージから以下を除外:
+        <ul>
+          <li>「朝陽 黎です」(ブランド明示)</li>
+          <li>「登録から N日目」(購読日数明示)</li>
+        </ul>
+        統一的に「おはようございます。」開始。各日250〜320字、構造:挨拶→フック→リフレーム→実践→寛容な締め。
+      </div>
+    </div>
+
+    <div class="log-entry gray-border">
+      <div class="log-date">2026.05.22-23</div>
+      <div class="log-title">Threads / Facebook はログイン壁あるが掲載</div>
+      <div class="log-body">
+        X / Facebook は未ログイン閲覧時に投稿フィードが表示されない仕様(プラットフォーム標準)。これは Linktree 等のリンク集ツールでも同じ現象であり、特別な対策不要と判断。ハブには引き続き掲載。
+      </div>
+    </div>
+  </div>
+
   <div class="section">
     <div class="step-header">
       <span class="step-num">01</span>
       <span class="step-title">計測の自動化</span>
     </div>
-    <div class="step-when">今 週 中</div>
-
+    <div class="step-when">基礎工事 ほぼ完了</div>
     <p>
       原則:<strong>個別判断はしない。仕組みで取る。</strong> 誰が・いつ・どこから来たかは、運営の感覚や DMヒアリングではなく、設置した仕組みが拾う。
     </p>
-
     <ul class="actions">
-      <li>
-        GA4 を <code style="font-family:monospace;font-size:12.5px;background:var(--cream-deep);padding:1px 5px;border-radius:3px;">index.html</code> に追加
-        <ul>
-          <li>訪問者・流入元・直帰率を自動取得</li>
-        </ul>
+      <li class="done">
+        GA4 を <code style="font-family:monospace;font-size:12.5px;background:var(--cream-deep);padding:1px 5px;border-radius:3px;">index.html</code> に追加(測定ID: G-XSQWS8S6N3)
+        <ul><li>訪問者・流入元・直帰率を自動取得</li></ul>
       </li>
-      <li>
+      <li class="done">
         全チャネルのリンクを UTM付き ハブURL に統一
         <ul>
-          <li>X固定ツイート / Ameblo フッター / Coconala 説明欄 / YouTube 概要欄 / LINE OC ノート / LINE公式あいさつ</li>
+          <li>配置済: X固定ツイート / Ameblo フッター / YouTube 概要欄 / LINE公式あいさつ(Msg 4)</li>
+          <li>スキップ: LINE OC ノート(既接続) / Coconala 説明欄(規約)</li>
         </ul>
       </li>
-      <li>
+      <li class="skip">
         Google Form(1問アンケート)を 3箇所に常設
         <ul>
-          <li>Q:どこでこのオプチャ/ブランドを知りましたか?</li>
-          <li>OC ノート固定 / LINE公式あいさつ / ハブフッター</li>
-          <li>GA4 の行動データに、意図データを補強</li>
+          <li>計測役割は GA4 が担うため不要と判断</li>
+          <li>Form は満足度測定として、別タイミングでDM個別配信に活用</li>
         </ul>
       </li>
-      <li>
-        1ヶ月放置 → データが溜まる
-      </li>
+      <li>1ヶ月放置 → データが溜まる</li>
     </ul>
-
-    <div class="goal">
-      1ヶ月後、GA4 + Form で流入元の上位2チャネルが特定できる
+    <div class="done-callout">
+      GA4 + UTM 4チャネル稼働中。約1ヶ月後の 2026/6/22頃に流入データを確認 → 上位2チャネル特定。
     </div>
   </div>
 
-  <!-- UTM 参照表 -->
   <div class="section">
     <div class="section-header">
       <span class="section-icon">⊕</span>
       <h2 class="section-title">UTM 参照表</h2>
     </div>
     <p style="font-size:13.5px;color:var(--text-muted);margin-bottom:16px;">
-      各チャネルに貼り付ける UTM 付きハブURL。タップ → コピーで使えます。
+      各チャネルに配置済のUTM付きハブURL。緑バッジ=配置済、グレー=スキップ判断。
     </p>
-
     <div class="utm-row">
-      <div class="utm-channel">X 固定ツイート</div>
+      <div class="utm-channel">X 固定ツイート<span class="status done">配置済</span></div>
       <code class="utm-url">https://forwix.github.io/asahi-rei-hub/?utm_source=x&amp;utm_medium=pinned&amp;utm_campaign=hub</code>
     </div>
     <div class="utm-row">
-      <div class="utm-channel">Ameblo フッター</div>
+      <div class="utm-channel">Ameblo フリースペース<span class="status done">配置済</span></div>
       <code class="utm-url">https://forwix.github.io/asahi-rei-hub/?utm_source=ameblo&amp;utm_medium=footer&amp;utm_campaign=hub</code>
     </div>
-    <div class="utm-row">
-      <div class="utm-channel">Coconala 説明欄</div>
+    <div class="utm-row skip">
+      <div class="utm-channel">Coconala 説明欄<span class="status skip">スキップ</span></div>
       <code class="utm-url">https://forwix.github.io/asahi-rei-hub/?utm_source=coconala&amp;utm_medium=description&amp;utm_campaign=hub</code>
+      <div class="utm-note">Coconala は「プラットフォーム内完結」原則により外部誘導不可</div>
     </div>
     <div class="utm-row">
-      <div class="utm-channel">YouTube 概要欄</div>
+      <div class="utm-channel">YouTube 概要欄<span class="status done">配置済</span></div>
       <code class="utm-url">https://forwix.github.io/asahi-rei-hub/?utm_source=youtube&amp;utm_medium=description&amp;utm_campaign=hub</code>
     </div>
-    <div class="utm-row">
-      <div class="utm-channel">LINE OC ノート</div>
+    <div class="utm-row skip">
+      <div class="utm-channel">LINE OC ノート<span class="status skip">スキップ</span></div>
       <code class="utm-url">https://forwix.github.io/asahi-rei-hub/?utm_source=line_oc&amp;utm_medium=note&amp;utm_campaign=hub</code>
+      <div class="utm-note">OCメンバーは既接続のため、ハブ再誘導は冗長</div>
     </div>
     <div class="utm-row">
-      <div class="utm-channel">LINE公式 あいさつ</div>
+      <div class="utm-channel">LINE公式 あいさつ(Msg 4)<span class="status done">配置済</span></div>
       <code class="utm-url">https://forwix.github.io/asahi-rei-hub/?utm_source=line_official&amp;utm_medium=greeting&amp;utm_campaign=hub</code>
     </div>
   </div>
 
-  <!-- Step 2 -->
   <div class="section">
     <div class="step-header">
       <span class="step-num">02</span>
       <span class="step-title">最初の1人に届ける</span>
     </div>
     <div class="step-when">今 月 中</div>
-
     <p>
       Coconala 1年売上0 を抜ける唯一の方法は、不特定多数に発信を増やすことじゃなく、<strong>特定の1人に深く向き合う</strong>こと。広く待つんじゃなく、絞って取りに行く。
     </p>
-
     <ul class="actions">
-      <li>
-        接点のある人を10人特定
+      <li>接点のある人を10人特定
         <ul>
           <li>OC で2回以上「おはよう」を共有した人</li>
           <li>Ameblo に反応してくれた人</li>
           <li>X で言及してくれた人</li>
         </ul>
       </li>
-      <li>
-        個別メッセージで関係構築(まず売り込まない)
-        <ul>
-          <li>「LINE公式の配信、参考になってますか?」</li>
-        </ul>
+      <li>個別メッセージで関係構築(まず売り込まない)
+        <ul><li>「LINE公式の配信、参考になってますか?」</li></ul>
       </li>
-      <li>
-        反応が良い人にだけモニター提案
-        <ul>
-          <li>「21日プログラムのモニターを3人だけ募集してます。フィードバックいただける方は ¥1,000 で」</li>
-        </ul>
+      <li>反応が良い人にだけモニター提案
+        <ul><li>「21日プログラムのモニターを3人だけ募集してます。フィードバックいただける方は ¥1,000 で」</li></ul>
       </li>
-      <li>
-        最初の1人 に体験してもらう(無料でもいい)
-      </li>
-      <li>
-        完了後「お客様の声」を許可付きで取得
-      </li>
+      <li>最初の1人 に体験してもらう(無料でもいい)</li>
+      <li>完了後「お客様の声」を許可付きで取得(Form を満足度測定用に再利用)</li>
     </ul>
-
-    <div class="goal">
-      体験者 1〜2人 + 声 2本 → Coconala 説明欄に反映
-    </div>
+    <div class="goal">体験者 1〜2人 + 声 2本 → Coconala 説明欄に反映</div>
   </div>
 
-  <!-- Step 3 -->
   <div class="section">
     <div class="step-header">
       <span class="step-num">03</span>
       <span class="step-title">届く仕組みを作る</span>
     </div>
     <div class="step-when">今 後 3 ヶ 月</div>
+
+    <h3 class="subhead">LINE 21日 ステップ配信(実装済)</h3>
+    <p>新規LINE友だち全員に、3週間の朝活ジャーニーが自動配信される状態。10本不均等配置でDay 1〜Day 21までをカバー。</p>
+    <ul class="actions">
+      <li class="done">21日アーク設計(WEEK 1:始める / WEEK 2:続ける / WEEK 3:深める)</li>
+      <li class="done">10本のメッセージコンテンツ確定・配信中</li>
+      <li class="done">余剰draft 11本は別チャネル転用用に保管</li>
+    </ul>
+    <div class="done-callout">
+      新規友だち追加 → 3週間後に Day 21「ここから先(OC招待)」で着地する動線が完成。
+    </div>
 
     <h3 class="subhead">ハブの価値化(7日コラム)</h3>
     <p>ハブを「リンク集」から「読み物」へ進化させる。訪問者が3秒で離脱しないために、即座に価値を渡せる構造に。</p>
@@ -871,8 +480,8 @@
       <li>Day 6:続ける仕組み</li>
       <li>Day 7:ここから先(LINE公式への自然な誘導)</li>
     </ul>
-    <div class="goal">
-      無料7日読み物(ハブ)→ 無料21日 LINE配信 → ¥3,000 Coconala 21日伴走 の動線完成
+    <div class="exception">
+      LINE 21日ステップ配信のドラフトと内容が重複するため、転用可能。余剰draft 11本(Day 2, 4, 6, 8, 9, 11, 12, 15, 16, 18, 20)もここに展開できる。
     </div>
 
     <h3 class="subhead">X 再構築(最大の課題)</h3>
@@ -888,13 +497,13 @@
     <h3 class="subhead">LINE → X 連動運用</h3>
     <p>LINE配信のコンテンツを X にも展開し、毎日投稿の労力をゼロにする。</p>
     <ul class="actions">
-      <li>LINE配信 → 同内容を 140-200字に圧縮 → ハッシュタグ <code style="font-family:monospace;font-size:12px;background:var(--cream-deep);padding:1px 5px;border-radius:3px;">#早起き #朝活</code> を追加</li>
+      <li>21日 ステップ配信10本 + 余剰draft 11本 = 計21本のコンテンツ資産</li>
+      <li>各内容を 140-200字に圧縮 → ハッシュタグ <code style="font-family:monospace;font-size:12px;background:var(--cream-deep);padding:1px 5px;border-radius:3px;">#早起き #朝活</code> を追加</li>
       <li>Xアプリの予約投稿機能で仕込む(無料・¥0)</li>
-      <li>21日分のスレッド連載化 → ハブへの導線にする</li>
       <li>1〜2週間運用後、続ける価値があれば X API完全自動化(C案)へ移行</li>
     </ul>
     <div class="exception">
-      LINE 21日daily配信に切り替える場合は、LINE 21本 → X 21本 がそのまま使える(コンテンツ作成1回で2チャネル分)。
+      LINE 21日ステップ配信が動いた今、X 7本書き起こしは「既存draftの圧縮」が中心 = 比較的軽い作業に。
     </div>
 
     <h3 class="subhead">Antigravity launch readiness</h3>
@@ -909,12 +518,11 @@
     <h3 class="subhead">コンテンツ継続(無理しない)</h3>
     <ul class="actions">
       <li>Ameblo: 週2記事(SEOキーワード意識)</li>
-      <li>LINE公式: <strong>21日daily切り替え判断後に確定</strong>(現状 step 5本 + broadcast 週7)</li>
+      <li>LINE公式: <strong>21日ステップ配信 + broadcast 週次</strong>(現状継続)</li>
       <li>OC: 現状の関わり方で十分</li>
     </ul>
   </div>
 
-  <!-- やらないこと -->
   <div class="section">
     <div class="section-header">
       <span class="section-icon">⊘</span>
@@ -922,15 +530,15 @@
     </div>
     <p style="font-size:13.5px;color:var(--text-muted);">時間は有限。これは捨てる。</p>
     <ul class="dont-list">
-      <li><span>Instagram / TikTok 新規開設</span></li>
+      <li><span>Instagram / TikTok 新規開設(既存TikTokは継続)</span></li>
       <li><span>投稿数を増やすことを目的化</span></li>
       <li><span>有料広告(段階が早い)</span></li>
       <li><span>値下げで集客(¥3,000は妥当)</span></li>
       <li><span>完璧主義(70%で出して反応を見る)</span></li>
+      <li><span>placeholder公開(裏切り要素を作らない)</span></li>
     </ul>
   </div>
 
-  <!-- 一番大事なこと -->
   <div class="keystone">
     <div class="keystone-label">KEYSTONE</div>
     <p class="keystone-text">
