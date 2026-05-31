@@ -1,408 +1,2249 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>朝陽 黎 — メンバー台帳</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap');
-  :root{
-    --bg:#0d1117; --panel:#161b22; --panel-2:#1c2330; --line:#2a3340;
-    --ink:#e8edf2; --soft:#9aa7b4;
-    --dawn1:#ff9a56; --dawn2:#ffd56b; --leaf:#7dd181; --blue:#5b9bd5; --danger:#d57b7b; --gold:#e0b454;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Zen Kaku Gothic New',sans-serif;
-    background:radial-gradient(1200px 500px at 80% -10%,rgba(255,154,86,.10),transparent 60%),
-               radial-gradient(900px 400px at 10% 110%,rgba(91,155,213,.08),transparent 60%),var(--bg);
-    color:var(--ink);min-height:100vh;line-height:1.7;padding:0 0 80px}
-  header{padding:28px 24px 20px;border-bottom:1px solid var(--line);
-    background:linear-gradient(180deg,rgba(255,154,86,.05),transparent)}
-  .brand{font-family:'Zen Maru Gothic',sans-serif;font-size:13px;letter-spacing:.35em;color:var(--dawn2);text-transform:uppercase;margin-bottom:6px}
-  h1{font-family:'Zen Maru Gothic',sans-serif;font-size:26px;font-weight:700}
-  .sub{color:var(--soft);font-size:13px;margin-top:6px}
-  .wrap{max-width:980px;margin:0 auto;padding:0 16px}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px}
-  .card h2{font-family:'Zen Maru Gothic',sans-serif;font-size:16px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
-  .card h2::before{content:'';width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--dawn1),var(--dawn2))}
-  textarea{width:100%;min-height:140px;background:var(--panel-2);border:1px solid var(--line);color:var(--ink);
-    border-radius:10px;padding:12px;font-size:13px;font-family:ui-monospace,monospace;resize:vertical}
-  textarea:focus{outline:none;border-color:var(--blue)}
-  .btn{background:linear-gradient(135deg,var(--dawn1),var(--dawn2));color:#2a1a08;border:none;border-radius:10px;
-    padding:11px 22px;font-weight:700;font-size:14px;cursor:pointer;font-family:'Zen Maru Gothic',sans-serif;margin-top:12px}
-  .btn:hover{filter:brightness(1.06)}
-  .btn.ghost{background:transparent;color:var(--soft);border:1px solid var(--line);font-weight:500}
-  .btn.small{padding:6px 14px;font-size:12px;margin-top:0}
-  .btn.danger{background:transparent;color:var(--danger);border:1px solid var(--danger);font-weight:500}
-  .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-  .hint{font-size:12px;color:var(--soft);background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:12px}
-  .summary{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
-  .pill{background:var(--panel-2);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:13px}
-  .pill b{color:var(--dawn2);font-family:'Zen Maru Gothic',sans-serif}
-  .audit{background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:12px;font-size:13px}
-  .audit b{color:var(--leaf);font-family:'Zen Maru Gothic',sans-serif}
-  .audit .skip{color:var(--soft)}
-  .members{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:14px}
-  .m{background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;position:relative;overflow:hidden}
-  .m::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px}
-  .m.regular::before{background:var(--leaf)} .m.new::before{background:var(--blue)}
-  .m.away::before{background:var(--gold)} .m.left::before{background:var(--danger)}
-  .m .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
-  .m .name{font-family:'Zen Maru Gothic',sans-serif;font-size:16px;font-weight:700}
-  .label{font-size:11px;padding:2px 9px;border-radius:999px;font-weight:500;white-space:nowrap}
-  .label.regular{background:rgba(125,209,129,.14);color:var(--leaf)}
-  .label.new{background:rgba(91,155,213,.16);color:var(--blue)}
-  .label.away{background:rgba(224,180,84,.16);color:var(--gold)}
-  .label.left{background:rgba(213,123,123,.16);color:var(--danger)}
-  .m .stat{font-size:12px;color:var(--soft);margin-top:6px}
-  .m .band{font-size:15px;color:var(--dawn2);font-family:'Zen Maru Gothic',sans-serif;margin-top:4px}
-  .flag{font-size:11px;color:var(--danger);margin-top:8px;padding-left:12px;border-left:2px solid var(--danger)}
-  .flag.ok{color:var(--leaf);border-color:var(--leaf)}
-  .sort{display:flex;gap:6px;flex-wrap:wrap}
-  .sort button{background:var(--panel-2);border:1px solid var(--line);color:var(--soft);border-radius:8px;padding:5px 12px;font-size:12px;cursor:pointer;font-family:inherit}
-  .sort button.active{background:linear-gradient(135deg,var(--dawn1),var(--dawn2));color:#2a1a08;border-color:transparent;font-weight:700}
-  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
-  th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
-  th{color:var(--soft);font-size:11px;letter-spacing:.06em;font-weight:500}
-  td.body{color:var(--soft);max-width:340px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .tab{display:flex;gap:6px;margin-top:10px;margin-bottom:14px}
-  .tab button{background:transparent;border:1px solid var(--line);color:var(--soft);border-radius:8px;padding:6px 14px;font-size:12px;cursor:pointer;font-family:inherit}
-  .tab button.active{background:var(--panel-2);color:var(--ink);border-color:var(--dawn2)}
-  .filter{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
-  .filter input,.filter select{background:var(--panel-2);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:6px 10px;font-size:13px;font-family:inherit}
-  .empty{color:var(--soft);text-align:center;padding:30px}
-  .meta{font-size:12px;color:var(--soft);margin-top:8px}
-</style>
-</head>
-<body>
-<header><div class="wrap">
-  <div class="brand">Asahi Rei · Member Ledger</div>
-  <h1>メンバー台帳</h1>
-  <div class="sub">LINE履歴を貼って蓄積。同じメッセージは自動でスキップ。トークルームが変わっても引き継げます。</div>
-</div></header>
-
-<div class="wrap">
-
-  <div class="card">
-    <h2>履歴を取り込む</h2>
-    <textarea id="input" placeholder="LINEの「トーク履歴を送信」で出力したテキストを貼り付け。何度貼っても、重複は自動でスキップされます。"></textarea>
-    <div class="row" style="margin-top:8px">
-      <button class="btn" id="run">取り込む</button>
-      <button class="btn ghost small" id="exportBtn">JSON書き出し</button>
-      <button class="btn ghost small" id="importBtn">JSON読み込み</button>
-      <input type="file" id="importFile" accept="application/json" style="display:none">
-      <button class="btn danger small" id="clearBtn" style="margin-left:auto">全データ削除</button>
-    </div>
-    <div class="hint">差分のみ追加。判定に使うのは送信記録だけ — 起床の早さは推測しません。最終挨拶から <b>7日以上</b> 空いた人を「ひさしぶり」（週4日OKの哲学に合わせて）。</div>
-    <div class="audit" id="audit" style="display:none"></div>
-  </div>
-
-  <div class="card" id="result" style="display:none">
-    <div class="row" style="justify-content:space-between;flex-wrap:wrap;gap:10px">
-      <h2 style="margin-bottom:0">概要</h2>
-      <div class="meta" id="basis"></div>
-    </div>
-    <div class="summary" id="summary" style="margin-top:14px"></div>
-
-    <div class="tab">
-      <button data-v="members" class="active">メンバー台帳</button>
-      <button data-v="raw">生データを見る</button>
-    </div>
-
-    <div id="view-members">
-      <div class="sort" id="sort">
-        <button data-k="recent" class="active">最近の活動順</button>
-        <button data-k="count">挨拶回数順</button>
-        <button data-k="name">名前順</button>
-        <button data-k="away">久しぶり優先</button>
-      </div>
-      <div class="members" id="members"></div>
-    </div>
-
-    <div id="view-raw" style="display:none">
-      <div class="filter">
-        <input id="rawName" placeholder="名前で絞り込み">
-        <select id="rawKind">
-          <option value="">全種別</option>
-          <option value="msg">発言</option>
-          <option value="join">参加</option>
-          <option value="leave">退会</option>
-        </select>
-      </div>
-      <div id="rawWrap"></div>
-    </div>
-  </div>
-
-</div>
-
-<script>
-const STORE = 'asahi-rei-ledger-v2';
-const SYS_PATTERNS = [/^メッセージの送信を取り消しました/];
-const ADMIN = '朝陽 黎';
-const AWAY_DAYS = 7;
-
-function loadStore(){ try{ return JSON.parse(localStorage.getItem(STORE)) || {events:[]}; } catch{ return {events:[]}; } }
-function saveStore(s){ localStorage.setItem(STORE, JSON.stringify(s)); }
-
-function parse(text){
-  const lines = text.split(/\r?\n/);
-  let curDate = null;
-  const events = [];
-  const dateRe = /^(\d{4})\/(\d{1,2})\/(\d{1,2})\(.\)/;
-  const msgRe  = /^(\d{1,2}):(\d{2})\s+([\s\S]+)$/;
-
-  // 行を「論理メッセージ単位」に再結合する: ダブルクオートで始まったメッセージは
-  // 閉じクオートが来るまで次行を続きとして連結する
-  const logical = [];
-  let buf = null;
-  function flush(){ if(buf!==null){ logical.push(buf); buf=null; } }
-  for(let raw of lines){
-    const line = raw.replace(/\s+$/,'');  // 右側のみtrim、左の空白は意味あり
-    if(!line.trim()){ flush(); continue; }
-    if(buf !== null){
-      // クオート継続中。閉じクオートまで連結
-      buf += '\n' + line;
-      // 行末がクオートで閉じていれば完了（末尾の引用符を素直に数える）
-      const q = (buf.match(/"/g)||[]).length;
-      if(q % 2 === 0){ flush(); }
-      continue;
+{
+  "events": [
+    {
+      "date": "2025-09-16",
+      "time": "05:44",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます！管理人です☀️"
+    },
+    {
+      "date": "2025-09-17",
+      "time": "06:54",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます！管理人です🌞"
+    },
+    {
+      "date": "2025-09-19",
+      "time": "08:01",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます！"
+    },
+    {
+      "date": "2025-09-20",
+      "time": "05:26",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます！管理人です☀️"
+    },
+    {
+      "date": "2025-09-21",
+      "time": "06:37",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます！管理人です☀️"
+    },
+    {
+      "date": "2025-09-22",
+      "time": "05:35",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます！管理人です😊"
+    },
+    {
+      "date": "2025-09-23",
+      "time": "10:10",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます！管理人です☀️"
+    },
+    {
+      "date": "2025-09-23",
+      "time": "12:40",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "起こしてもらいたい...わかります😭"
+    },
+    {
+      "date": "2025-09-24",
+      "time": "05:20",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "起きられなかった日も大切！\n「もっと早く起きたい」って\n思える気持ちが大切なんです💪"
+    },
+    {
+      "date": "2025-09-24",
+      "time": "05:21",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️\n水曜日の朝です。"
+    },
+    {
+      "date": "2025-09-25",
+      "time": "05:04",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️\n木曜日の朝です。"
+    },
+    {
+      "date": "2025-09-26",
+      "time": "05:20",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2025-09-27",
+      "time": "05:53",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️\n土曜日の朝です！"
+    },
+    {
+      "date": "2025-09-28",
+      "time": "09:59",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます😊"
+    },
+    {
+      "date": "2025-09-29",
+      "time": "05:06",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️\n新しい週の始まりです！"
+    },
+    {
+      "date": "2025-09-30",
+      "time": "06:18",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます！火曜日ですね😊\n突然ですが、質問です。\n「睡眠時間を1時間増やすと、週収が3.4%上がる」\nこれ、信じられますか？\n実はこれ、2024年にドイツで発表された\n大規模調査の結果なんです📊\nしかも、この効果は\n「大学に1年通った場合の半分」\nに相当するそうです。\nつまり…\nしっかり寝るだけで\n翌日の仕事のパフォーマンスが\n確実に変わるということ🚀\nちなみに日本は\n睡眠不足による経済損失が\n年間13.8兆円で世界ワースト😱\nでも逆に考えると\n私たちには「伸びしろ」が\nめちゃくちゃあるってことですよね！\n今夜から始められる"
+    },
+    {
+      "date": "2025-10-01",
+      "time": "06:02",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2025-10-02",
+      "time": "05:24",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはよう〜☀️"
+    },
+    {
+      "date": "2025-10-03",
+      "time": "05:14",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます！管理人です☀️"
+    },
+    {
+      "date": "2025-10-04",
+      "time": "10:08",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます！管理人です☀️"
+    },
+    {
+      "date": "2025-10-05",
+      "time": "14:26",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "こんにちは！"
+    },
+    {
+      "date": "2025-10-06",
+      "time": "08:27",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます！"
+    },
+    {
+      "date": "2025-10-07",
+      "time": "08:26",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます！"
+    },
+    {
+      "date": "2025-10-08",
+      "time": "06:56",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます！"
+    },
+    {
+      "date": "2025-10-11",
+      "time": "18:53",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "土曜の夜です。"
+    },
+    {
+      "date": "2025-10-16",
+      "time": "21:09",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "木曜の夜ですね"
+    },
+    {
+      "date": "2025-10-25",
+      "time": "15:06",
+      "name": "かなにゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2025-10-26",
+      "time": "19:25",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "こんばんは！今日、僕は7時に起きました☀️"
+    },
+    {
+      "date": "2025-10-28",
+      "time": "06:18",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2025-10-29",
+      "time": "19:14",
+      "name": "そーさん",
+      "kind": "join"
+    },
+    {
+      "date": "2025-10-29",
+      "time": "19:15",
+      "name": "そーさん",
+      "kind": "msg",
+      "body": "よろしく"
+    },
+    {
+      "date": "2025-10-29",
+      "time": "19:30",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "しくよろです(顔文字)"
+    },
+    {
+      "date": "2025-11-05",
+      "time": "20:14",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "こんばんは🌙"
+    },
+    {
+      "date": "2025-11-15",
+      "time": "21:01",
+      "name": "パン",
+      "kind": "join"
+    },
+    {
+      "date": "2025-11-19",
+      "time": "20:11",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "いかがお過ごしですか？"
+    },
+    {
+      "date": "2025-11-24",
+      "time": "21:20",
+      "name": "かなにゃん",
+      "kind": "msg",
+      "body": "こんばんは"
+    },
+    {
+      "date": "2025-11-24",
+      "time": "21:21",
+      "name": "かなにゃん",
+      "kind": "msg",
+      "body": "お久しぶりです"
+    },
+    {
+      "date": "2025-11-26",
+      "time": "08:19",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "かなにゃんさん、おはようございます！"
+    },
+    {
+      "date": "2025-11-29",
+      "time": "12:45",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "こんにちは☀️"
+    },
+    {
+      "date": "2025-12-09",
+      "time": "22:30",
+      "name": "かなにゃん",
+      "kind": "msg",
+      "body": "ありがとうございます"
+    },
+    {
+      "date": "2025-12-10",
+      "time": "08:05",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️木曜日ですね！"
+    },
+    {
+      "date": "2025-12-11",
+      "time": "10:39",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️木曜日ですね！"
+    },
+    {
+      "date": "2026-01-04",
+      "time": "17:08",
+      "name": "かなにゃん",
+      "kind": "msg",
+      "body": "こんにちは"
+    },
+    {
+      "date": "2026-01-05",
+      "time": "08:57",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "かなにゃんさん、明けましておめでとうございます！"
+    },
+    {
+      "date": "2026-03-09",
+      "time": "20:02",
+      "name": "ぱん",
+      "kind": "join"
+    },
+    {
+      "date": "2026-03-09",
+      "time": "22:03",
+      "name": "えもじの子",
+      "kind": "join"
+    },
+    {
+      "date": "2026-03-09",
+      "time": "22:04",
+      "name": "えもじの子",
+      "kind": "msg",
+      "body": "こんばんは"
+    },
+    {
+      "date": "2026-03-10",
+      "time": "09:00",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます。"
+    },
+    {
+      "date": "2026-03-11",
+      "time": "21:33",
+      "name": "す",
+      "kind": "join"
+    },
+    {
+      "date": "2026-03-11",
+      "time": "21:36",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "かなにゃんさん、おきた報告ありがとう！\n10:30、いい感じですね👏"
+    },
+    {
+      "date": "2026-03-12",
+      "time": "13:36",
+      "name": "まゆみ",
+      "kind": "join"
+    },
+    {
+      "date": "2026-03-12",
+      "time": "13:36",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "はじめまして。よろしくお願いします🙇‍♀️"
+    },
+    {
+      "date": "2026-03-13",
+      "time": "06:08",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "「起きた」"
+    },
+    {
+      "date": "2026-03-14",
+      "time": "09:19",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "まゆみさん、おはようございます！\n6:25分、早いですね👏"
+    },
+    {
+      "date": "2026-03-15",
+      "time": "20:36",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "ありがとうございます、今朝は6時過ぎに起きました！"
+    },
+    {
+      "date": "2026-03-16",
+      "time": "06:58",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます🌞"
+    },
+    {
+      "date": "2026-03-16",
+      "time": "08:32",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます！\n4日連続、良いリズムですね👏"
+    },
+    {
+      "date": "2026-03-17",
+      "time": "06:55",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-03-17",
+      "time": "23:04",
+      "name": "えびちゃん",
+      "kind": "join"
+    },
+    {
+      "date": "2026-03-17",
+      "time": "23:10",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "初めまして。よろしくお願いします(よろしく)\n目標は毎朝5時30分に起きて勉強することです！\n朝がほんとに苦手なのでみなさんが朝起きれるようになったコツ等ありましたらぜひ教えてくださるとうれしいです。"
+    },
+    {
+      "date": "2026-03-18",
+      "time": "07:09",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-03-18",
+      "time": "07:29",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-03-18",
+      "time": "07:30",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "えびちゃんさん、よろしくお願いします(よろしく)\n一緒に、頑張りましょう〜"
+    },
+    {
+      "date": "2026-03-18",
+      "time": "08:17",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "はい！よろしくお願いします！"
+    },
+    {
+      "date": "2026-03-18",
+      "time": "12:22",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "えびちゃん、はじめまして！\n参加ありがとうございます😊"
+    },
+    {
+      "date": "2026-03-19",
+      "time": "05:29",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます。今日も頑張ります。"
+    },
+    {
+      "date": "2026-03-19",
+      "time": "05:49",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます🌞\n今朝は主人が始発に乗るのを送ってから🚗\n起きてます😃"
+    },
+    {
+      "date": "2026-03-19",
+      "time": "05:53",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "「起きた」"
+    },
+    {
+      "date": "2026-03-21",
+      "time": "06:25",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-03-21",
+      "time": "08:09",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-03-21",
+      "time": "08:12",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-03-23",
+      "time": "06:41",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-03-23",
+      "time": "08:30",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-03-24",
+      "time": "05:48",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-03-24",
+      "time": "07:07",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-03-24",
+      "time": "07:34",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-03-25",
+      "time": "06:24",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます🌞"
+    },
+    {
+      "date": "2026-03-25",
+      "time": "06:50",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-03-25",
+      "time": "09:08",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-03-26",
+      "time": "07:12",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-03-26",
+      "time": "08:07",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-03-27",
+      "time": "06:01",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-03-27",
+      "time": "06:51",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-03-28",
+      "time": "05:18",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます☀\n今朝は始発で出発してます🚃"
+    },
+    {
+      "date": "2026-03-28",
+      "time": "05:54",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-03-28",
+      "time": "06:08",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-03-29",
+      "time": "11:40",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-03-30",
+      "time": "06:05",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-03-30",
+      "time": "18:17",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "遅くなりました🙏"
+    },
+    {
+      "date": "2026-03-31",
+      "time": "06:03",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-03-31",
+      "time": "06:49",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-01",
+      "time": "05:41",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-04-01",
+      "time": "06:06",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-01",
+      "time": "18:34",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "遅くなりました🙏"
+    },
+    {
+      "date": "2026-04-02",
+      "time": "06:13",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます🌞"
+    },
+    {
+      "date": "2026-04-02",
+      "time": "07:19",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-02",
+      "time": "07:42",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-03",
+      "time": "08:04",
+      "name": "いがぐり",
+      "kind": "msg",
+      "body": "おはようございます🌞"
+    },
+    {
+      "date": "2026-04-03",
+      "time": "08:05",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "遅れました。7時に起きました。おはようございます。"
+    },
+    {
+      "date": "2026-04-03",
+      "time": "08:30",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-04",
+      "time": "06:03",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます(happy)"
+    },
+    {
+      "date": "2026-04-04",
+      "time": "08:04",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-04",
+      "time": "08:24",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-05",
+      "time": "06:16",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-04-05",
+      "time": "06:47",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-05",
+      "time": "09:16",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-06",
+      "time": "06:58",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます🌞"
+    },
+    {
+      "date": "2026-04-06",
+      "time": "07:26",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-06",
+      "time": "07:53",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-07",
+      "time": "05:03",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-04-07",
+      "time": "06:14",
+      "name": "あおい",
+      "kind": "msg",
+      "body": "おはようございます、実は早く寝すぎたせいで夜の3時くらいに起きてしまったんですよね😢"
+    },
+    {
+      "date": "2026-04-07",
+      "time": "06:43",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-08",
+      "time": "05:36",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-04-08",
+      "time": "05:37",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-08",
+      "time": "06:32",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます。"
+    },
+    {
+      "date": "2026-04-08",
+      "time": "07:45",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-09",
+      "time": "05:34",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-04-09",
+      "time": "05:55",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます。"
+    },
+    {
+      "date": "2026-04-09",
+      "time": "06:46",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-10",
+      "time": "05:02",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-04-10",
+      "time": "06:18",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-10",
+      "time": "06:28",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-10",
+      "time": "06:55",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-11",
+      "time": "06:44",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-04-11",
+      "time": "07:22",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-12",
+      "time": "10:16",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "えびちゃん、専門学校スタートおめでとうございます🎉"
+    },
+    {
+      "date": "2026-04-13",
+      "time": "05:31",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-13",
+      "time": "06:55",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます🌞"
+    },
+    {
+      "date": "2026-04-13",
+      "time": "06:56",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます！本日は6時33分起床です"
+    },
+    {
+      "date": "2026-04-13",
+      "time": "08:26",
+      "name": "あおい",
+      "kind": "msg",
+      "body": "おはようございます！報告遅れました7時30分に起きました！"
+    },
+    {
+      "date": "2026-04-13",
+      "time": "08:27",
+      "name": "あおい",
+      "kind": "msg",
+      "body": "学校もう始まってますが通信制なので生活習慣乱れないように気を引き締めていきます！"
+    },
+    {
+      "date": "2026-04-13",
+      "time": "08:29",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-14",
+      "time": "06:02",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます🌞"
+    },
+    {
+      "date": "2026-04-14",
+      "time": "06:24",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-14",
+      "time": "09:23",
+      "name": "かなにゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-14",
+      "time": "21:46",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "遅くなりました🙏"
+    },
+    {
+      "date": "2026-04-15",
+      "time": "06:07",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-04-15",
+      "time": "06:24",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-15",
+      "time": "07:52",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます。今日は7時に起きました。"
+    },
+    {
+      "date": "2026-04-15",
+      "time": "09:29",
+      "name": "あおい",
+      "kind": "msg",
+      "body": "おはようございます！9時に起きました、目標は7時なので少し遅くなりました"
+    },
+    {
+      "date": "2026-04-15",
+      "time": "12:15",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "遅くなりました🙏"
+    },
+    {
+      "date": "2026-04-16",
+      "time": "05:33",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます🌞"
+    },
+    {
+      "date": "2026-04-16",
+      "time": "05:50",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-16",
+      "time": "06:35",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-17",
+      "time": "05:52",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-17",
+      "time": "06:10",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-04-17",
+      "time": "06:33",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-17",
+      "time": "06:39",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-18",
+      "time": "05:46",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます🌞"
+    },
+    {
+      "date": "2026-04-18",
+      "time": "08:32",
+      "name": "かなにゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-18",
+      "time": "08:33",
+      "name": "かなにゃん",
+      "kind": "msg",
+      "body": "久しぶりに8:05におきられました"
+    },
+    {
+      "date": "2026-04-18",
+      "time": "10:34",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-19",
+      "time": "09:42",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "早起きも、水を飲んで頭をスッキリさせること、\n光を浴びることも、全部「手段」です。"
+    },
+    {
+      "date": "2026-04-20",
+      "time": "06:06",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます🌞"
+    },
+    {
+      "date": "2026-04-20",
+      "time": "06:07",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "はなさん、よろしくお願いします(よろしく)"
+    },
+    {
+      "date": "2026-04-20",
+      "time": "06:22",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-20",
+      "time": "06:29",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-20",
+      "time": "06:33",
+      "name": "はな",
+      "kind": "msg",
+      "body": "おはようございます！"
+    },
+    {
+      "date": "2026-04-20",
+      "time": "06:45",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-21",
+      "time": "05:34",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます🌞"
+    },
+    {
+      "date": "2026-04-21",
+      "time": "06:06",
+      "name": "かなにゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-21",
+      "time": "06:34",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-21",
+      "time": "06:35",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-21",
+      "time": "06:39",
+      "name": "はな",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-21",
+      "time": "06:53",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-22",
+      "time": "05:34",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます🌞"
+    },
+    {
+      "date": "2026-04-22",
+      "time": "05:39",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "有機物さん、よろしくお願いします(よろしく)"
+    },
+    {
+      "date": "2026-04-22",
+      "time": "05:39",
+      "name": "はな",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-22",
+      "time": "06:06",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-22",
+      "time": "06:35",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-22",
+      "time": "09:01",
+      "name": "かなにゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-22",
+      "time": "09:06",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-23",
+      "time": "05:29",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-04-23",
+      "time": "05:58",
+      "name": "はな",
+      "kind": "msg",
+      "body": "おはようございますどうしても５時半に起きれないです😢"
+    },
+    {
+      "date": "2026-04-23",
+      "time": "06:40",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-23",
+      "time": "07:49",
+      "name": "かなにゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-23",
+      "time": "12:21",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "遅くなりました🙏"
+    },
+    {
+      "date": "2026-04-24",
+      "time": "05:54",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-04-24",
+      "time": "06:07",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-24",
+      "time": "06:38",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-24",
+      "time": "06:52",
+      "name": "ぷりん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-24",
+      "time": "07:17",
+      "name": "はな",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-24",
+      "time": "08:10",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-25",
+      "time": "05:51",
+      "name": "有機物",
+      "kind": "msg",
+      "body": "おはようございます！"
+    },
+    {
+      "date": "2026-04-25",
+      "time": "07:26",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-04-25",
+      "time": "08:47",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-26",
+      "time": "15:56",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "遅くなりました🙏"
+    },
+    {
+      "date": "2026-04-27",
+      "time": "05:45",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-04-27",
+      "time": "06:15",
+      "name": "はな",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-27",
+      "time": "06:35",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-27",
+      "time": "09:10",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-28",
+      "time": "05:35",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます。"
+    },
+    {
+      "date": "2026-04-28",
+      "time": "06:06",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます🌞"
+    },
+    {
+      "date": "2026-04-28",
+      "time": "06:16",
+      "name": "かなにゃん",
+      "kind": "msg",
+      "body": "おはようございます\n早起き出来ました"
+    },
+    {
+      "date": "2026-04-28",
+      "time": "06:44",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-28",
+      "time": "07:14",
+      "name": "ぷりん",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-28",
+      "time": "08:29",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-29",
+      "time": "06:54",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-04-29",
+      "time": "07:02",
+      "name": "ぷりん",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-29",
+      "time": "07:07",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます。6時に起きたのに連絡し忘れてました。"
+    },
+    {
+      "date": "2026-04-29",
+      "time": "08:04",
+      "name": "はな",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-04-29",
+      "time": "08:30",
+      "name": "かなにゃん",
+      "kind": "msg",
+      "body": "8:10おきました"
+    },
+    {
+      "date": "2026-04-29",
+      "time": "09:27",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-04-30",
+      "time": "05:58",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-04-30",
+      "time": "06:56",
+      "name": "かなにゃん",
+      "kind": "msg",
+      "body": "おはようございます\n6:50おきれました"
+    },
+    {
+      "date": "2026-04-30",
+      "time": "07:06",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます。本日は遅くなってしまいました。睡眠時間見直します。"
+    },
+    {
+      "date": "2026-04-30",
+      "time": "08:34",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-01",
+      "time": "07:15",
+      "name": "いがぐり",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-05-01",
+      "time": "07:21",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます。6時に起きました。"
+    },
+    {
+      "date": "2026-05-01",
+      "time": "08:42",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-02",
+      "time": "05:29",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-05-02",
+      "time": "07:01",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-05-02",
+      "time": "07:37",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-03",
+      "time": "05:37",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます🌞"
+    },
+    {
+      "date": "2026-05-03",
+      "time": "05:49",
+      "name": "かなにゃん",
+      "kind": "msg",
+      "body": "おはよ"
+    },
+    {
+      "date": "2026-05-03",
+      "time": "05:50",
+      "name": "かなにゃん",
+      "kind": "msg",
+      "body": "中途覚醒ばかりだわ"
+    },
+    {
+      "date": "2026-05-03",
+      "time": "07:30",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-04",
+      "time": "06:03",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます🌞"
+    },
+    {
+      "date": "2026-05-04",
+      "time": "17:51",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "遅くなりました🙏"
+    },
+    {
+      "date": "2026-05-05",
+      "time": "05:42",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-05-05",
+      "time": "10:08",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-06",
+      "time": "05:12",
+      "name": "有機物",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-06",
+      "time": "05:13",
+      "name": "有機物",
+      "kind": "msg",
+      "body": "このオプに入ってから少しずつ早く起きれるようになりました！"
+    },
+    {
+      "date": "2026-05-06",
+      "time": "05:51",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます。今日は5時30分に起きました。"
+    },
+    {
+      "date": "2026-05-06",
+      "time": "08:11",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-07",
+      "time": "05:51",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-05-07",
+      "time": "05:53",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "竹田さん、よろしくお願いします(よろしく)"
+    },
+    {
+      "date": "2026-05-07",
+      "time": "06:03",
+      "name": "有機物",
+      "kind": "msg",
+      "body": "おはようございます☀️\n竹田さん🗻よろしくお願いしますm(*_ _)m"
+    },
+    {
+      "date": "2026-05-07",
+      "time": "06:16",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-05-07",
+      "time": "06:21",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-08",
+      "time": "06:03",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます🌞"
+    },
+    {
+      "date": "2026-05-08",
+      "time": "06:39",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-05-08",
+      "time": "06:49",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-09",
+      "time": "07:37",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます(おはよう)"
+    },
+    {
+      "date": "2026-05-10",
+      "time": "05:20",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-05-10",
+      "time": "05:32",
+      "name": "りんご",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-05-10",
+      "time": "05:32",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-05-10",
+      "time": "06:38",
+      "name": "ぷりん",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-10",
+      "time": "07:47",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-11",
+      "time": "06:13",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます🌞"
+    },
+    {
+      "date": "2026-05-11",
+      "time": "06:27",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます。"
+    },
+    {
+      "date": "2026-05-11",
+      "time": "06:34",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-05-11",
+      "time": "07:18",
+      "name": "竹田",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-05-11",
+      "time": "12:20",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "遅くなりました🙏"
+    },
+    {
+      "date": "2026-05-12",
+      "time": "05:55",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-05-12",
+      "time": "06:38",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-05-12",
+      "time": "06:48",
+      "name": "いがぐり",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-05-12",
+      "time": "07:06",
+      "name": "りんご",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-05-12",
+      "time": "07:13",
+      "name": "竹田",
+      "kind": "msg",
+      "body": "おはようございます🙌🏻"
+    },
+    {
+      "date": "2026-05-12",
+      "time": "08:19",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-13",
+      "time": "05:52",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-05-13",
+      "time": "06:21",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-05-13",
+      "time": "07:15",
+      "name": "竹田",
+      "kind": "msg",
+      "body": "おはようございます！"
+    },
+    {
+      "date": "2026-05-13",
+      "time": "18:32",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "遅くなりました🙏"
+    },
+    {
+      "date": "2026-05-14",
+      "time": "05:09",
+      "name": "りんご",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-05-14",
+      "time": "05:28",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-05-14",
+      "time": "05:56",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-05-14",
+      "time": "06:49",
+      "name": "竹田",
+      "kind": "msg",
+      "body": "おはようございます✨"
+    },
+    {
+      "date": "2026-05-14",
+      "time": "07:27",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "6時40分に起きました。\nおはようございます！"
+    },
+    {
+      "date": "2026-05-15",
+      "time": "05:12",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-05-15",
+      "time": "05:13",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "27卒さん、よろしくお願いします。"
+    },
+    {
+      "date": "2026-05-15",
+      "time": "05:29",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-05-15",
+      "time": "08:32",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-16",
+      "time": "05:24",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-05-16",
+      "time": "07:20",
+      "name": "りんご",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-05-16",
+      "time": "08:21",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-17",
+      "time": "05:13",
+      "name": "りんご",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-05-17",
+      "time": "07:20",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます。今日は7時に起きました。"
+    },
+    {
+      "date": "2026-05-17",
+      "time": "10:01",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-18",
+      "time": "05:48",
+      "name": "はる",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-05-18",
+      "time": "05:50",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます🌞"
+    },
+    {
+      "date": "2026-05-18",
+      "time": "06:50",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-19",
+      "time": "05:21",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-05-19",
+      "time": "05:28",
+      "name": "東",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-05-19",
+      "time": "05:39",
+      "name": "はる",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-05-19",
+      "time": "06:48",
+      "name": "竹田",
+      "kind": "msg",
+      "body": "おはようございます！"
+    },
+    {
+      "date": "2026-05-19",
+      "time": "09:05",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-20",
+      "time": "05:15",
+      "name": "はる",
+      "kind": "msg",
+      "body": "おはようございます☀︎"
+    },
+    {
+      "date": "2026-05-20",
+      "time": "06:12",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-05-20",
+      "time": "06:52",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます。\n最近6時50分と少し遅めなのでこれから修正していきます"
+    },
+    {
+      "date": "2026-05-20",
+      "time": "06:56",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-21",
+      "time": "05:19",
+      "name": "はる",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-05-21",
+      "time": "06:04",
+      "name": "りんご",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-05-21",
+      "time": "06:37",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます"
+    },
+    {
+      "date": "2026-05-21",
+      "time": "07:23",
+      "name": "竹田",
+      "kind": "msg",
+      "body": "おはようございます🙌🏻"
+    },
+    {
+      "date": "2026-05-21",
+      "time": "07:37",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-22",
+      "time": "06:39",
+      "name": "はる",
+      "kind": "msg",
+      "body": "おはようございます☀︎"
+    },
+    {
+      "date": "2026-05-22",
+      "time": "06:58",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "おはようございます！\n6時40分に起きました"
+    },
+    {
+      "date": "2026-05-22",
+      "time": "07:21",
+      "name": "いがぐり",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-05-22",
+      "time": "07:22",
+      "name": "竹田",
+      "kind": "msg",
+      "body": "おはようございます！"
+    },
+    {
+      "date": "2026-05-22",
+      "time": "07:24",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-23",
+      "time": "05:30",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-05-23",
+      "time": "06:44",
+      "name": "はる",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-05-23",
+      "time": "07:17",
+      "name": "いがぐり",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-05-23",
+      "time": "07:44",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-24",
+      "time": "06:05",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-05-24",
+      "time": "08:55",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-25",
+      "time": "06:11",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-05-25",
+      "time": "07:00",
+      "name": "はる",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-05-25",
+      "time": "07:34",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️\nまゆみさん、はるさん、続いてますね(拍手)\n今週も良い一週間を🌅"
+    },
+    {
+      "date": "2026-05-25",
+      "time": "20:59",
+      "name": "環",
+      "kind": "join"
+    },
+    {
+      "date": "2026-05-26",
+      "time": "05:47",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-05-26",
+      "time": "06:32",
+      "name": "はる",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-05-26",
+      "time": "06:51",
+      "name": "竹田",
+      "kind": "msg",
+      "body": "おはようございます〜"
+    },
+    {
+      "date": "2026-05-26",
+      "time": "07:33",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-27",
+      "time": "05:44",
+      "name": "はる",
+      "kind": "msg",
+      "body": "おはようございます☀\n連日少し遅かったですが、今日は5時台に起きられました！"
+    },
+    {
+      "date": "2026-05-27",
+      "time": "05:52",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます🌞"
+    },
+    {
+      "date": "2026-05-27",
+      "time": "06:18",
+      "name": "東",
+      "kind": "msg",
+      "body": "すみません。抜けます。ありがとうございました。(ありがとう)"
+    },
+    {
+      "date": "2026-05-27",
+      "time": "06:33",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます☀️"
+    },
+    {
+      "date": "2026-05-28",
+      "time": "05:29",
+      "name": "まゆみ",
+      "kind": "msg",
+      "body": "おはようございます😃"
+    },
+    {
+      "date": "2026-05-28",
+      "time": "06:38",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "おはようございます🌅"
+    },
+    {
+      "date": "2026-05-29",
+      "time": "05:36",
+      "name": "はる",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-05-29",
+      "time": "06:51",
+      "name": "えびちゃん",
+      "kind": "msg",
+      "body": "すいません。抜けさせていただきます！\nおせわになりました"
+    },
+    {
+      "date": "2026-05-29",
+      "time": "06:52",
+      "name": "竹田",
+      "kind": "msg",
+      "body": "おはようございます！"
+    },
+    {
+      "date": "2026-05-29",
+      "time": "06:59",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "竹田さん、りんごさん、昨日の挨拶も届いてました。\nありがとうございます🌱"
+    },
+    {
+      "date": "2026-05-30",
+      "time": "05:37",
+      "name": "はる",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-05-30",
+      "time": "06:28",
+      "name": "竹田",
+      "kind": "msg",
+      "body": "おはようございます！☀️"
+    },
+    {
+      "date": "2026-05-30",
+      "time": "08:02",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "はるさん🌅\n毎朝この時間に挨拶、届いてます。"
+    },
+    {
+      "date": "2026-05-31",
+      "time": "05:54",
+      "name": "はる",
+      "kind": "msg",
+      "body": "おはようございます☀"
+    },
+    {
+      "date": "2026-05-31",
+      "time": "10:20",
+      "name": "こた",
+      "kind": "join"
+    },
+    {
+      "date": "2026-05-31",
+      "time": "10:21",
+      "name": "こた",
+      "kind": "msg",
+      "body": "明日の朝から参加させてい叩きます！\nよろしくお願いします！！"
+    },
+    {
+      "date": "2026-05-31",
+      "time": "12:45",
+      "name": "朝陽 黎",
+      "kind": "msg",
+      "body": "遅くなりました。もうお昼ですね。"
     }
-    // 新規行。日付行はそのまま、メッセージ行で開きクオートが奇数なら継続待ち
-    if(dateRe.test(line.trim())){ logical.push(line.trim()); continue; }
-    const q = (line.match(/"/g)||[]).length;
-    if(q % 2 === 1){ buf = line; } else { logical.push(line); }
-  }
-  flush();
-
-  for(let raw of logical){
-    const line = raw.trim();
-    if(!line) continue;
-    const dm = line.match(dateRe);
-    if(dm){ curDate = `${dm[1]}-${String(dm[2]).padStart(2,'0')}-${String(dm[3]).padStart(2,'0')}`; continue; }
-    const mm = line.match(msgRe);
-    if(mm && curDate){
-      const time = `${mm[1].padStart(2,'0')}:${mm[2]}`;
-      let rest = mm[3];
-
-      // システム行: 取り消し、参加、退出/退会
-      if(/がメッセージの送信を取り消しました$/.test(rest)) continue;
-      if(SYS_PATTERNS.some(re=>re.test(rest))) continue;
-      let j = rest.match(/^(.+?)が参加しました/);
-      if(j){ events.push({date:curDate,time,name:j[1].trim(),kind:'join'}); continue; }
-      let lv = rest.match(/^(.+?)が退出しました|^(.+?)が退会しました/);
-      if(lv){ events.push({date:curDate,time,name:(lv[1]||lv[2]).trim(),kind:'leave'}); continue; }
-
-      // 名前と本文の分離: 管理人は氏名にスペースを含むので先に判定
-      let name, body;
-      if(rest.startsWith(ADMIN)){
-        name = ADMIN;
-        body = rest.slice(ADMIN.length).trim();
-      } else {
-        // 名前は最初の空白までだが、引用符が名前の直後に来るケース「えびちゃん "すいません」も拾う
-        // 区切りは空白 または ダブルクオート
-        const sep = rest.search(/[\s"]/);
-        if(sep === -1){ name = rest; body=''; }
-        else { name = rest.slice(0,sep); body = rest.slice(sep).replace(/^\s+/,''); }
-      }
-      // 名前から引用符を除去
-      name = name.replace(/^["'\s]+|["'\s]+$/g,'').trim();
-      // 本文の前後引用符を除去（複数行になっていてもOK）
-      body = (body||'').replace(/^["']/, '').replace(/["']$/,'').trim();
-
-      if(!name) continue;
-      events.push({date:curDate,time,name,kind:'msg',body});
-    }
-  }
-  return events;
+  ]
 }
-
-function eventKey(e){ return `${e.date}|${e.time}|${e.name}|${e.kind}`; }
-
-function ingest(newEvents){
-  const store = loadStore();
-  const existing = new Map(store.events.map(e=>[eventKey(e), e]));
-  let added=0, skipped=0;
-  for(const e of newEvents){
-    const k = eventKey(e);
-    if(existing.has(k)){ skipped++; continue; }
-    existing.set(k, e);
-    added++;
-  }
-  store.events = [...existing.values()].sort((a,b)=> (a.date+a.time).localeCompare(b.date+b.time));
-  saveStore(store);
-  return {added, skipped, total: store.events.length};
-}
-
-function build(events){
-  if(!events.length) return null;
-  const allDates = events.map(e=>e.date).sort();
-  const today = allDates[allDates.length-1];
-  const byName = {};
-  for(const e of events){
-    if(e.name===ADMIN) continue;
-    if(!byName[e.name]) byName[e.name] = {name:e.name, joins:[], leaves:[], msgs:[]};
-    if(e.kind==='join') byName[e.name].joins.push(e.date);
-    else if(e.kind==='leave') byName[e.name].leaves.push(e.date);
-    else byName[e.name].msgs.push(e);
-  }
-  const dayDiff = (a,b)=> Math.round((new Date(b)-new Date(a))/86400000);
-  const ledger = Object.values(byName).map(m=>{
-    const msgDates = m.msgs.map(x=>x.date).sort();
-    const greetCount = m.msgs.length;
-    const firstSeen = (m.joins[0]||msgDates[0]||null);
-    const lastMsg = msgDates[msgDates.length-1] || null;
-    const sinceLast = lastMsg ? dayDiff(lastMsg, today) : null;
-    const left = m.leaves.length>0;
-    let status;
-    if(left) status='left';
-    else if(greetCount===0) status='new';
-    else if(sinceLast!==null && sinceLast>=AWAY_DAYS) status='away';
-    else if(firstSeen && dayDiff(firstSeen,today)<=3 && greetCount<=2) status='new';
-    else status='regular';
-    const bands={};
-    m.msgs.forEach(x=>{const [h,mi]=x.time.split(':').map(Number);const b=`${String(h).padStart(2,'0')}:${mi<30?'00':'30'}台`;bands[b]=(bands[b]||0)+1;});
-    const topBand = Object.entries(bands).sort((a,b)=>b[1]-a[1])[0];
-    return {...m, greetCount, firstSeen, lastMsg, sinceLast, status, band: topBand?topBand[0]:null};
-  });
-  return {ledger, today};
-}
-
-const LABELS = {regular:'常連', new:'新規', away:'ひさしぶり', left:'離脱'};
-const KIND_LABEL = {msg:'発言', join:'参加', leave:'退会'};
-
-function statusNote(m){
-  if(m.status==='left') return {cls:'',txt:'退会記録あり。引き止めず送り出す。'};
-  if(m.status==='new')  return {cls:'',txt:'新規。はじめましてでOK。プレッシャーをかけない。'};
-  if(m.status==='away') return {cls:'',txt:`最終挨拶から${m.sinceLast}日。「お久しぶり」でも、初めまして扱いは禁止（過去に${m.greetCount}回挨拶あり）。`};
-  return {cls:'ok',txt:`常連（${m.greetCount}回挨拶）。「初めまして」は使わない。事実をそのまま映す。`};
-}
-
-let curSort='recent', curView='members', LEDGER=[], ANALYSIS=null;
-
-function renderAll(){
-  const store = loadStore();
-  if(!store.events.length){
-    document.getElementById('result').style.display='none';
-    return;
-  }
-  ANALYSIS = build(store.events);
-  LEDGER = ANALYSIS.ledger;
-  document.getElementById('result').style.display='block';
-  document.getElementById('basis').textContent = `基準日 ${ANALYSIS.today} / 取り込み済み ${store.events.length} 件`;
-  const counts={regular:0,new:0,away:0,left:0};
-  LEDGER.forEach(m=>counts[m.status]++);
-  document.getElementById('summary').innerHTML=`
-    <div class="pill">総メンバー <b>${LEDGER.length}</b></div>
-    <div class="pill">常連 <b>${counts.regular}</b></div>
-    <div class="pill">ひさしぶり <b>${counts.away}</b></div>
-    <div class="pill">新規 <b>${counts.new}</b></div>
-    <div class="pill">離脱 <b>${counts.left}</b></div>`;
-  renderMembers();
-  renderRaw();
-}
-
-function renderMembers(){
-  const box=document.getElementById('members');
-  let arr=[...LEDGER];
-  if(curSort==='recent') arr.sort((a,b)=>(b.lastMsg||'').localeCompare(a.lastMsg||''));
-  if(curSort==='count')  arr.sort((a,b)=>b.greetCount-a.greetCount);
-  if(curSort==='name')   arr.sort((a,b)=>a.name.localeCompare(b.name,'ja'));
-  if(curSort==='away')   arr.sort((a,b)=>{const o={away:0,regular:1,new:2,left:3};return o[a.status]-o[b.status] || (b.sinceLast||0)-(a.sinceLast||0)});
-  box.innerHTML = arr.map(m=>{
-    const note=statusNote(m);
-    return `<div class="m ${m.status}">
-      <div class="top"><span class="name">${m.name}</span><span class="label ${m.status}">${LABELS[m.status]}</span></div>
-      <div class="stat">挨拶 ${m.greetCount} 回${m.firstSeen?`・初回 ${m.firstSeen}`:''}</div>
-      <div class="stat">最終 ${m.lastMsg||'—'}${m.sinceLast!==null?`（${m.sinceLast}日前）`:''}</div>
-      ${m.band?`<div class="band">${m.band}</div>`:''}
-      <div class="flag ${note.cls}">${note.txt}</div>
-    </div>`;
-  }).join('');
-}
-
-function renderRaw(){
-  const store = loadStore();
-  const nameQ = document.getElementById('rawName').value.trim();
-  const kindQ = document.getElementById('rawKind').value;
-  let rows = store.events;
-  if(nameQ) rows = rows.filter(e=>e.name.includes(nameQ));
-  if(kindQ) rows = rows.filter(e=>e.kind===kindQ);
-  rows = rows.slice().reverse();
-  const wrap = document.getElementById('rawWrap');
-  if(!rows.length){ wrap.innerHTML='<div class="empty">該当する記録はありません。</div>'; return; }
-  const head = `<table><thead><tr><th>日付</th><th>時刻</th><th>名前</th><th>種別</th><th>本文</th></tr></thead><tbody>`;
-  const body = rows.slice(0,500).map(e=>`<tr>
-    <td>${e.date}</td><td>${e.time}</td><td>${e.name}</td>
-    <td><span class="label ${e.kind==='msg'?'regular':e.kind==='join'?'new':'left'}">${KIND_LABEL[e.kind]}</span></td>
-    <td class="body" title="${(e.body||'').replace(/"/g,'&quot;')}">${(e.body||'').slice(0,80)}</td>
-  </tr>`).join('');
-  const tail = `</tbody></table>`;
-  const note = rows.length>500 ? `<div class="meta">${rows.length}件中、新しい順に500件まで表示中</div>` : `<div class="meta">${rows.length}件</div>`;
-  wrap.innerHTML = note + head + body + tail;
-}
-
-document.getElementById('run').addEventListener('click',()=>{
-  const text = document.getElementById('input').value;
-  if(!text.trim()){ alert('履歴テキストを貼り付けてください。'); return; }
-  const events = parse(text);
-  if(!events.length){ alert('解析できる記録が見つかりませんでした。'); return; }
-  const r = ingest(events);
-  const audit = document.getElementById('audit');
-  audit.style.display='block';
-  audit.innerHTML = `今回の取り込み: 新規 <b>${r.added}</b> 件追加 ／ <span class="skip">重複 ${r.skipped} 件スキップ</span> ／ 累計 <b>${r.total}</b> 件`;
-  document.getElementById('input').value='';
-  renderAll();
-});
-
-document.getElementById('exportBtn').addEventListener('click',()=>{
-  const store = loadStore();
-  const blob = new Blob([JSON.stringify(store,null,2)], {type:'application/json'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `oc-ledger-${new Date().toISOString().slice(0,10)}.json`;
-  a.click();
-});
-document.getElementById('importBtn').addEventListener('click',()=>document.getElementById('importFile').click());
-document.getElementById('importFile').addEventListener('change',e=>{
-  const f = e.target.files[0]; if(!f) return;
-  const r = new FileReader();
-  r.onload = ()=>{
-    try{
-      const data = JSON.parse(r.result);
-      if(!data.events || !Array.isArray(data.events)) throw new Error('format');
-      const res = ingest(data.events);
-      const audit = document.getElementById('audit');
-      audit.style.display='block';
-      audit.innerHTML = `JSON読み込み: 新規 <b>${res.added}</b> 件追加 ／ <span class="skip">重複 ${res.skipped} 件スキップ</span> ／ 累計 <b>${res.total}</b> 件`;
-      renderAll();
-    } catch{ alert('読み込めませんでした'); }
-  };
-  r.readAsText(f);
-});
-document.getElementById('clearBtn').addEventListener('click',()=>{
-  if(confirm('蓄積された記録をすべて削除します。よろしいですか？')){
-    localStorage.removeItem(STORE);
-    document.getElementById('audit').style.display='none';
-    document.getElementById('result').style.display='none';
-  }
-});
-document.getElementById('sort').addEventListener('click',e=>{
-  if(e.target.tagName!=='BUTTON')return;
-  curSort=e.target.dataset.k;
-  document.querySelectorAll('#sort button').forEach(b=>b.classList.toggle('active',b===e.target));
-  renderMembers();
-});
-document.querySelector('.tab').addEventListener('click',e=>{
-  if(e.target.tagName!=='BUTTON')return;
-  curView=e.target.dataset.v;
-  document.querySelectorAll('.tab button').forEach(b=>b.classList.toggle('active',b===e.target));
-  document.getElementById('view-members').style.display = curView==='members'?'block':'none';
-  document.getElementById('view-raw').style.display = curView==='raw'?'block':'none';
-});
-document.getElementById('rawName').addEventListener('input',renderRaw);
-document.getElementById('rawKind').addEventListener('change',renderRaw);
-
-renderAll();
-</script>
-</body>
-</html>
