@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>朝陽 黎 — 決断ログ</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap');
+  :root{
+    --bg:#0d1117; --panel:#161b22; --panel-2:#1c2330; --line:#2a3340;
+    --ink:#e8edf2; --soft:#9aa7b4;
+    --dawn1:#ff9a56; --dawn2:#ffd56b; --leaf:#7dd181; --blue:#5b9bd5;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Zen Kaku Gothic New',sans-serif;
+    background:radial-gradient(1200px 500px at 80% -10%,rgba(255,154,86,.10),transparent 60%),
+               radial-gradient(900px 400px at 10% 110%,rgba(91,155,213,.08),transparent 60%),var(--bg);
+    color:var(--ink);min-height:100vh;line-height:1.85;padding:0 0 80px}
+  header{padding:28px 24px 20px;border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,rgba(255,154,86,.05),transparent)}
+  .brand{font-family:'Zen Maru Gothic',sans-serif;font-size:13px;letter-spacing:.35em;color:var(--dawn2);text-transform:uppercase;margin-bottom:6px}
+  h1{font-family:'Zen Maru Gothic',sans-serif;font-size:26px;font-weight:700}
+  .sub{color:var(--soft);font-size:13px;margin-top:6px}
+  .wrap{max-width:880px;margin:0 auto;padding:0 16px}
+  nav{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+  nav a{font-size:12px;padding:5px 12px;border:1px solid var(--line);border-radius:999px;color:var(--soft);text-decoration:none;background:var(--panel-2)}
+  nav a:hover{color:var(--ink);border-color:var(--dawn2)}
+  nav a.cat{color:var(--dawn2)}
+  section.intro{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:20px}
+  section.intro p{color:var(--soft);font-size:14px}
+  section.intro p + p{margin-top:8px}
+  .entry{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin-top:16px;position:relative}
+  .entry::before{content:'';position:absolute;left:-1px;top:18px;bottom:18px;width:3px;background:linear-gradient(180deg,var(--dawn1),var(--dawn2));border-radius:3px}
+  .entry .num{font-family:'Zen Maru Gothic',sans-serif;font-size:11px;color:var(--dawn2);letter-spacing:.2em}
+  .entry h2{font-family:'Zen Maru Gothic',sans-serif;font-size:17px;margin:6px 0 12px}
+  .entry .label{display:inline-block;font-size:11px;padding:2px 9px;border-radius:999px;background:var(--panel-2);color:var(--soft);margin-left:8px;border:1px solid var(--line);vertical-align:middle}
+  .entry p{font-size:14px;color:var(--ink)}
+  .entry p + p{margin-top:8px}
+  .entry .reason{margin-top:12px;padding:10px 14px;background:var(--panel-2);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;font-size:13px;color:var(--soft)}
+  .entry .reason b{color:var(--blue);font-family:'Zen Maru Gothic',sans-serif;font-size:11px;letter-spacing:.1em;display:block;margin-bottom:4px}
+  .timeline{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:28px}
+  .timeline h2{font-family:'Zen Maru Gothic',sans-serif;font-size:16px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .timeline h2::before{content:'';width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--dawn1),var(--dawn2))}
+  .timeline ul{list-style:none;padding-left:0}
+  .timeline li{font-size:13px;color:var(--soft);padding:6px 0;border-bottom:1px dashed var(--line);display:flex;gap:12px;align-items:baseline}
+  .timeline li:last-child{border-bottom:none}
+  .timeline .date{font-family:ui-monospace,monospace;color:var(--dawn2);min-width:90px;font-size:12px}
+  footer{margin-top:30px;padding:20px;text-align:center;color:var(--soft);font-size:12px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="brand">Asahi Rei · Decision Log</div>
+  <h1>決断ログ</h1>
+  <div class="sub">流動的な作業の中で、何をなぜそう決めたか。後で「これなんでこうしたっけ」とならないための記録。</div>
+  <nav>
+    <a href="index.html" class="cat">← ハブ</a>
+    <a href="blueprint.html">戦略 v2</a>
+    <a href="playbook.html">戦略 v1</a>
+    <a href="tips.html">早起きのコツ</a>
+    <a href="oc-handbook.html">OC運営</a>
+    <a href="oc-ledger.html">台帳ツール</a>
+  </nav>
+</div></header>
+
+<div class="wrap">
+
+  <section class="intro">
+    <p>このページは隠しページ（ハブからのリンクなし）。検索エンジンにも noindex 指定。</p>
+    <p>記録するのは「やったこと」ではなく「なぜそう決めたか」。一つ何かをやると三つ生まれる、その三つの行き先を後から辿るための土台。</p>
+  </section>
+
+  <article class="entry">
+    <div class="num">DECISION 01</div>
+    <h2>送信時刻 ≠ 起床時刻 という線引き</h2>
+    <p>OCメンバーへの返信を作るとき、送信時刻から「早起き」を推測しない。観測できるのは「いつ送られたか」だけで、「いつ起きたか」は分からない。4時起きで6:28に挨拶している可能性がある。</p>
+    <div class="reason"><b>なぜ</b>4大原則②「事実を述べる・解釈しない」の運用上の核。ここを曖昧にすると、頑張り評価や継続評価の捏造が連鎖する。台帳ツールも、この線引きを構造として組み込んだ（起床時刻フィールドを作らない）。</div>
+  </article>
+
+  <article class="entry">
+    <div class="num">DECISION 02</div>
+    <h2>「常連を初めまして扱い」を構造的に防ぐ</h2>
+    <p>記憶に頼ると、トークルームが切り替わったり間が空いたりすると、過去に何度も挨拶している人に「初めまして」と返してしまう失敗が起きる。台帳ツールで「過去に挨拶した回数」を持ち、1回でも挨拶があれば「初めまして禁止フラグ」を立てる。</p>
+    <div class="reason"><b>なぜ</b>過去に実際に発生した失敗パターン。記憶での運用は限界。事実ベースで判定すれば構造的にミスが起きない。</div>
+  </article>
+
+  <article class="entry">
+    <div class="num">DECISION 03</div>
+    <h2>完璧な自動化は諦めた。半自動で十分</h2>
+    <p>LINE Open Chat にはトーク内容を外部から取得できるAPIがない。トーク履歴のテキストエクスポート → ツールに貼り付け（または .txt ファイル読み込み）が現実解。</p>
+    <div class="reason"><b>なぜ</b>構造的な不可能を回避案で誤魔化さない。完全自動を待つより、半自動で今日から動かす方が価値が出る。</div>
+  </article>
+
+  <article class="entry">
+    <div class="num">DECISION 04</div>
+    <h2>App Storeは選ばない、PWAで十分</h2>
+    <p>iOS年12,980円・Google本人確認・テスター要件などのコストに対し、得られるものは「アイコンっぽさ」程度。LINE連携問題はアプリ化しても解決しない。PWA（ホーム画面に追加）で同等の体験を、審査ゼロ・登録料ゼロで実現する。</p>
+    <div class="reason"><b>なぜ</b>本質的に解決すべき問題（データ取得の自動化）が、アプリ化では解決しない。コストに対するリターンが釣り合わない。</div>
+  </article>
+
+  <article class="entry">
+    <div class="num">DECISION 05</div>
+    <h2>データ保存は各端末のlocalStorage、JSONで端末間移行</h2>
+    <p>メンバーの発言データは外部サーバーに置かない。各端末のブラウザ内に保存。複数端末で見たいときは JSON 書き出し → 別端末で読み込み、という意図的な操作で移す。</p>
+    <div class="reason"><b>なぜ</b>プライバシー優先。サーバーに置くと管理責任が発生し、漏洩リスクも増える。「ゆるく続ける」哲学のメンバーが、いつの間にか自分のデータが他人の管理下にあると知ったら違和感を覚える。</div>
+  </article>
+
+  <article class="entry">
+    <div class="num">DECISION 06</div>
+    <h2>ハブから隠しページに行かない、隠しページからはハブに戻れる</h2>
+    <p>外部からの訪問者には戦略系コンテンツのみ見せる。運営系・記録系ページ（oc-handbook、oc-ledger、changelog）はURLを直接知っている人だけがアクセスできる。各隠しページからはハブに戻れる導線を持たせる（運営者の利便性のため）。</p>
+    <div class="reason"><b>なぜ</b>運営の内側を外に晒さない。ただし運営者自身は行き来する必要があるので、一方向の隠し階層という設計にした。</div>
+  </article>
+
+  <article class="entry">
+    <div class="num">DECISION 07</div>
+    <h2>「ひさしぶり」の線引きは7日 <span class="label">台帳ツール</span></h2>
+    <p>最後の挨拶から7日以上空いた人を「ひさしぶり」と表示。週4日でOKという哲学に合わせて、1週間まるごと不在なら「ひさしぶり」。</p>
+    <div class="reason"><b>なぜ</b>判定基準と哲学を揃える。「週4日でいい」と言いながら「1日休んだら久しぶり」では整合しない。数字と思想を一致させる。</div>
+  </article>
+
+  <article class="entry">
+    <div class="num">DECISION 08</div>
+    <h2>離脱マーク機能は作らない <span class="label">台帳ツール</span></h2>
+    <p>LINEエクスポートには「退出しました」のシステム行が出ないケースがある。本人の「抜けます」発言だけでは自動判定できない。だが手動マーク機能は作らない。経過日数（54日前、180日前など）が伸びていけば、実態として離脱していることは自然にわかる。</p>
+    <div class="reason"><b>なぜ</b>判断はツールではなく人がする。「離脱」を明示するより、事実（経過日数）だけ示して判断を運営者に委ねる方が、押し付けない哲学と一貫する。</div>
+  </article>
+
+  <article class="entry">
+    <div class="num">DECISION 09</div>
+    <h2>ハブを4カテゴリに整理</h2>
+    <p>戦略系（playbook, blueprint）／コンテンツ系（tips）／運営系（oc-handbook, oc-ledger）／記録系（changelog）。ページが増えるたびに、このカテゴリのどこに属するかで配置を決める。</p>
+    <div class="reason"><b>なぜ</b>「一つやると三つ生まれる」のを場当たり的に積むと、3ヶ月後に「あれどこに置いたっけ」となる。先に骨格を決めておくと、新しいページが出てきても迷わない。</div>
+  </article>
+
+  <article class="entry">
+    <div class="num">DECISION 10</div>
+    <h2>作業ログは「決断ログ中心」</h2>
+    <p>時系列の作業記録（何月何日に何をした）ではなく、意思決定とその理由を残す。末尾に簡易な年表を補助的に置く。</p>
+    <div class="reason"><b>なぜ</b>後で読み返すのは「なぜそうしたか」。手順は読み返さない。意思決定の理由が残っていれば、似た選択が出てきたとき再判断できる。</div>
+  </article>
+
+  <section class="timeline">
+    <h2>簡易年表</h2>
+    <ul>
+      <li><span class="date">2026/05/31</span><span>oc-ledger（メンバー台帳ツール）作成。LINE履歴の.txt取り込み、常連/久しぶり/新規の自動判定、複数行発言のパーサー修正、PWA化検討、ハブ構造の整理、決断ログ作成。</span></li>
+    </ul>
+  </section>
+
+  <footer>朝陽 黎 · 努力する人が報われる社会を</footer>
+
+</div>
+</body>
+</html>
