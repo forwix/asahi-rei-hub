@@ -88,6 +88,8 @@
     <textarea id="input" placeholder="LINEの「トーク履歴を送信」で出力したテキストを貼り付け。何度貼っても、重複は自動でスキップされます。"></textarea>
     <div class="row" style="margin-top:8px">
       <button class="btn" id="run">取り込む</button>
+      <button class="btn ghost small" id="txtBtn">.txtから取り込む</button>
+      <input type="file" id="txtFile" accept=".txt,text/plain" style="display:none">
       <button class="btn ghost small" id="exportBtn">JSON書き出し</button>
       <button class="btn ghost small" id="importBtn">JSON読み込み</button>
       <input type="file" id="importFile" accept="application/json" style="display:none">
@@ -352,6 +354,23 @@ document.getElementById('run').addEventListener('click',()=>{
   audit.innerHTML = `今回の取り込み: 新規 <b>${r.added}</b> 件追加 ／ <span class="skip">重複 ${r.skipped} 件スキップ</span> ／ 累計 <b>${r.total}</b> 件`;
   document.getElementById('input').value='';
   renderAll();
+});
+
+document.getElementById('txtBtn').addEventListener('click',()=>document.getElementById('txtFile').click());
+document.getElementById('txtFile').addEventListener('change',e=>{
+  const f = e.target.files[0]; if(!f) return;
+  const r = new FileReader();
+  r.onload = ()=>{
+    const events = parse(r.result);
+    if(!events.length){ alert('解析できる記録が見つかりませんでした。LINEのトーク履歴テキストか確認してください。'); return; }
+    const res = ingest(events);
+    const audit = document.getElementById('audit');
+    audit.style.display='block';
+    audit.innerHTML = `ファイル読み込み（${f.name}）: 新規 <b>${res.added}</b> 件追加 ／ <span class="skip">重複 ${res.skipped} 件スキップ</span> ／ 累計 <b>${res.total}</b> 件`;
+    renderAll();
+    e.target.value=''; // 同じファイルを再選択できるようにリセット
+  };
+  r.readAsText(f);
 });
 
 document.getElementById('exportBtn').addEventListener('click',()=>{
