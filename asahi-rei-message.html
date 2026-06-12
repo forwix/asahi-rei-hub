@@ -1,262 +1,505 @@
-"use client";
-import React from "react";
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>朝陽 黎 — ゆるく続ける朝活</title>
+<meta name="description" content="朝の習慣を、ゆるく整える。眠れない夜、起きられない朝、続けられない自分。一人で抱え込まずに、まずはメッセージから。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
 
-function MainComponent() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  return (
-    <div
-      className="font-sans min-h-screen flex flex-col"
-      style={{
-        backgroundColor: "#faf8f5",
-        backgroundImage:
-          "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f7f3ed' fill-opacity='0.6' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E\")",
-      }}
-    >
-      <header className="bg-[#c87941] text-white text-center p-5 relative">
-        <h1 className="text-[2.5em] font-bold tracking-widest">朝陽 黎</h1>
-        <p className="mt-2 tracking-wider">ゆるく続ける朝活</p>
-        <button
-          id="menuButton"
-          className="absolute top-5 right-5"
-          onClick={toggleMenu}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        </button>
-      </header>
-      <nav
-        id="navigation"
-        className={`bg-[#b06a38] text-white p-2.5 ${
-          isMenuOpen ? "" : "hidden"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-center">
-          <a href="#about" className="mx-2 my-1 hover:text-orange-200">
-            この場について
-          </a>
-          <a href="#pricing" className="mx-2 my-1 hover:text-orange-200">
-            プログラム
-          </a>
-          <a href="#voice" className="mx-2 my-1 hover:text-orange-200">
-            続けている人の声
-          </a>
-          <a href="#faq" className="mx-2 my-1 hover:text-orange-200">
-            よくある質問
-          </a>
-          <a href="#contact" className="mx-2 my-1 hover:text-orange-200">
-            連絡先
-          </a>
-        </div>
-      </nav>
-
-      <main className="flex-grow p-5 md:p-10">
-        <div className="flex flex-wrap justify-between">
-          <div className="w-full md:w-1/4 mb-5 space-y-5">
-            <div id="pricing" className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-2xl font-bold mb-4 text-[#b06a38]">
-                プログラム
-              </h2>
-              <ul className="list-disc pl-6 mb-4">
-                <li>無料体験(LINE公式):0円</li>
-                <li>オープンチャット参加:0円</li>
-                <li>個別伴走(Coconala):有料</li>
-                <li>21日プログラム:期間限定</li>
-              </ul>
-              <p>
-                詳細は
-                <a href="#" className="text-[#c87941] hover:underline">
-                  プログラムページ
-                </a>
-                をご覧ください。
-              </p>
-            </div>
-            <div id="faq" className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-2xl font-bold mb-4 text-[#b06a38]">
-                よくある質問
-              </h2>
-              <dl>
-                <dt className="font-bold">
-                  Q: 朝が苦手でも始められますか?
-                </dt>
-                <dd className="mb-4">
-                  A:
-                  5年前、14時起きだった私が作ったプログラムです。苦手な人のために設計しています。
-                </dd>
-                <dt className="font-bold">Q: 途中でやめてもいいですか?</dt>
-                <dd className="mb-4">
-                  A: もちろんです。合わなければ、いつでも離れて大丈夫です。
-                </dd>
-              </dl>
-              <a href="#" className="text-[#c87941] hover:underline">
-                もっと見る
-              </a>
-            </div>
-          </div>
-
-          <div className="w-full md:w-2/4 mb-5 px-4">
-            <div className="bg-white p-8 rounded-lg shadow-lg w-full h-full flex flex-col justify-center">
-              <h2 className="text-3xl font-bold mb-6 text-center text-[#b06a38]">
-                まずは無料で、朝の習慣を整えませんか
-              </h2>
-              <p className="mb-8 text-lg text-center text-gray-700">
-                毎朝5時に起きろ、みたいなルールはありません。あなたのペースで、ゆるく21日。
-              </p>
-              <div className="flex flex-col space-y-4 items-center">
-                <a
-                  href="#"
-                  className="bg-[#c87941] text-white py-3 px-8 rounded-full hover:bg-[#b06a38] text-lg font-semibold transition duration-300 w-full max-w-xs text-center"
-                >
-                  無料で始める
-                </a>
-                <a
-                  href="#"
-                  className="bg-[#b06a38] text-white py-3 px-8 rounded-full hover:bg-[#985a30] text-lg font-semibold transition duration-300 w-full max-w-xs text-center"
-                >
-                  オープンチャットに参加
-                </a>
-              </div>
-              <div className="mt-8 text-center text-sm text-gray-500">
-                <p>登録は数秒で完了します。</p>
-                <p>「おはよう」の一言だけでも、十分です。</p>
-              </div>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-md mt-5">
-              <h2 className="text-2xl font-bold mb-4 text-[#b06a38]">
-                続けている人の声
-              </h2>
-              <blockquote className="italic">
-                「このオープンチャットに入ってから、少しずつ早く起きれるようになりました」
-                - メンバーより
-              </blockquote>
-            </div>
-          </div>
-
-          <div className="w-full md:w-1/4 space-y-5">
-            <div
-              id="voice"
-              className="bg-white p-6 rounded-lg shadow-md"
-            >
-              <h2 className="text-2xl font-bold mb-4 text-[#b06a38]">
-                朝の3本柱
-              </h2>
-              <ul className="list-disc pl-6 mb-4">
-                <li>
-                  <a href="#" className="hover:text-[#c87941]">
-                    意志力ではなく、環境をつくる
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-[#c87941]">
-                    脳の興奮をアウトプットする
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-[#c87941]">
-                    行動で気分を変える
-                  </a>
-                </li>
-              </ul>
-              <a href="#" className="text-[#c87941] hover:underline">
-                もっと見る
-              </a>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-2xl font-bold mb-4 text-[#b06a38]">
-                ログイン
-              </h2>
-              <form className="login-form mb-4">
-                <label htmlFor="member-id" className="block mb-1">
-                  メンバーID:
-                </label>
-                <input
-                  type="text"
-                  id="member-id"
-                  name="member-id"
-                  required
-                  aria-required="true"
-                  className="w-full px-3 py-2 border rounded-md mb-2"
-                />
-                <label htmlFor="password" className="block mb-1">
-                  パスワード:
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  required
-                  aria-required="true"
-                  className="w-full px-3 py-2 border rounded-md mb-2"
-                />
-                <button
-                  type="submit"
-                  className="bg-[#c87941] text-white py-2 px-4 rounded-md hover:bg-[#b06a38] inline-block"
-                >
-                  ログイン
-                </button>
-              </form>
-              <a href="#" className="text-[#c87941] hover:underline">
-                ID・パスワードをお忘れの方
-              </a>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-2xl font-bold mb-4 text-[#b06a38]">
-                今日の問い
-              </h2>
-              <p className="mb-2">小さく始めるための問いかけ:</p>
-              <ol className="list-decimal pl-6 mb-4">
-                <li>「明日からやろう」じゃなくて</li>
-                <li>「今、なにができるかな?」</li>
-              </ol>
-              <a href="#" className="text-[#c87941] hover:underline">
-                ほかの問いを見る
-              </a>
-            </div>
-          </div>
-        </div>
-      </main>
-      <footer className="bg-[#b06a38] text-white text-center p-5 mt-5">
-        <div className="space-x-4 mb-4">
-          <a href="#" className="text-white hover:underline">
-            この場について
-          </a>
-          <a href="#" className="text-white hover:underline">
-            プライバシー
-          </a>
-          <a href="#" className="text-white hover:underline">
-            お問い合わせ
-          </a>
-          <a href="#" className="text-white hover:underline">
-            サイトマップ
-          </a>
-        </div>
-        <a
-          href="#"
-          className="bg-[#c87941] text-white py-1 px-4 rounded-md hover:bg-[#985a30] inline-block"
-        >
-          はじめての方へ
-        </a>
-        <p className="mt-4">© 2026 朝陽 黎 / ASAHI REI</p>
-      </footer>
-    </div>
-  );
+:root {
+  --cream: #faf8f5;
+  --cream-deep: #f7f3ed;
+  --white: #ffffff;
+  --orange: #c87941;
+  --orange-deep: #b06a38;
+  --orange-light: #e8c9a8;
+  --orange-soft: #fdf0e3;
+  --brown: #2c2825;
+  --text: #3a3530;
+  --text-muted: #6e6660;
+  --border: #ede5d8;
+  --shadow: 0 2px 12px rgba(44, 40, 37, 0.06);
+  --shadow-hover: 0 4px 20px rgba(44, 40, 37, 0.1);
 }
 
-export default MainComponent;
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--text);
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* ヘッダー */
+.site-header {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%);
+  color: var(--white);
+  text-align: center;
+  padding: 32px 20px 24px;
+  position: relative;
+}
+
+.site-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.2em;
+}
+
+.site-subtitle {
+  margin: 8px 0 0;
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  opacity: 0.95;
+}
+
+/* メイン */
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 20px;
+}
+
+/* スマホ:1カラム */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .center-col { order: -1; }
+}
+
+.card {
+  background: var(--white);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+.card h2 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--orange-deep);
+  margin: 0 0 16px;
+  border-bottom: 2px solid var(--orange-soft);
+  padding-bottom: 8px;
+}
+
+.card ul, .card ol {
+  margin: 0 0 12px;
+  padding-left: 20px;
+  font-size: 14px;
+  line-height: 1.95;
+}
+
+.card li {
+  margin-bottom: 6px;
+}
+
+.card p {
+  font-size: 14px;
+  line-height: 1.95;
+  margin: 0 0 8px;
+}
+
+.card a {
+  color: var(--orange);
+  text-decoration: none;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+/* 中央のフォームカード */
+.form-card {
+  background: var(--white);
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.form-card h2 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 26px;
+  text-align: center;
+  color: var(--orange-deep);
+  margin: 0 0 12px;
+}
+
+.form-card .lead {
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.95;
+  color: var(--text-muted);
+  margin: 0 0 24px;
+}
+
+.form-card label {
+  display: block;
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.form-card textarea,
+.form-card input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.7;
+  background: var(--cream);
+  color: var(--text);
+  resize: vertical;
+  margin-bottom: 8px;
+}
+
+.form-card textarea:focus,
+.form-card input:focus {
+  outline: none;
+  border-color: var(--orange);
+  background: var(--white);
+}
+
+.form-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0 0 20px;
+  line-height: 1.7;
+}
+
+.submit-btn {
+  display: block;
+  margin: 0 auto;
+  background: var(--orange);
+  color: var(--white);
+  border: none;
+  padding: 14px 40px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: inherit;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submit-btn:hover {
+  background: var(--orange-deep);
+  box-shadow: var(--shadow-hover);
+}
+
+/* 送信完了 */
+.submit-success {
+  text-align: center;
+  padding: 32px 16px;
+}
+
+.submit-success .title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 22px;
+  color: var(--orange-deep);
+  margin-bottom: 12px;
+}
+
+.submit-success .desc {
+  font-size: 14px;
+  line-height: 1.95;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.again-btn {
+  background: none;
+  border: 1px solid var(--orange);
+  color: var(--orange);
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* 参加ボタン */
+.join-btn {
+  display: block;
+  text-align: center;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: var(--white);
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 8px;
+  transition: opacity 0.2s;
+}
+
+.join-btn:hover {
+  opacity: 0.9;
+  text-decoration: none !important;
+}
+
+.join-btn.primary { background: var(--orange); }
+.join-btn.secondary { background: var(--orange-deep); }
+
+.join-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* 今日の問い */
+.question {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0 0 12px;
+}
+
+.question-note {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* フッター */
+.site-footer {
+  background: var(--orange-deep);
+  color: var(--white);
+  text-align: center;
+  padding: 24px 20px;
+  margin-top: 40px;
+}
+
+.site-footer a {
+  color: var(--white);
+  text-decoration: none;
+  margin: 0 12px;
+  font-size: 13px;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+.copyright {
+  margin-top: 16px;
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+/* ハブへのリンク */
+.hub-link {
+  text-align: center;
+  padding: 16px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.hub-link a {
+  color: var(--orange-deep);
+  text-decoration: none;
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1 class="site-title">朝陽 黎</h1>
+  <p class="site-subtitle">ゆるく続ける朝活</p>
+</header>
+
+<main class="main-container">
+  <div class="layout">
+
+    <!-- 左カラム -->
+    <aside class="left-col">
+      <div class="card">
+        <h2>プログラム</h2>
+        <ul>
+          <li>無料体験(LINE公式)</li>
+          <li>オープンチャット参加</li>
+          <li>個別伴走(Coconala)</li>
+          <li>21日プログラム</li>
+        </ul>
+        <p>どれも、自分のペースで。</p>
+      </div>
+
+      <div class="card">
+        <h2>よくある質問</h2>
+        <p style="font-weight:500; margin-bottom:4px;">Q. 朝が苦手でも大丈夫?</p>
+        <p style="margin-bottom:16px; color:var(--text-muted);">5年前、14時起きだった私が作った場所です。</p>
+        <p style="font-weight:500; margin-bottom:4px;">Q. お金はかかる?</p>
+        <p style="margin-bottom:16px; color:var(--text-muted);">無料で参加できる場所があります。</p>
+        <p style="font-weight:500; margin-bottom:4px;">Q. いつでもやめられる?</p>
+        <p style="color:var(--text-muted);">もちろんです。合わなければ離れて大丈夫。</p>
+      </div>
+    </aside>
+
+    <!-- 中央カラム:メッセージ送信フォーム -->
+    <section class="center-col">
+      <div class="form-card">
+        <h2>朝陽 黎へのメッセージ</h2>
+        <p class="lead">
+          眠れない夜のこと、朝が苦手なこと、続けられない悩み。<br>
+          何でも、気軽に送ってください。
+        </p>
+
+        <div id="form-area">
+          <form id="contact-form">
+            <label for="message">メッセージ</label>
+            <textarea id="message" name="message" rows="7" placeholder="例:最近、夜眠れない日が続いていて..." required></textarea>
+            <label for="contact" style="margin-top:12px;">連絡先(任意)</label>
+            <input type="text" id="contact" name="contact" placeholder="返信を希望する場合は、LINE IDやメールなど">
+            <p class="form-note">
+              匿名でOKです。連絡先がある場合のみ、お返事します。
+            </p>
+            <button type="submit" class="submit-btn">朝陽 黎に送信</button>
+          </form>
+        </div>
+
+        <div id="success-area" style="display:none;">
+          <div class="submit-success">
+            <div class="title">届きました。</div>
+            <div class="desc">
+              ありがとうございます。<br>
+              連絡先をいただいていれば、お返事します。
+            </div>
+            <button class="again-btn" onclick="resetForm()">もう一度送る</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:20px;">
+        <h2>続けている人の声</h2>
+        <p style="font-style:italic; color:var(--text);">
+          「このオープンチャットに入ってから、少しずつ早く起きれるようになりました」
+        </p>
+        <p style="font-size:12px; color:var(--text-muted); margin-top:8px;">— メンバーより</p>
+      </div>
+    </section>
+
+    <!-- 右カラム -->
+    <aside class="right-col">
+      <div class="card">
+        <h2>朝の3本柱</h2>
+        <ul>
+          <li>意志力ではなく、環境をつくる</li>
+          <li>脳の興奮をアウトプットする</li>
+          <li>行動で気分を変える</li>
+        </ul>
+        <p style="color:var(--text-muted);">押し付けない、責めない。</p>
+      </div>
+
+      <div class="card">
+        <h2>参加する</h2>
+        <a href="https://line.me/R/ti/p/@179pyfte" class="join-btn primary">LINE公式に登録</a>
+        <a href="https://line.me/ti/g2/cFezziUwcw-bG7y5q8FaXQLaKcdfWQsqGIoEbA" class="join-btn secondary">オープンチャットへ</a>
+        <p class="join-note">どちらも無料です。</p>
+      </div>
+
+      <div class="card">
+        <h2>今日の問い</h2>
+        <p class="question">
+          「明日からやろう」じゃなくて、<br>
+          「今、なにができるかな?」
+        </p>
+        <p class="question-note">
+          小さな行動が、複利で積み上がります。
+        </p>
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<div class="hub-link">
+  <a href="https://forwix.github.io/asahi-rei-hub/">← ハブに戻る</a>
+</div>
+
+<footer class="site-footer">
+  <div>
+    <a href="https://forwix.github.io/asahi-rei-hub/">ハブ</a>
+    <a href="#">プライバシー</a>
+    <a href="#">この場について</a>
+  </div>
+  <div class="copyright">© 2026 朝陽 黎 / ASAHI REI</div>
+</footer>
+
+<script>
+// フォーム送信処理
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  const message = document.getElementById('message').value.trim();
+  const contact = document.getElementById('contact').value.trim();
+  
+  if (!message) return;
+  
+  // ★ ここを Google Forms URL に置き換える
+  // 形式: https://docs.google.com/forms/d/e/【FORM_ID】/formResponse
+  // entry.XXXXX は Google Form のフィールドID
+  
+  const FORM_URL = ''; // ← Google Forms のformResponse URLを入れる
+  
+  if (FORM_URL) {
+    try {
+      const formData = new FormData();
+      formData.append('entry.MESSAGE_ID', message);  // ← Google Form のメッセージ欄ID
+      formData.append('entry.CONTACT_ID', contact);  // ← Google Form の連絡先欄ID
+      
+      await fetch(FORM_URL, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors'  // Google Forms は CORS 不可、no-cors で送る
+      });
+    } catch (err) {
+      // no-cors なので成功/失敗判定はできないが、送信自体は届く
+    }
+  } else {
+    // 仮:ローカル確認用に console と localStorage に記録
+    console.log('Message:', message);
+    console.log('Contact:', contact);
+    const messages = JSON.parse(localStorage.getItem('asahi_rei_messages') || '[]');
+    messages.push({
+      message: message,
+      contact: contact,
+      timestamp: new Date().toISOString()
+    });
+    localStorage.setItem('asahi_rei_messages', JSON.stringify(messages));
+  }
+  
+  // 完了表示
+  document.getElementById('form-area').style.display = 'none';
+  document.getElementById('success-area').style.display = 'block';
+});
+
+function resetForm() {
+  document.getElementById('contact-form').reset();
+  document.getElementById('form-area').style.display = 'block';
+  document.getElementById('success-area').style.display = 'none';
+}
+</script>
+
+</body>
+</html>
