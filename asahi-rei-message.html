@@ -67,6 +67,9 @@ body {
   display: none;
   background: var(--white);
   border-bottom: 1px solid var(--border);
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 13px;
 }
 
 @media (max-width: 900px) {
@@ -76,17 +79,19 @@ body {
 }
 
 .mobile-nav a {
-  display: block;
-  padding: 14px 20px;
   color: var(--orange-deep);
   text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  text-align: center;
+  margin: 0 8px;
 }
 
 .mobile-nav a:hover {
-  background: var(--orange-soft);
+  text-decoration: underline;
+}
+
+.mobile-nav .current {
+  color: var(--text);
+  font-weight: 700;
+  margin: 0 8px;
 }
 
 /* メイン */
@@ -357,7 +362,8 @@ body {
 </header>
 
 <nav class="mobile-nav">
-  <a href="menu.html">≡ メニューを開く</a>
+  <a href="menu.html">≡ HOME</a>
+  <span class="current">メッセージを送る</span>
 </nav>
 
 <main class="main-container">
