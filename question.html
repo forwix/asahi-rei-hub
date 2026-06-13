@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今日の問い — 朝陽 黎</title>
+<meta name="description" content="小さく始めるための問いかけ。「明日からやろう」じゃなくて、「今、なにができるかな?」">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --cream: #faf8f5;
+  --cream-deep: #f7f3ed;
+  --white: #ffffff;
+  --orange: #c87941;
+  --orange-deep: #b06a38;
+  --orange-light: #e8c9a8;
+  --orange-soft: #fdf0e3;
+  --text: #3a3530;
+  --text-muted: #6e6660;
+  --border: #ede5d8;
+  --shadow: 0 2px 12px rgba(44, 40, 37, 0.06);
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--text);
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+  line-height: 1.8;
+}
+
+.site-header {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%);
+  color: var(--white);
+  text-align: center;
+  padding: 32px 20px 24px;
+}
+
+.site-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.2em;
+}
+
+.site-subtitle {
+  margin: 8px 0 0;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  opacity: 0.95;
+}
+
+.page-nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.page-nav a {
+  color: var(--orange-deep);
+  text-decoration: none;
+  margin: 0 8px;
+}
+
+.page-nav .current {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.content {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.page-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 26px;
+  color: var(--orange-deep);
+  margin: 0 0 8px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.page-lead {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0 0 40px;
+  text-align: center;
+}
+
+.question-main {
+  background: var(--white);
+  padding: 48px 24px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.question-text {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 24px;
+  line-height: 1.95;
+  color: var(--text);
+  margin: 0;
+}
+
+.question-note {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 20px 0 0;
+}
+
+.examples {
+  margin-top: 32px;
+}
+
+.examples-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 16px;
+  color: var(--orange-deep);
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+.example {
+  background: var(--white);
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  margin-bottom: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.bottom-nav {
+  max-width: 700px;
+  margin: 32px auto 24px;
+  padding: 0 20px;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.bottom-nav a {
+  flex: 1;
+  text-align: center;
+  background: var(--white);
+  color: var(--orange-deep);
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.bottom-nav a.primary {
+  background: var(--orange);
+  color: var(--white);
+  border-color: var(--orange);
+}
+
+.site-footer {
+  background: var(--orange-deep);
+  color: var(--white);
+  text-align: center;
+  padding: 24px 20px;
+  margin-top: 40px;
+}
+
+.site-footer a {
+  color: var(--white);
+  text-decoration: none;
+  margin: 0 12px;
+  font-size: 13px;
+}
+
+.copyright {
+  margin-top: 16px;
+  font-size: 11px;
+  opacity: 0.8;
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1 class="site-title">朝陽 黎</h1>
+  <p class="site-subtitle">ゆるく続ける朝活</p>
+</header>
+
+<nav class="page-nav">
+  <a href="menu.html">≡ メニュー</a>
+  <span class="current">今日の問い</span>
+</nav>
+
+<div class="content">
+
+  <h2 class="page-title">今日の問い</h2>
+  <p class="page-lead">小さく始めるための問いかけ。</p>
+
+  <div class="question-main">
+    <p class="question-text">
+      「明日からやろう」<br>
+      じゃなくて、<br>
+      「今、なにができるかな?」
+    </p>
+    <p class="question-note">
+      小さな行動が、複利で積み上がります。
+    </p>
+  </div>
+
+  <div class="examples">
+    <p class="examples-title">今、できそうな小さなこと</p>
+    <div class="example">水を一杯飲む</div>
+    <div class="example">5秒だけ伸びをする</div>
+    <div class="example">カーテンを開けて光を浴びる</div>
+    <div class="example">深呼吸を3回</div>
+    <div class="example">机の上を1ヶ所だけ片付ける</div>
+    <div class="example">スマホを置いて、5分散歩する</div>
+  </div>
+
+</div>
+
+<div class="bottom-nav">
+  <a href="menu.html">≡ メニュー</a>
+  <a href="asahi-rei-message.html" class="primary">メッセージを送る</a>
+</div>
+
+<footer class="site-footer">
+  <div>
+    <a href="menu.html">メニュー</a>
+    <a href="https://forwix.github.io/asahi-rei-hub/">ハブ</a>
+  </div>
+  <div class="copyright">© 2026 朝陽 黎 / ASAHI REI</div>
+</footer>
+
+</body>
+</html>

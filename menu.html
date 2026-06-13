@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>メニュー — 朝陽 黎</title>
+<meta name="description" content="朝陽 黎の各ページへの入り口。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --cream: #faf8f5;
+  --cream-deep: #f7f3ed;
+  --white: #ffffff;
+  --orange: #c87941;
+  --orange-deep: #b06a38;
+  --orange-light: #e8c9a8;
+  --orange-soft: #fdf0e3;
+  --text: #3a3530;
+  --text-muted: #6e6660;
+  --border: #ede5d8;
+  --shadow: 0 2px 12px rgba(44, 40, 37, 0.06);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--text);
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+  line-height: 1.8;
+}
+
+.site-header {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%);
+  color: var(--white);
+  text-align: center;
+  padding: 32px 20px 24px;
+}
+
+.site-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.2em;
+}
+
+.site-subtitle {
+  margin: 8px 0 0;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  opacity: 0.95;
+}
+
+.page-title {
+  text-align: center;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 22px;
+  color: var(--orange-deep);
+  margin: 32px 0 8px;
+  font-weight: 700;
+}
+
+.page-desc {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0 0 24px;
+}
+
+.menu-list {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 16px 40px;
+}
+
+.menu-item {
+  display: block;
+  background: var(--white);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 12px;
+  text-decoration: none;
+  color: var(--text);
+  box-shadow: var(--shadow);
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.menu-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(44, 40, 37, 0.1);
+}
+
+.menu-item.current {
+  background: var(--orange-soft);
+  border: 1px solid var(--orange-light);
+}
+
+.menu-item.current::after {
+  content: '今ここ';
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--orange);
+  color: var(--white);
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.menu-item:not(.current)::after {
+  content: '›';
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--orange);
+  font-size: 22px;
+}
+
+.menu-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--orange-deep);
+  margin: 0 0 4px;
+}
+
+.menu-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.7;
+}
+
+.section-divider {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 24px 0 12px;
+  letter-spacing: 0.1em;
+}
+
+.hub-back {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  font-size: 13px;
+  color: var(--orange-deep);
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.hub-back:hover {
+  text-decoration: underline;
+}
+
+.site-footer {
+  background: var(--orange-deep);
+  color: var(--white);
+  text-align: center;
+  padding: 24px 20px;
+  margin-top: 40px;
+}
+
+.site-footer a {
+  color: var(--white);
+  text-decoration: none;
+  margin: 0 12px;
+  font-size: 13px;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+.copyright {
+  margin-top: 16px;
+  font-size: 11px;
+  opacity: 0.8;
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1 class="site-title">朝陽 黎</h1>
+  <p class="site-subtitle">ゆるく続ける朝活</p>
+</header>
+
+<h2 class="page-title">メニュー</h2>
+<p class="page-desc">どこからでも、行きたい場所へ。</p>
+
+<div class="menu-list">
+
+  <a href="menu.html" class="menu-item current">
+    <p class="menu-title">メニュー</p>
+    <p class="menu-desc">各ページへの入り口</p>
+  </a>
+
+  <div class="section-divider">─── 朝陽 黎とつながる ───</div>
+
+  <a href="asahi-rei-message.html" class="menu-item">
+    <p class="menu-title">メッセージを送る</p>
+    <p class="menu-desc">悩み、相談、感想、何でも</p>
+  </a>
+
+  <a href="join.html" class="menu-item">
+    <p class="menu-title">参加する</p>
+    <p class="menu-desc">LINE公式、オープンチャットへ</p>
+  </a>
+
+  <div class="section-divider">─── 知る ───</div>
+
+  <a href="program.html" class="menu-item">
+    <p class="menu-title">プログラム</p>
+    <p class="menu-desc">無料体験と個別伴走の違い</p>
+  </a>
+
+  <a href="faq.html" class="menu-item">
+    <p class="menu-title">よくある質問</p>
+    <p class="menu-desc">朝が苦手、続けられるか不安、など</p>
+  </a>
+
+  <a href="pillars.html" class="menu-item">
+    <p class="menu-title">朝の3本柱</p>
+    <p class="menu-desc">この場の考え方</p>
+  </a>
+
+  <a href="question.html" class="menu-item">
+    <p class="menu-title">今日の問い</p>
+    <p class="menu-desc">小さく始めるための問いかけ</p>
+  </a>
+
+  <div class="section-divider">─── 戻る ───</div>
+
+  <a href="https://forwix.github.io/asahi-rei-hub/" class="hub-back">← ハブに戻る</a>
+
+</div>
+
+<footer class="site-footer">
+  <div>
+    <a href="menu.html">メニュー</a>
+    <a href="https://forwix.github.io/asahi-rei-hub/">ハブ</a>
+  </div>
+  <div class="copyright">© 2026 朝陽 黎 / ASAHI REI</div>
+</footer>
+
+</body>
+</html>

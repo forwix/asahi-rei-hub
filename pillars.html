@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>朝の3本柱 — 朝陽 黎</title>
+<meta name="description" content="意志力ではなく、環境をつくる。脳の興奮をアウトプットする。行動で気分を変える。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --cream: #faf8f5;
+  --cream-deep: #f7f3ed;
+  --white: #ffffff;
+  --orange: #c87941;
+  --orange-deep: #b06a38;
+  --orange-light: #e8c9a8;
+  --orange-soft: #fdf0e3;
+  --text: #3a3530;
+  --text-muted: #6e6660;
+  --border: #ede5d8;
+  --shadow: 0 2px 12px rgba(44, 40, 37, 0.06);
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--text);
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+  line-height: 1.8;
+}
+
+.site-header {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%);
+  color: var(--white);
+  text-align: center;
+  padding: 32px 20px 24px;
+}
+
+.site-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.2em;
+}
+
+.site-subtitle {
+  margin: 8px 0 0;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  opacity: 0.95;
+}
+
+.page-nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.page-nav a {
+  color: var(--orange-deep);
+  text-decoration: none;
+  margin: 0 8px;
+}
+
+.page-nav .current {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.content {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.page-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 26px;
+  color: var(--orange-deep);
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+.page-lead {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0 0 32px;
+}
+
+.pillar {
+  background: var(--white);
+  padding: 28px 24px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.pillar-number {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 36px;
+  color: var(--orange-light);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.pillar-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--orange-deep);
+  margin: 0 0 12px;
+  padding-right: 40px;
+}
+
+.pillar-body {
+  font-size: 14px;
+  line-height: 1.95;
+  margin: 0 0 8px;
+}
+
+.pillar-example {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  background: var(--cream-deep);
+  border-radius: 8px;
+  border-left: 3px solid var(--orange-light);
+}
+
+.closing {
+  text-align: center;
+  padding: 32px 0 16px;
+}
+
+.closing-text {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.95;
+}
+
+.bottom-nav {
+  max-width: 700px;
+  margin: 24px auto;
+  padding: 0 20px;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.bottom-nav a {
+  flex: 1;
+  text-align: center;
+  background: var(--white);
+  color: var(--orange-deep);
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.bottom-nav a.primary {
+  background: var(--orange);
+  color: var(--white);
+  border-color: var(--orange);
+}
+
+.site-footer {
+  background: var(--orange-deep);
+  color: var(--white);
+  text-align: center;
+  padding: 24px 20px;
+  margin-top: 40px;
+}
+
+.site-footer a {
+  color: var(--white);
+  text-decoration: none;
+  margin: 0 12px;
+  font-size: 13px;
+}
+
+.copyright {
+  margin-top: 16px;
+  font-size: 11px;
+  opacity: 0.8;
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1 class="site-title">朝陽 黎</h1>
+  <p class="site-subtitle">ゆるく続ける朝活</p>
+</header>
+
+<nav class="page-nav">
+  <a href="menu.html">≡ メニュー</a>
+  <span class="current">朝の3本柱</span>
+</nav>
+
+<div class="content">
+
+  <h2 class="page-title">朝の3本柱</h2>
+  <p class="page-lead">この場の考え方。押し付けない、責めない、評価しない。</p>
+
+  <div class="pillar">
+    <span class="pillar-number">01</span>
+    <h3 class="pillar-title">意志力ではなく、環境をつくる</h3>
+    <p class="pillar-body">続かない理由は、気合いが足りないからじゃない。続けやすい仕組みがないだけ。</p>
+    <div class="pillar-example">
+      例:寝室を涼しくする、スマホを布団から遠くに置く、お風呂を寝る90分前に
+    </div>
+  </div>
+
+  <div class="pillar">
+    <span class="pillar-number">02</span>
+    <h3 class="pillar-title">脳の興奮をアウトプットする</h3>
+    <p class="pillar-body">頭の中で考え事が止まらない時、外に出すと落ち着く。受動的に消費するより、能動的に出力する側に回る。</p>
+    <div class="pillar-example">
+      例:寝る前にToDoを3つ書く、5分書く、配信で話す
+    </div>
+  </div>
+
+  <div class="pillar">
+    <span class="pillar-number">03</span>
+    <h3 class="pillar-title">行動で気分を変える</h3>
+    <p class="pillar-body">やる気が出てから動くんじゃなくて、動いてから気分が変わる。小さな行動から始める。</p>
+    <div class="pillar-example">
+      例:朝起きたら水一杯、5分散歩、5秒の伸び
+    </div>
+  </div>
+
+  <div class="closing">
+    <p class="closing-text">
+      「明日からやろう」じゃなくて<br>
+      「今、なにができるかな?」
+    </p>
+  </div>
+
+</div>
+
+<div class="bottom-nav">
+  <a href="menu.html">≡ メニュー</a>
+  <a href="asahi-rei-message.html" class="primary">メッセージを送る</a>
+</div>
+
+<footer class="site-footer">
+  <div>
+    <a href="menu.html">メニュー</a>
+    <a href="https://forwix.github.io/asahi-rei-hub/">ハブ</a>
+  </div>
+  <div class="copyright">© 2026 朝陽 黎 / ASAHI REI</div>
+</footer>
+
+</body>
+</html>

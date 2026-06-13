@@ -67,7 +67,6 @@ body {
   display: none;
   background: var(--white);
   border-bottom: 1px solid var(--border);
-  padding: 8px 0;
 }
 
 @media (max-width: 900px) {
@@ -78,31 +77,16 @@ body {
 
 .mobile-nav a {
   display: block;
-  padding: 12px 20px;
-  color: var(--text);
+  padding: 14px 20px;
+  color: var(--orange-deep);
   text-decoration: none;
   font-size: 14px;
-  border-bottom: 1px solid var(--cream-deep);
-  position: relative;
+  font-weight: 500;
+  text-align: center;
 }
 
-.mobile-nav a::after {
-  content: '›';
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--orange);
-  font-size: 18px;
-}
-
-.mobile-nav a:last-child {
-  border-bottom: none;
-  color: var(--orange-deep);
-}
-
-.mobile-nav a:last-child::after {
-  content: '';
+.mobile-nav a:hover {
+  background: var(--orange-soft);
 }
 
 /* メイン */
@@ -373,13 +357,7 @@ body {
 </header>
 
 <nav class="mobile-nav">
-  <a href="#message">メッセージを送る</a>
-  <a href="#program">プログラム</a>
-  <a href="#faq">よくある質問</a>
-  <a href="#pillars">朝の3本柱</a>
-  <a href="#join">参加する</a>
-  <a href="#question">今日の問い</a>
-  <a href="https://forwix.github.io/asahi-rei-hub/">← ハブに戻る</a>
+  <a href="menu.html">≡ メニューを開く</a>
 </nav>
 
 <main class="main-container">

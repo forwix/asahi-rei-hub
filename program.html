@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プログラム — 朝陽 黎</title>
+<meta name="description" content="ゆるく続ける朝活のプログラム。無料体験から個別伴走まで。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --cream: #faf8f5;
+  --cream-deep: #f7f3ed;
+  --white: #ffffff;
+  --orange: #c87941;
+  --orange-deep: #b06a38;
+  --orange-light: #e8c9a8;
+  --orange-soft: #fdf0e3;
+  --text: #3a3530;
+  --text-muted: #6e6660;
+  --border: #ede5d8;
+  --shadow: 0 2px 12px rgba(44, 40, 37, 0.06);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--text);
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+  line-height: 1.8;
+}
+
+.site-header {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%);
+  color: var(--white);
+  text-align: center;
+  padding: 32px 20px 24px;
+}
+
+.site-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.2em;
+}
+
+.site-subtitle {
+  margin: 8px 0 0;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  opacity: 0.95;
+}
+
+/* ページナビ */
+.page-nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.page-nav a {
+  color: var(--orange-deep);
+  text-decoration: none;
+  margin: 0 8px;
+}
+
+.page-nav a:hover {
+  text-decoration: underline;
+}
+
+.page-nav .current {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.content {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.page-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 26px;
+  color: var(--orange-deep);
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+.page-lead {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0 0 32px;
+  line-height: 1.95;
+}
+
+.card {
+  background: var(--white);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+}
+
+.card h3 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--orange-deep);
+  margin: 0 0 12px;
+  border-bottom: 2px solid var(--orange-soft);
+  padding-bottom: 8px;
+}
+
+.card-tag {
+  display: inline-block;
+  background: var(--orange-soft);
+  color: var(--orange-deep);
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+
+.card-tag.paid {
+  background: var(--orange-deep);
+  color: var(--white);
+}
+
+.card p {
+  font-size: 14px;
+  line-height: 1.95;
+  margin: 0 0 12px;
+}
+
+.card p:last-child {
+  margin-bottom: 0;
+}
+
+.card ul {
+  font-size: 14px;
+  line-height: 1.95;
+  margin: 0 0 12px;
+  padding-left: 20px;
+}
+
+.card li {
+  margin-bottom: 4px;
+}
+
+.card-link {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--orange);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+.bottom-nav {
+  max-width: 700px;
+  margin: 24px auto;
+  padding: 0 20px;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.bottom-nav a {
+  flex: 1;
+  text-align: center;
+  background: var(--white);
+  color: var(--orange-deep);
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.bottom-nav a:hover {
+  background: var(--orange-soft);
+}
+
+.bottom-nav a.primary {
+  background: var(--orange);
+  color: var(--white);
+  border-color: var(--orange);
+}
+
+.site-footer {
+  background: var(--orange-deep);
+  color: var(--white);
+  text-align: center;
+  padding: 24px 20px;
+  margin-top: 40px;
+}
+
+.site-footer a {
+  color: var(--white);
+  text-decoration: none;
+  margin: 0 12px;
+  font-size: 13px;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+.copyright {
+  margin-top: 16px;
+  font-size: 11px;
+  opacity: 0.8;
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1 class="site-title">朝陽 黎</h1>
+  <p class="site-subtitle">ゆるく続ける朝活</p>
+</header>
+
+<nav class="page-nav">
+  <a href="menu.html">≡ メニュー</a>
+  <span class="current">プログラム</span>
+</nav>
+
+<div class="content">
+
+  <h2 class="page-title">プログラム</h2>
+  <p class="page-lead">
+    自分に合うペースで、選べます。<br>
+    無料で試せる場所と、個別に伴走する場所があります。
+  </p>
+
+  <div class="card">
+    <span class="card-tag">無料</span>
+    <h3>LINE公式アカウント(21日体験)</h3>
+    <p>毎朝のメッセージで、朝の習慣を整える21日間。</p>
+    <p>登録するだけで、自動的にステップ配信が届きます。返信は任意。自分のペースで進められます。</p>
+    <ul>
+      <li>登録は数秒、登録費0円</li>
+      <li>返信任意、いつでも解除できる</li>
+      <li>合言葉のような小さなやり取り</li>
+    </ul>
+    <a href="https://line.me/R/ti/p/@179pyfte" class="card-link">LINE公式に登録 →</a>
+  </div>
+
+  <div class="card">
+    <span class="card-tag">無料</span>
+    <h3>オープンチャット参加</h3>
+    <p>「おはよう」を共有するだけの、ゆるい朝活部屋。</p>
+    <p>毎日来なくてもいい。週4日できればOK。完璧を目指さない場所です。</p>
+    <ul>
+      <li>匿名で参加できる</li>
+      <li>挨拶を交わすだけでもOK</li>
+      <li>合わなければいつでも離れて大丈夫</li>
+    </ul>
+    <a href="https://line.me/ti/g2/cFezziUwcw-bG7y5q8FaXQLaKcdfWQsqGIoEbA" class="card-link">オープンチャットへ →</a>
+  </div>
+
+  <div class="card">
+    <span class="card-tag paid">有料</span>
+    <h3>個別伴走(21日プログラム)</h3>
+    <p>朝が苦手な人のための、個別サポート付き21日間。</p>
+    <p>毎朝・毎夜の「合言葉」と返信のやり取り。5年前、14時起きだった私が続けるために作った仕組みです。</p>
+    <ul>
+      <li>起床時間はあなたが決める</li>
+      <li>返信が遅れても大丈夫</li>
+      <li>挫折しても再スタートできる</li>
+    </ul>
+  </div>
+
+  <div class="card" style="background: var(--orange-soft); border: 1px solid var(--orange-light);">
+    <h3 style="border-bottom: none; padding-bottom: 0;">どれを選べばいい?</h3>
+    <p>まずは無料の場所から始めるのがおすすめです。LINE公式かオープンチャット、どちらでも合うほうで。</p>
+    <p>もっと個別にサポートしてほしいと感じたら、個別伴走を検討してみてください。</p>
+  </div>
+
+</div>
+
+<div class="bottom-nav">
+  <a href="menu.html">≡ メニュー</a>
+  <a href="asahi-rei-message.html" class="primary">メッセージを送る</a>
+</div>
+
+<footer class="site-footer">
+  <div>
+    <a href="menu.html">メニュー</a>
+    <a href="https://forwix.github.io/asahi-rei-hub/">ハブ</a>
+  </div>
+  <div class="copyright">© 2026 朝陽 黎 / ASAHI REI</div>
+</footer>
+
+</body>
+</html>
