@@ -62,6 +62,49 @@ body {
   opacity: 0.95;
 }
 
+/* スマホ専用ナビメニュー */
+.mobile-nav {
+  display: none;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 0;
+}
+
+@media (max-width: 900px) {
+  .mobile-nav {
+    display: block;
+  }
+}
+
+.mobile-nav a {
+  display: block;
+  padding: 12px 20px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  border-bottom: 1px solid var(--cream-deep);
+  position: relative;
+}
+
+.mobile-nav a::after {
+  content: '›';
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--orange);
+  font-size: 18px;
+}
+
+.mobile-nav a:last-child {
+  border-bottom: none;
+  color: var(--orange-deep);
+}
+
+.mobile-nav a:last-child::after {
+  content: '';
+}
+
 /* メイン */
 .main-container {
   max-width: 1200px;
@@ -329,12 +372,22 @@ body {
   <p class="site-subtitle">ゆるく続ける朝活</p>
 </header>
 
+<nav class="mobile-nav">
+  <a href="#message">メッセージを送る</a>
+  <a href="#program">プログラム</a>
+  <a href="#faq">よくある質問</a>
+  <a href="#pillars">朝の3本柱</a>
+  <a href="#join">参加する</a>
+  <a href="#question">今日の問い</a>
+  <a href="https://forwix.github.io/asahi-rei-hub/">← ハブに戻る</a>
+</nav>
+
 <main class="main-container">
   <div class="layout">
 
     <!-- 左カラム -->
     <aside class="left-col">
-      <div class="card">
+      <div class="card" id="program">
         <h2>プログラム</h2>
         <ul>
           <li>無料体験(LINE公式)</li>
@@ -345,7 +398,7 @@ body {
         <p>どれも、自分のペースで。</p>
       </div>
 
-      <div class="card">
+      <div class="card" id="faq">
         <h2>よくある質問</h2>
         <p style="font-weight:500; margin-bottom:4px;">Q. 朝が苦手でも大丈夫?</p>
         <p style="margin-bottom:16px; color:var(--text-muted);">5年前、14時起きだった私が作った場所です。</p>
@@ -357,7 +410,7 @@ body {
     </aside>
 
     <!-- 中央カラム:メッセージ送信フォーム -->
-    <section class="center-col">
+    <section class="center-col" id="message">
       <div class="form-card">
         <h2>朝陽 黎へのメッセージ</h2>
         <p class="lead">
@@ -401,7 +454,7 @@ body {
 
     <!-- 右カラム -->
     <aside class="right-col">
-      <div class="card">
+      <div class="card" id="pillars">
         <h2>朝の3本柱</h2>
         <ul>
           <li>意志力ではなく、環境をつくる</li>
@@ -411,14 +464,14 @@ body {
         <p style="color:var(--text-muted);">押し付けない、責めない。</p>
       </div>
 
-      <div class="card">
+      <div class="card" id="join">
         <h2>参加する</h2>
         <a href="https://line.me/R/ti/p/@179pyfte" class="join-btn primary">LINE公式に登録</a>
         <a href="https://line.me/ti/g2/cFezziUwcw-bG7y5q8FaXQLaKcdfWQsqGIoEbA" class="join-btn secondary">オープンチャットへ</a>
         <p class="join-note">どちらも無料です。</p>
       </div>
 
-      <div class="card">
+      <div class="card" id="question">
         <h2>今日の問い</h2>
         <p class="question">
           「明日からやろう」じゃなくて、<br>
