@@ -193,6 +193,76 @@ body {
   font-size: 11px;
   opacity: 0.8;
 }
+
+/* 下部Information風メニュー */
+.info-menu {
+  background: var(--cream-deep);
+  margin-top: 40px;
+  padding: 0;
+}
+
+.info-menu-header {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%);
+  color: var(--white);
+  text-align: center;
+  padding: 14px 20px;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+}
+
+.info-menu-list {
+  background: var(--white);
+}
+
+.info-menu-list a {
+  display: block;
+  padding: 16px 20px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  border-bottom: 1px solid var(--cream-deep);
+  position: relative;
+  background: linear-gradient(to bottom, var(--white) 0%, #f8f6f1 100%);
+}
+
+.info-menu-list a:hover {
+  background: var(--orange-soft);
+}
+
+.info-menu-list a::after {
+  content: '›';
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--orange);
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.info-menu-list a.current {
+  color: var(--text-muted);
+  background: var(--cream-deep);
+}
+
+.info-menu-list a.current::after {
+  content: '今ここ';
+  font-size: 11px;
+  background: var(--orange);
+  color: var(--white);
+  padding: 3px 10px;
+  border-radius: 999px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 400;
+}
+
+.info-menu-divider {
+  background: var(--cream-deep);
+  height: 4px;
+}
+
 </style>
 </head>
 <body>
@@ -238,6 +308,25 @@ body {
   <a href="menu.html">≡ HOME</a>
   <a href="asahi-rei-message.html" class="primary">メッセージを送る</a>
 </div>
+
+
+<!-- Information風メニュー -->
+<nav class="info-menu">
+  <div class="info-menu-header">Information</div>
+  <div class="info-menu-list">
+    <a href="menu.html">HOME</a>
+    <a href="asahi-rei-message.html">メッセージを送る</a>
+    <a href="program.html">プログラム</a>
+    <a href="faq.html">よくある質問</a>
+    <a href="pillars.html">朝の3本柱</a>
+    <a href="join.html" class="current">参加する</a>
+    <a href="question.html">今日の問い</a>
+  </div>
+  <div class="info-menu-divider"></div>
+  <div class="info-menu-list">
+    <a href="https://forwix.github.io/asahi-rei-hub/">ハブに戻る</a>
+  </div>
+</nav>
 
 <footer class="site-footer">
   <div>
