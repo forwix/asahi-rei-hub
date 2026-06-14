@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HOME — 朝陽 黎</title>
-<meta name="description" content="朝陽 黎の各ページへの入り口。">
+<meta name="description" content="朝陽 黎の各ページへの入り口。新着情報、お便り、プログラム案内。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
@@ -73,118 +73,75 @@ body {
   margin: 0 0 24px;
 }
 
-.menu-list {
+/* 新着情報セクション */
+.news-section {
   max-width: 600px;
-  margin: 0 auto;
-  padding: 0 16px 40px;
+  margin: 24px auto 0;
+  padding: 0 16px;
 }
 
-.menu-item {
-  display: block;
+.news-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 16px;
+  color: var(--orange-deep);
+  margin: 0 0 12px;
+  padding-left: 12px;
+  border-left: 3px solid var(--orange);
+  font-weight: 700;
+}
+
+.news-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.news-item {
   background: var(--white);
-  border-radius: 12px;
-  padding: 20px 24px;
-  margin-bottom: 12px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  position: relative;
+}
+
+.news-item a {
   text-decoration: none;
   color: var(--text);
-  box-shadow: var(--shadow);
-  position: relative;
-  transition: all 0.2s ease;
+  display: contents;
 }
 
-.menu-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(44, 40, 37, 0.1);
+.news-item a:hover .news-text {
+  color: var(--orange-deep);
 }
 
-.menu-item.current {
-  background: var(--orange-soft);
-  border: 1px solid var(--orange-light);
+.news-date {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: 'Noto Sans JP', monospace;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.menu-item.current::after {
-  content: '今ここ';
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+.news-badge {
+  display: inline-block;
+  font-size: 10px;
+  color: var(--white);
   background: var(--orange);
-  color: var(--white);
-  font-size: 11px;
-  padding: 4px 10px;
+  padding: 2px 8px;
   border-radius: 999px;
+  margin-right: 4px;
+  vertical-align: middle;
 }
 
-.menu-item:not(.current)::after {
-  content: '›';
-  position: absolute;
-  right: 24px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--orange);
-  font-size: 22px;
-}
-
-.menu-title {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--orange-deep);
-  margin: 0 0 4px;
-}
-
-.menu-desc {
-  font-size: 13px;
-  color: var(--text-muted);
-  margin: 0;
-  line-height: 1.7;
-}
-
-.section-divider {
-  text-align: center;
-  font-size: 12px;
-  color: var(--text-muted);
-  margin: 24px 0 12px;
-  letter-spacing: 0.1em;
-}
-
-.hub-back {
-  display: block;
-  text-align: center;
-  padding: 16px;
-  font-size: 13px;
-  color: var(--orange-deep);
-  text-decoration: none;
-  margin-top: 20px;
-}
-
-.hub-back:hover {
-  text-decoration: underline;
-}
-
-.site-footer {
-  background: var(--orange-deep);
-  color: var(--white);
-  text-align: center;
-  padding: 24px 20px;
-  margin-top: 40px;
-}
-
-.site-footer a {
-  color: var(--white);
-  text-decoration: none;
-  margin: 0 12px;
-  font-size: 13px;
-}
-
-.site-footer a:hover {
-  text-decoration: underline;
-}
-
-.copyright {
-  margin-top: 16px;
-  font-size: 11px;
-  opacity: 0.8;
+.news-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+  transition: color 0.2s;
 }
 
 /* 下部Information風メニュー */
@@ -256,6 +213,30 @@ body {
   height: 4px;
 }
 
+.site-footer {
+  background: var(--orange-deep);
+  color: var(--white);
+  text-align: center;
+  padding: 24px 20px;
+  margin-top: 40px;
+}
+
+.site-footer a {
+  color: var(--white);
+  text-decoration: none;
+  margin: 0 12px;
+  font-size: 13px;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+.copyright {
+  margin-top: 16px;
+  font-size: 11px;
+  opacity: 0.8;
+}
 </style>
 </head>
 <body>
@@ -266,15 +247,37 @@ body {
 </header>
 
 <h2 class="page-title">HOME</h2>
-<p class="page-desc">行きたい場所を、下のリストから選んでください。</p>
+<p class="page-desc">朝陽 黎の入り口です。</p>
 
+<!-- 新着情報 -->
+<section class="news-section">
+  <h3 class="news-title">新着情報</h3>
+  <ul class="news-list">
+    <li class="news-item">
+      <a href="asahi-rei-message.html">
+        <span class="news-date">2026/06/14</span>
+        <span class="news-text"><span class="news-badge">NEW</span>受信BOXを作りました。お便りが届きます</span>
+      </a>
+    </li>
+    <li class="news-item">
+      <a href="asahi-rei-message.html">
+        <span class="news-date">2026/06/13</span>
+        <span class="news-text">メッセージを送れる場所を用意しました</span>
+      </a>
+    </li>
+    <li class="news-item">
+      <span class="news-date">2026/06/06</span>
+      <span class="news-text">ノート更新:疲れているのに眠れない夜の、冷えピタ</span>
+    </li>
+  </ul>
+</section>
 
 <!-- Information風メニュー -->
 <nav class="info-menu">
   <div class="info-menu-header">Information</div>
   <div class="info-menu-list">
     <a href="menu.html" class="current">HOME</a>
-    <a href="asahi-rei-message.html">メッセージを送る</a>
+    <a href="asahi-rei-message.html">受信BOX</a>
     <a href="program.html">プログラム</a>
     <a href="faq.html">よくある質問</a>
     <a href="pillars.html">朝の3本柱</a>
