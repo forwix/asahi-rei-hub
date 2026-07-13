@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>プログラム — 朝陽 黎</title>
-<meta name="description" content="ゆるく続ける朝活のプログラム。無料体験から個別伴走まで。">
+<title>ノイズを減らす — 朝陽 黎</title>
+<meta name="description" content="早起きは入り口のひとつ。中心にあるのは、ノイズを減らして、自分に戻ること。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
@@ -24,8 +24,6 @@
   --border: #ede5d8;
   --shadow: 0 2px 12px rgba(44, 40, 37, 0.06);
 }
-
-html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -57,7 +55,6 @@ body {
   opacity: 0.95;
 }
 
-/* ページナビ */
 .page-nav {
   background: var(--white);
   border-bottom: 1px solid var(--border);
@@ -70,10 +67,6 @@ body {
   color: var(--orange-deep);
   text-decoration: none;
   margin: 0 8px;
-}
-
-.page-nav a:hover {
-  text-decoration: underline;
 }
 
 .page-nav .current {
@@ -99,75 +92,85 @@ body {
   font-size: 14px;
   color: var(--text-muted);
   margin: 0 0 32px;
-  line-height: 1.95;
 }
 
 .card {
   background: var(--white);
-  padding: 24px;
+  padding: 28px 24px;
   border-radius: 12px;
   box-shadow: var(--shadow);
   margin-bottom: 16px;
 }
 
-.card h3 {
+.card-title {
   font-family: 'Noto Serif JP', serif;
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 700;
   color: var(--orange-deep);
   margin: 0 0 12px;
-  border-bottom: 2px solid var(--orange-soft);
-  padding-bottom: 8px;
 }
 
-.card-tag {
-  display: inline-block;
-  background: var(--orange-soft);
-  color: var(--orange-deep);
-  font-size: 11px;
-  padding: 3px 10px;
-  border-radius: 999px;
-  margin-bottom: 8px;
-  letter-spacing: 0.05em;
-}
-
-.card-tag.paid {
-  background: var(--orange-deep);
-  color: var(--white);
-}
-
-.card p {
+.card-body {
   font-size: 14px;
   line-height: 1.95;
-  margin: 0 0 12px;
+  margin: 0 0 8px;
 }
 
-.card p:last-child {
+.card-body:last-child {
   margin-bottom: 0;
 }
 
-.card ul {
+.card-note {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  background: var(--cream-deep);
+  border-radius: 8px;
+  border-left: 3px solid var(--orange-light);
+}
+
+.rewrite-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px dotted var(--border);
   font-size: 14px;
-  line-height: 1.95;
-  margin: 0 0 12px;
-  padding-left: 20px;
+  line-height: 1.8;
 }
 
-.card li {
-  margin-bottom: 4px;
+.rewrite-row:last-of-type {
+  border-bottom: none;
 }
 
-.card-link {
-  display: inline-block;
-  margin-top: 12px;
+.rewrite-label {
+  flex-shrink: 0;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 13px;
   color: var(--orange);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
+  font-weight: 700;
 }
 
-.card-link:hover {
-  text-decoration: underline;
+.practice-box {
+  background: var(--orange-soft);
+  border-radius: 12px;
+  padding: 22px 20px;
+  margin: 4px 0 0;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.closing {
+  text-align: center;
+  padding: 32px 0 16px;
+}
+
+.closing-text {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.95;
 }
 
 .bottom-nav {
@@ -192,10 +195,6 @@ body {
   border: 1px solid var(--border);
 }
 
-.bottom-nav a:hover {
-  background: var(--orange-soft);
-}
-
 .bottom-nav a.primary {
   background: var(--orange);
   color: var(--white);
@@ -215,10 +214,6 @@ body {
   text-decoration: none;
   margin: 0 12px;
   font-size: 13px;
-}
-
-.site-footer a:hover {
-  text-decoration: underline;
 }
 
 .copyright {
@@ -307,65 +302,72 @@ body {
 
 <nav class="page-nav">
   <a href="menu.html">≡ HOME</a>
-  <span class="current">プログラム</span>
+  <span class="current">ノイズを減らす</span>
 </nav>
 
 <div class="content">
 
-  <h2 class="page-title">プログラム</h2>
-  <p class="page-lead">
-    自分に合うペースで、選べます。<br>
-    無料で試せる場所と、個別に伴走する場所があります。
-  </p>
+  <h2 class="page-title">ノイズを減らす</h2>
+  <p class="page-lead">早起きは、入り口のひとつ。中心にあるのは、ノイズを減らして、自分に戻ること。</p>
 
   <div class="card">
-    <span class="card-tag">無料</span>
-    <h3>LINE公式アカウント(21日体験)</h3>
-    <p>毎朝のメッセージで、朝の習慣を整える21日間。</p>
-    <p>登録するだけで、自動的にステップ配信が届きます。返信は任意。自分のペースで進められます。</p>
-    <ul>
-      <li>登録は数秒、登録費0円</li>
-      <li>返信任意、いつでも解除できる</li>
-      <li>合言葉のような小さなやり取り</li>
-    </ul>
-    <a href="https://line.me/R/ti/p/@179pyfte" class="card-link">LINE公式に登録 →</a>
+    <h3 class="card-title">3本柱は、同じことを言っていた</h3>
+    <div class="rewrite-row">
+      <span class="rewrite-label">環境をつくる</span>
+      <span>= 意志で戦うノイズを減らす</span>
+    </div>
+    <div class="rewrite-row">
+      <span class="rewrite-label">興奮をアウトプットする</span>
+      <span>= 頭の中のノイズを外に出す</span>
+    </div>
+    <div class="rewrite-row">
+      <span class="rewrite-label">行動で気分を変える</span>
+      <span>= 考え続けるノイズを止める</span>
+    </div>
+    <div class="card-note">
+      3つとも、向かう先はひとつ。静かな頭で、自分に戻ること。
+    </div>
   </div>
 
   <div class="card">
-    <span class="card-tag">無料</span>
-    <h3>オープンチャット参加</h3>
-    <p>「おはよう」を共有するだけの、ゆるい朝活部屋。</p>
-    <p>毎日来なくてもいい。週4日できればOK。完璧を目指さない場所です。</p>
-    <ul>
-      <li>匿名で参加できる</li>
-      <li>挨拶を交わすだけでもOK</li>
-      <li>合わなければいつでも離れて大丈夫</li>
-    </ul>
-    <a href="https://line.me/ti/g2/cFezziUwcw-bG7y5q8FaXQLaKcdfWQsqGIoEbA" class="card-link">オープンチャットへ →</a>
+    <h3 class="card-title">朝、不安が大きくなるのは</h3>
+    <p class="card-body">朝はコルチゾールというホルモンが上がる時間帯で、生理的に不安を感じやすいと言われています。将来の不安が朝いちばん大きく感じられるのは、意志が弱いからではなく、時間帯の影響も大きい。</p>
+    <div class="card-note">
+      「朝は不安が大きく見える時間」と知っているだけで、自分を責める材料がひとつ減ります。
+    </div>
   </div>
 
   <div class="card">
-    <span class="card-tag paid">有料</span>
-    <h3>個別伴走(21日プログラム)</h3>
-    <p>朝が苦手な人のための、個別サポート付き21日間。</p>
-    <p>毎朝・毎夜の「合言葉」と返信のやり取り。5年前、14時起きだった私が続けるために作った仕組みです。</p>
-    <ul>
-      <li>起床時間はあなたが決める</li>
-      <li>返信が遅れても大丈夫</li>
-      <li>挫折しても再スタートできる</li>
-    </ul>
+    <h3 class="card-title">順番の問題で、意志の問題じゃない</h3>
+    <p class="card-body">頭が休まらないまま座っても、雑念に飲まれるだけ。先に身体を動かして、頭の中のものを外に出す。出し切ってから座ると、静かになれる。</p>
+    <div class="practice-box">
+      5分でいい。散歩でもストレッチでもいい。<br>
+      先に動いて、出してから、座る。<br>
+      順番の問題で、意志の問題じゃない。
+    </div>
   </div>
 
-  <div class="card" style="background: var(--orange-soft); border: 1px solid var(--orange-light);">
-    <h3 style="border-bottom: none; padding-bottom: 0;">どれを選べばいい?</h3>
-    <p>まずは無料の場所から始めるのがおすすめです。LINE公式かオープンチャット、どちらでも合うほうで。</p>
-    <p>もっと個別にサポートしてほしいと感じたら、個別伴走を検討してみてください。</p>
+  <div class="card">
+    <h3 class="card-title">「もっと頑張る」は、ノイズを増やす</h3>
+    <p class="card-body">習慣を積み上げて完璧を目指す形は、静けさに向かうどころか、新しいノイズの追加になりやすい。増やすより、減らす。足すより、出す。</p>
+  </div>
+
+  <div class="card">
+    <h3 class="card-title">比べる相手は、他人じゃない</h3>
+    <p class="card-body">見るのは「自分がどれだけ出来たか」。記録を取るのも、誰かと比べるためではなく、自分の変化を自分で見られるようにするため。</p>
+  </div>
+
+  <div class="closing">
+    <p class="closing-text">
+      増やすより、減らす。<br>
+      静かになった分だけ、自分に戻れる。
+    </p>
   </div>
 
 </div>
 
 <div class="bottom-nav">
-  <a href="menu.html">≡ HOME</a>
+  <a href="pillars.html">朝の3本柱</a>
   <a href="asahi-rei-message.html" class="primary">受信BOX</a>
 </div>
 
@@ -376,10 +378,10 @@ body {
   <div class="info-menu-list">
     <a href="menu.html">HOME</a>
     <a href="asahi-rei-message.html">受信BOX</a>
-    <a href="program.html" class="current">プログラム</a>
+    <a href="program.html">プログラム</a>
     <a href="faq.html">よくある質問</a>
     <a href="pillars.html">朝の3本柱</a>
-    <a href="noise.html">ノイズを減らす</a>
+    <a href="noise.html" class="current">ノイズを減らす</a>
     <a href="join.html">参加する</a>
     <a href="question.html">今日の問い</a>
   </div>
